@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_connexion.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_ajouter_adherent.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_navigation_application.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_gestionnaire_randonneurs.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_principal_gestion_adherent.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_gestion_adherent.dart';
+
 
 
 void main() {
@@ -26,8 +30,9 @@ class MyApp extends StatelessWidget {
       routes: {
         '/pageAjouterAdherent': (context) => const PageAjouterAdherent(),
         '/pageNavigationApplication': (context) => const PageNavigationApplication(),
-        //'/': (context) => const PageGestionAdherent(),
-        //'/': (context) => const PageGestionnaireRandonneurs(),
+        '/page_gestionnaire_randonneurs': (context) => const PageGestionnaireRandonneurs(),
+        '/page_principal_gestion_adherent': (context) => const PagePrincipalGestionAdherent(),
+        '/page_gestion_adherent': (context) => const PageGestionAdherent(),
         }
     );
   }

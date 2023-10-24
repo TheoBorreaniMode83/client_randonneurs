@@ -37,19 +37,17 @@ class _PageGestionAdherent extends State<PageGestionAdherent> {
   
 
 
-  @override
-  Widget build(BuildContext context) {
-
+  
     final _formKey = GlobalKey<FormState>();
 
     final CustomTextStyle customTextTextStyleTitle = StyleFactory.createCustomTextStyleTitle();
-    final CustomTextStyle customTextTextStyle1 = StyleFactory.createCustomTextStyleTitle();
-    final CustomTextStyle customTextTextStyle2 = StyleFactory.createCustomTextStyleTitle();
-    final CustomTextStyle customTextTextStyle3 = StyleFactory.createCustomTextStyleTitle();
+    final CustomTextStyle customTextTextStyle1 = CustomTextStyle();
+    final CustomTextStyle customTextTextStyle2 = CustomTextStyle();
+    final CustomTextStyle customTextTextStyle3 = CustomTextStyle();
 
-    final CustomTextButtomStyle customButtonAjouterStyle = CustomTextButtomStyle();
-    final CustomTextButtomStyle customButtonModifierStyle = CustomTextButtomStyle();
-    final CustomTextButtomStyle customButtonSupprimerStyle = CustomTextButtomStyle();
+    final CustomTextButtomStyle customButtonAjouterStyle = StyleFactory.createCustomTextButtomStyleBasic();
+    final CustomTextButtomStyle customButtonModifierStyle = StyleFactory.createCustomTextButtomStyleBasic();
+    final CustomTextButtomStyle customButtonSupprimerStyle = StyleFactory.createCustomTextButtomStyleBasic();
     
     final CustomTextButtomEvent customButtonHeadEvent = CustomTextButtomEvent();
     final CustomTextButtomEvent customButtonAjouterEvent = CustomTextButtomEvent();
@@ -75,28 +73,35 @@ class _PageGestionAdherent extends State<PageGestionAdherent> {
         .setCustomTextStyle(customTextTextStyle2);
       customButtonSupprimerStyle
         .setCustomTextStyle(customTextTextStyle3);
+
+      customButtonHeadEvent
+        .setOnPressed(() {Navigator.pop(context);});
+      customButtonAjouterEvent
+        .setOnPressed(() {Navigator.pushNamed(context, "/pageAjouterAdherent");});
     }
 
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
-      body: Form(
-        key: _formKey,
-        child:ResponsiveView(
-          children:[
-            CustomHead(
-              customTextButtomEvent: customButtonHeadEvent,
-              customTextStyle: customTextTextStyleTitle),
-            CustomTextButton(
-              customTextButtomStyle: customButtonAjouterStyle,
-              customTextButtomEvent: customButtonAjouterEvent),
-            CustomTextButton(
-              customTextButtomStyle: customButtonModifierStyle,
-              customTextButtomEvent: customButtonModifierEvent),
-            CustomTextButton(
-              customTextButtomStyle: customButtonSupprimerStyle,
-              customTextButtomEvent: customButtonSupprimerEvent),
-          ],
+        body: Form(
+          key: _formKey,
+          child:ResponsiveView(
+            children:[
+              CustomHead(
+                customTextButtomEvent: customButtonHeadEvent,
+                customTextStyle: customTextTextStyleTitle),
+              CustomTextButton(
+                customTextButtomStyle: customButtonAjouterStyle,
+                customTextButtomEvent: customButtonAjouterEvent),
+              CustomTextButton(
+                customTextButtomStyle: customButtonModifierStyle,
+                customTextButtomEvent: customButtonModifierEvent),
+              CustomTextButton(
+                customTextButtomStyle: customButtonSupprimerStyle,
+                customTextButtomEvent: customButtonSupprimerEvent),
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    }
   }
-}

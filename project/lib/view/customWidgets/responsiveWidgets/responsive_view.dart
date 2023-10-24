@@ -25,11 +25,11 @@ class ResponsiveView extends StatelessWidget{
             padding= EdgeInsets.fromLTRB(constraints.maxWidth*0.1, 0, constraints.maxWidth*0.1, 0);
           }
           else if(appareil=="isTablet"){
-            width=constraints.maxWidth*0.6;
+            width=constraints.maxWidth*0.9;
             padding= EdgeInsets.fromLTRB(constraints.maxWidth*0.1, 0, constraints.maxWidth*0.1, 0);
           }
           else if(appareil=="isComputer"){
-            width=constraints.maxWidth*0.5;
+            width=constraints.maxWidth*0.7;
             padding= EdgeInsets.fromLTRB(constraints.maxWidth*0.1, 0, constraints.maxWidth*0.1, 0);
           }
           else{

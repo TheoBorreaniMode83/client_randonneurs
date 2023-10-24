@@ -22,11 +22,9 @@ class CustomHead extends StatelessWidget{
       width: double.maxFinite,
       child: Row(
         children: [
+        
           Expanded(
-            flex: 1,
-            child: Container(),),
-          Expanded(
-            flex: 1,
+            flex: 3,
             child: CustomText(
               customTextStyle: customTextStyle),),
           Expanded(
