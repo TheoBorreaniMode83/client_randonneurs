@@ -148,7 +148,7 @@ class _PagePrincipalGestionAdherent extends State<PagePrincipalGestionAdherent> 
     print("hello world");    
   }
   void app3(){
-    print("hello world");    
+    Navigator.pushNamed(context, "/page_requete_multi_criteres");
   }
   void app4(){
     print("hello world");    
