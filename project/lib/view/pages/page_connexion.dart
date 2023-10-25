@@ -15,7 +15,7 @@ import 'package:les_randonneurs_draceniens_client_administratif/controller/custo
 
 
 
-import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/responsiveWidgets/responsive_view.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/containerWidgets/responsive_view.dart';
 
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgetsStyles/styles_factory.dart';
 

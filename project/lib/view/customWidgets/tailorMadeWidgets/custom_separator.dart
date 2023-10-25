@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgetsStyles/styles/standardWidgetsStyles/custom_text_style.dart';
 
 class CustomSeparator extends StatelessWidget{
 

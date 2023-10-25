@@ -1,22 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/standardWidgets/custom_container.dart';
-
-import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/standardWidgets/custom_text.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/standardWidgets/custom_text_button.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgetsStyles/styles/standardWidgetsStyles/custom_container_style.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgetsStyles/styles/standardWidgetsStyles/custom_text_buttom_style.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgetsStyles/styles/standardWidgetsStyles/custom_text_style.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/tailorMadeWidgets/custom_head.dart';
-
-
-
 import 'package:les_randonneurs_draceniens_client_administratif/controller/customWidgetsControllers/custom_text_buttom_event.dart';
-
-
-import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/responsiveWidgets/responsive_view.dart';
-
+import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/containerWidgets/responsive_view.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgetsStyles/styles_factory.dart';
-
 
 class PagePrincipalGestionAdherent extends StatefulWidget {
   const PagePrincipalGestionAdherent({super.key});
@@ -70,7 +60,7 @@ class _PagePrincipalGestionAdherent extends State<PagePrincipalGestionAdherent> 
 
     //Setting des arguments customText
     title
-      .setContent("");
+      .setContent("Les randonneurs dracéniens");
     buttonApp1
       .setContent("Gestion Adhésions en cours");
     buttonApp2
@@ -125,11 +115,6 @@ class _PagePrincipalGestionAdherent extends State<PagePrincipalGestionAdherent> 
           CustomHead(
             customTextStyle: title, 
             customTextButtomEvent:textButtomApp0Event,),
-          CustomContainer(
-            customContainerStyle: customContainerStyle2),
-          Center(
-            child: CustomText(
-            customTextStyle:title)),
           CustomTextButton(
             customTextButtomStyle: textButtomApp1Style,
             customTextButtomEvent: textButtomApp1Event),
@@ -172,7 +157,7 @@ class _PagePrincipalGestionAdherent extends State<PagePrincipalGestionAdherent> 
     print("hello world");    
   }
   void app6(){
-    print("hello world");    
+    Navigator.pushNamed(context, '/page_boite_a_outils');    
   }
 
 

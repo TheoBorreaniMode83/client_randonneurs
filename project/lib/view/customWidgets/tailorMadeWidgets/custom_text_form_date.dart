@@ -3,9 +3,9 @@ import 'package:les_randonneurs_draceniens_client_administratif/view/customWidge
 
 class CustomTextFormDate extends StatelessWidget{
 
-  String title;
+  final String title;
 
-  CustomTextFormDate ({Key? key,
+  const CustomTextFormDate ({Key? key,
     required this.title,
   }):super(key: key);
 
@@ -33,11 +33,11 @@ class CustomTextFormDate extends StatelessWidget{
       child: Column(children: [
         Text(titre),
         DropdownButtonFormField(
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             filled: true,
             fillColor: Colors.white,
           ),
-          padding: EdgeInsets.symmetric(horizontal: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           items: list.map((items) {
             return DropdownMenuItem(value: items, child: Text(items));
           }).toList(),

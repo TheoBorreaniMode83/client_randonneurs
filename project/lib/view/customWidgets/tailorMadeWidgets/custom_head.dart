@@ -6,10 +6,10 @@ import 'package:les_randonneurs_draceniens_client_administratif/view/customWidge
 
 class CustomHead extends StatelessWidget{
 
-  CustomTextButtomEvent customTextButtomEvent;
-  CustomTextStyle customTextStyle;
+  final CustomTextButtomEvent customTextButtomEvent;
+  final CustomTextStyle customTextStyle;
 
-  CustomHead ({Key? key,
+  const CustomHead ({Key? key,
     required this.customTextButtomEvent,
     required this.customTextStyle
   }):super(key: key);

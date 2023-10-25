@@ -1,40 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/standardWidgets/custom_container.dart';
-
-import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/standardWidgets/custom_text.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/standardWidgets/custom_text_button.dart';
-import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgetsStyles/styles/standardWidgetsStyles/custom_container_style.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgetsStyles/styles/standardWidgetsStyles/custom_text_buttom_style.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgetsStyles/styles/standardWidgetsStyles/custom_text_style.dart';
-
-import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/standardWidgets/custom_text_form_field.dart';
-import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgetsStyles/styles/standardWidgetsStyles/custom_text_form_field_style.dart';
-import 'package:les_randonneurs_draceniens_client_administratif/controller/customWidgetsControllers/custom_text_form_field_validator.dart';
-
 import 'package:les_randonneurs_draceniens_client_administratif/controller/customWidgetsControllers/custom_text_buttom_event.dart';
-
-
-
-import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/responsiveWidgets/responsive_view.dart';
-
+import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/containerWidgets/responsive_view.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgetsStyles/styles_factory.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/tailorMadeWidgets/custom_head.dart';
 
-import 'package:les_randonneurs_draceniens_client_administratif/controller/customWidgetsControllers/custom_text_form_field_event.dart';
-
-import 'package:http/http.dart' as http;
-
-import 'dart:convert';
-
-class PageConnexion extends StatefulWidget {
-  const PageConnexion({super.key});
+class PageBoiteAOutils extends StatefulWidget {
+  const PageBoiteAOutils({super.key});
   @override
-  State<PageConnexion> createState() => _PageConnexion();
+  State<PageBoiteAOutils> createState() => _PageBoiteAOutils();
 }
 
-class _PageConnexion extends State<PageConnexion> {
+class _PageBoiteAOutils extends State<PageBoiteAOutils> {
   
   
   final _formKey = GlobalKey<FormState>();
+
+  final CustomTextStyle customTextStyle1 = CustomTextStyle();
+  final CustomTextStyle customTextStyle2 = CustomTextStyle();
+  final CustomTextStyle customTextStyle3 = CustomTextStyle();
+  final CustomTextStyle customTextStyle4 = CustomTextStyle();
+  final CustomTextStyle customTextStyle5 = CustomTextStyle();
+  final CustomTextStyle customTextStyle6 = CustomTextStyle();
+
 
   final CustomTextButtomStyle bouton1Style = StyleFactory.createCustomTextButtomStyleBasic();
   final CustomTextButtomEvent bouton1Event = CustomTextButtomEvent();
@@ -54,12 +44,57 @@ class _PageConnexion extends State<PageConnexion> {
   final CustomTextButtomStyle bouton6Style = StyleFactory.createCustomTextButtomStyleBasic();
   final CustomTextButtomEvent bouton6Event = CustomTextButtomEvent();
 
-  
+  final CustomTextStyle customHeadStyle = StyleFactory.createCustomTextStyleTitle();
+  final CustomTextButtomEvent headEvent = CustomTextButtomEvent();
 
   @override
   void initState() {
     super.initState();
 
+    customHeadStyle
+      .setContent("Boîte à outils");
+    headEvent
+      .setOnPressed(() {app0();});
+
+    customTextStyle1
+      .setContent("Liste des certificats médicaux obsolètes");
+    customTextStyle2
+      .setContent("Mise en forme & coloriage des fichiers");
+    customTextStyle3
+      .setContent("Création du nouvel exercice");
+    customTextStyle4
+      .setContent("Recensement des incohérences");
+    customTextStyle5
+      .setContent("Accès aux Paramètres & Tarifs");
+    customTextStyle6
+      .setContent("Impression du bordeau de transmission");
+
+    bouton1Style
+      .setCustomTextStyle(customTextStyle1);
+    bouton2Style
+      .setCustomTextStyle(customTextStyle2);
+    bouton3Style
+      .setCustomTextStyle(customTextStyle3);
+    bouton4Style
+      .setCustomTextStyle(customTextStyle4);
+    bouton5Style
+      .setCustomTextStyle(customTextStyle5);
+    bouton6Style
+      .setCustomTextStyle(customTextStyle6);
+
+    bouton1Event
+      .setOnPressed(() { });
+    bouton2Event
+      .setOnPressed(() { });
+    bouton3Event
+      .setOnPressed(() { });
+    bouton4Event
+      .setOnPressed(() { });
+    bouton5Event
+      .setOnPressed(() {app5();});
+    bouton6Event
+      .setOnPressed(() { });
+        
   }
 
   @override
@@ -69,6 +104,9 @@ class _PageConnexion extends State<PageConnexion> {
         key: _formKey,
         child:ResponsiveView(
           children:[
+            CustomHead(
+              customTextButtomEvent: headEvent,
+              customTextStyle: customHeadStyle),
             CustomTextButton(
               customTextButtomStyle: bouton1Style,
               customTextButtomEvent: bouton1Event),
@@ -93,25 +131,22 @@ class _PageConnexion extends State<PageConnexion> {
     );
   }
 
-  void tdest() async {
-
-    Map<String, dynamic> content = {"id":"1234", "mdp":"mdp"};
-
-    //print(Crypt.sha256('p@ssw0rd', salt: 'abcdefghijklmnop', rounds: 10000).hashCode.toString());
-    String url = 'http://127.0.0.1:8000/obtenir_token';
-    try{
-          http.Response response = await http.post(Uri.parse(url), body: utf8.encode(jsonEncode(content)));
-          print(response.body);
-    }
-    catch(e)
-    {
-      print(e.toString());
-    }
-    //print(response.body);
-    if (_formKey.currentState!.validate()){
-      
-      Navigator.popAndPushNamed(context, "/pageNavigationApplication");
-    }
+  void app0(){
+    Navigator.pop(context);
   }
+  void app1(){
+  }
+  void app2(){
+  }
+  void app3(){
+  }
+  void app4(){
+  }
+  void app5(){
+    Navigator.pushNamed(context,'/page_gestion_tarif');
+  }
+  void app6(){
+  }
+
 
 }

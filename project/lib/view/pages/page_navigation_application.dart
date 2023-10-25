@@ -12,7 +12,7 @@ import 'package:les_randonneurs_draceniens_client_administratif/view/customWidge
 import 'package:les_randonneurs_draceniens_client_administratif/controller/customWidgetsControllers/custom_text_buttom_event.dart';
 
 
-import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/responsiveWidgets/responsive_view.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/containerWidgets/responsive_view.dart';
 
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgetsStyles/styles_factory.dart';
 
@@ -61,13 +61,13 @@ class _PageNavigationApplication extends State<PageNavigationApplication> {
     title
       .setContent("Choix de l'application");
     buttonApp1
-      .setContent("Application 1");
+      .setContent("Gestion adhérents");
     buttonApp2
-      .setContent("Application 2");
+      .setContent("Gestion des randonnées");
     buttonApp3
-      .setContent("Application 3");
+      .setContent("Evènementiel");
     buttonApp4
-      .setContent("Application 4");
+      .setContent("Extraction de documents");
 
     //Setting des arguments customTextButtom
     textButtomApp1Style

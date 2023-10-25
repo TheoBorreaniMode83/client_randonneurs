@@ -7,8 +7,8 @@ import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_
 import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_gestionnaire_randonneurs.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_principal_gestion_adherent.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_gestion_adherent.dart';
-
-
+import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_boite_a_outils.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_gestion_tarif.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,6 +33,8 @@ class MyApp extends StatelessWidget {
         '/page_gestionnaire_randonneurs': (context) => const PageGestionnaireRandonneurs(),
         '/page_principal_gestion_adherent': (context) => const PagePrincipalGestionAdherent(),
         '/page_gestion_adherent': (context) => const PageGestionAdherent(),
+        '/page_boite_a_outils': (context) => const PageBoiteAOutils(),
+        '/page_gestion_tarif': (context) => const PageGestionTarif(),
         }
     );
   }

@@ -10,7 +10,7 @@ import 'package:les_randonneurs_draceniens_client_administratif/controller/custo
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/standardWidgets/custom_dropdown_button.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgetsStyles/styles/standardWidgetsStyles/custom_dropdown_button_style.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/controller/customWidgetsControllers/custom_text_buttom_event.dart';
-import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/responsiveWidgets/responsive_view.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/containerWidgets/responsive_view.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgetsStyles/styles_factory.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/controller/customWidgetsControllers/custom_text_form_field_event.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/controller/customWidgetsControllers/custom_dropdown_button_content.dart';
@@ -22,6 +22,7 @@ import 'package:les_randonneurs_draceniens_client_administratif/model/adherent.d
 import 'dart:convert';
 import 'dart:async';
 import 'package:http/http.dart' as http;
+import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/containerWidgets/percentage_double_container.dart';
 
 
 
@@ -337,16 +338,20 @@ class _PageAjouterAdherent extends State<PageAjouterAdherent> {
             Center(
               child: CustomText(
               customTextStyle:subTitle4Style)),
-            CustomTextFormField(
-              customTextFormFieldStyle: textFormTelStyle,
-              customTextFormFieldValidator: textFormTelValidator,
-              customTextFormFieldEvent: textFormTelEvent,
-              controller: textFormTelController),
-            CustomTextFormField(
-              customTextFormFieldStyle: textFormMailStyle,
-              customTextFormFieldValidator: textFormMailValidator,
-              customTextFormFieldEvent: textFormMailEvent,
-              controller: textFormMailController),
+            PercentageDoubleContainer(
+              child1: CustomTextFormField(
+                customTextFormFieldStyle: textFormTelStyle,
+                customTextFormFieldValidator: textFormTelValidator,
+                customTextFormFieldEvent: textFormTelEvent,
+                controller: textFormTelController),
+              child2: CustomTextFormField(
+                customTextFormFieldStyle: textFormMailStyle,
+                customTextFormFieldValidator: textFormMailValidator,
+                customTextFormFieldEvent: textFormMailEvent,
+                controller: textFormMailController),
+            ),
+            
+            
             const CustomSeparator(),
             Center(
               child: CustomText(
@@ -413,7 +418,7 @@ class _PageAjouterAdherent extends State<PageAjouterAdherent> {
             const CustomSeparator(),
             CustomTextButton(
               customTextButtomStyle: textButtomValidatorStyle,
-              customTextButtomEvent: textButtomValidatorEvent)
+              customTextButtomEvent: textButtomValidatorEvent),
           ],
         ),
       ),
