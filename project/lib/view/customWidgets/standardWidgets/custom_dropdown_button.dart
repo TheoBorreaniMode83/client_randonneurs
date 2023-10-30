@@ -18,13 +18,16 @@ class CustomDropdownButton extends StatelessWidget{
   @override
   Widget build(BuildContext context)
   {
-    return DropdownButton(
-      value: customDropdownButtonContent.getDropDownValue(),
-      icon: const Icon(Icons.keyboard_arrow_down),
-      items: customDropdownButtonContent.getItems().map((items) {
-        return DropdownMenuItem(value: items, child: Text(items));
-      }).toList(),
+    return Container(
+      color: Colors.white,
+      child: DropdownButton(
+        value: customDropdownButtonContent.getDropDownValue(),
+        icon: const Icon(Icons.keyboard_arrow_down),
+        underline: SizedBox(),
+        items: customDropdownButtonContent.getItems().map((items) {
+          return DropdownMenuItem(value: items, child: Text(items), );
+        }).toList(),
       onChanged: customDropdownButtonEvent.getOnChanged()
-    );
+    ));
   }
 } 

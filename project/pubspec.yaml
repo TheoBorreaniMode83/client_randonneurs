@@ -39,6 +39,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   auto_size_text: ^3.0.0
   crypt: ^4.3.1
+  patterns_canvas: ^0.4.0
   
 dev_dependencies:
   flutter_test:
