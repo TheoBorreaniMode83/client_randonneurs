@@ -299,7 +299,7 @@ class _PageAjouterAdherent extends State<PageAjouterAdherent> {
               customDropdownButtonStyle: dropdownButtonCiviliteStyle,
               customDropdownButtonContent:dropdownButtonCiviliteContent,
               customDropdownButtonEvent: dropdownButtonCiviliteEvent,),
-            CustomTextFormDate(title: "Date de naissance"),
+            const CustomTextFormDate(title: "Date de naissance"),
             const CustomSeparator(),
             Center(
               child: CustomText(
@@ -392,9 +392,9 @@ class _PageAjouterAdherent extends State<PageAjouterAdherent> {
               customTextFormFieldEvent: textFormBoutiqueEtRevueEvent,
               controller: textFormBoutiqueEtRevueController),
             const CustomSeparator(),
-            CustomTextFormDate(title: "Date adhésion",),
+            const CustomTextFormDate(title: "Date adhésion",),
             const CustomSeparator(),
-            CustomTextFormDate(title: "Sate certificat médical"),
+            const CustomTextFormDate(title: "Sate certificat médical"),
             const CustomSeparator(),
             Center(
               child: CustomText(

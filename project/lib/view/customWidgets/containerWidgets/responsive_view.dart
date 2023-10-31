@@ -13,6 +13,8 @@ class ResponsiveView extends StatelessWidget{
   @override
   Widget build(BuildContext context)
   {
+    final yourScrollController = ScrollController();
+
     return Center(
       child: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
@@ -55,7 +57,10 @@ class ResponsiveView extends StatelessWidget{
               ),
             ),
             child: Scrollbar(
+              thickness: 5, //largeur scroll barre
+              controller: yourScrollController, 
               child: ListView(
+                controller: yourScrollController, // AND Here
                 children: children
               ),
             ),

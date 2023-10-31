@@ -20,7 +20,7 @@ class PercentageDoubleContainer extends StatelessWidget{
         Expanded(
           flex: 1,
           child: Container(
-            margin: EdgeInsets.fromLTRB(2,2,2,2 ),
+            margin: const EdgeInsets.fromLTRB(2,2,2,2 ),
             height: 100,
             child: child1,
           ),
