@@ -70,7 +70,7 @@ class ComposentRequeteMultiCriteres extends StatelessWidget{
           Expanded(
             flex:1 ,
             child: Container(
-              child: child,
+              child: Container(padding: EdgeInsets.fromLTRB(0, 0, 10, 0),alignment: Alignment.topRight, child: child),
             )
           ),
           Expanded(

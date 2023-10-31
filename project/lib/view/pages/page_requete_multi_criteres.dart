@@ -15,6 +15,7 @@ import 'package:les_randonneurs_draceniens_client_administratif/view/customWidge
 import 'package:les_randonneurs_draceniens_client_administratif/controller/customWidgetsControllers/custom_dropdown_button_content.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/controller/customWidgetsControllers/custom_dropdown_button_event.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgetsStyles/styles_factory.dart';
+import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
 
 
 class PageRequeteMultiCriteres extends StatefulWidget {
@@ -71,8 +72,18 @@ class _PageGestionnaireRandonneurs extends State<PageRequeteMultiCriteres> {
       .setBackgroundColor(Color(0xffffffc0))
       .setBorderColor(Color(0xFFCCB68A));
 
+    dropdownButtonCiviliteContent
+      .setItems(["a","b","c"])
+      .setDropdownValue("a");
+
     dropdownButtonCiviliteStyle
       .setColor(Colors.white);
+
+    dropdownButtonCiviliteEvent
+      .setOnChanged((p0) {
+        dropdownButtonCiviliteContent.setDropdownValue(p0.toString());
+        setState(() {});
+      });
 
     customTextStyle
       .setContent("valider");
@@ -83,23 +94,48 @@ class _PageGestionnaireRandonneurs extends State<PageRequeteMultiCriteres> {
 
   @override
   Widget build(BuildContext context) {
+
+      final GlobalKey<SliderDrawerState> _sliderDrawerKey =
+      GlobalKey<SliderDrawerState>();
+
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
     return Scaffold(
-      body: Form(
+      body: SliderDrawer(
+        key: _sliderDrawerKey,
+        slider: Container(color: const Color.fromARGB(255, 102, 102, 102)),
+        appBar: AppBar(
+          backgroundColor: Color.fromARGB(255, 30, 30, 30),
+          title: const Text('Les randonneurs Dracéniens', style: TextStyle(color: Colors.white)),
+          leading: 
+          IconButton(
+            color: Colors.white,
+            icon: const Icon(Icons.menu),
+            onPressed: () {_sliderDrawerKey.currentState!.openSlider();},
+          ),
+          actions: [
+            IconButton(
+            color: Colors.white,
+            icon: const Icon(Icons.arrow_back_outlined ),
+            onPressed: () {Navigator.pop(context);},
+          ),
+          ],
+        
+          ),
+      sliderOpenSize: 300,
+      child: Form(
         key: _formKey,
         child:ResponsiveView(
           children:[
-            CustomHead(
-              customTextButtomEvent: customButtonHeadEvent,
-              customTextStyle: customTextTextStyleTitle),
             ComposentRequeteMultiCriteres(
               composentRequeteMultiCriteresStyle: composentRequeteMultiCriteresStyle1,
-              child: Text("Année première adhésion"),
-              children1: [Text("Etendue"),Text("Civilités")],
+              child: Text("Année première adhésion", style: const TextStyle(fontWeight: FontWeight.bold)),
+              children1: [Text("Egale à :")],
               children2: [
-                CustomDropdownButton(
-                  customDropdownButtonStyle: dropdownButtonCiviliteStyle,
-                  customDropdownButtonContent:dropdownButtonCiviliteContent,
-                  customDropdownButtonEvent: dropdownButtonCiviliteEvent,),
                 CustomDropdownButton(
                   customDropdownButtonStyle: dropdownButtonCiviliteStyle,
                   customDropdownButtonContent:dropdownButtonCiviliteContent,
@@ -108,7 +144,7 @@ class _PageGestionnaireRandonneurs extends State<PageRequeteMultiCriteres> {
             ),
             ComposentRequeteMultiCriteres(
               composentRequeteMultiCriteresStyle: composentRequeteMultiCriteresStyle2,
-              child: Text("Civilité"),
+              child: Text("Civilité", style: const TextStyle(fontWeight: FontWeight.bold)),
               children1: [Text("Etendue"),Text("Civilités")],
               children2: [
                 CustomDropdownButton(
@@ -123,8 +159,8 @@ class _PageGestionnaireRandonneurs extends State<PageRequeteMultiCriteres> {
             ),
             ComposentRequeteMultiCriteres(
               composentRequeteMultiCriteresStyle: composentRequeteMultiCriteresStyle3,
-              child: Text("Statut"),
-              children1: [Text("Etendue"),Text("Civilités")],
+              child: Text("Statut",  style: const TextStyle(fontWeight: FontWeight.bold)),
+              children1: [Text("Etendue"),Text("Status")],
               children2: [
                 CustomDropdownButton(
                   customDropdownButtonStyle: dropdownButtonCiviliteStyle,
@@ -138,8 +174,8 @@ class _PageGestionnaireRandonneurs extends State<PageRequeteMultiCriteres> {
             ),
             ComposentRequeteMultiCriteres(
               composentRequeteMultiCriteresStyle: composentRequeteMultiCriteresStyle4,
-              child: Text("Ville"),
-              children1: [Text("Etendue"),Text("Civilités")],
+              child: Text("Ville", style: const TextStyle(fontWeight: FontWeight.bold)),
+              children1: [Text("Etendue"),Text("Villes")],
               children2: [
                 CustomDropdownButton(
                   customDropdownButtonStyle: dropdownButtonCiviliteStyle,
@@ -153,8 +189,8 @@ class _PageGestionnaireRandonneurs extends State<PageRequeteMultiCriteres> {
             ),
             ComposentRequeteMultiCriteres(
               composentRequeteMultiCriteresStyle: composentRequeteMultiCriteresStyle5,
-              child: Text("Date de naissance"),
-              children1: [Text("Etendue"),Text("Civilités")],
+              child: Text("Date de naissance",  style: const TextStyle(fontWeight: FontWeight.bold)),
+              children1: [Text("Etendue"),Text("Date")],
               children2: [
                 CustomDropdownButton(
                   customDropdownButtonStyle: dropdownButtonCiviliteStyle,
@@ -168,9 +204,13 @@ class _PageGestionnaireRandonneurs extends State<PageRequeteMultiCriteres> {
             ),
             ComposentRequeteMultiCriteres(
               composentRequeteMultiCriteresStyle: composentRequeteMultiCriteresStyle6,
-              child: Text("Rubrique financières"),
-              children1: [Text("Etendue"),Text("Civilités")],
+              child: Text("Rubrique financières", style: const TextStyle(fontWeight: FontWeight.bold)),
+              children1: [Text("Rubriques"),Text("Etendue"),Text("Montant")],
               children2: [
+                CustomDropdownButton(
+                  customDropdownButtonStyle: dropdownButtonCiviliteStyle,
+                  customDropdownButtonContent:dropdownButtonCiviliteContent,
+                  customDropdownButtonEvent: dropdownButtonCiviliteEvent,),
                 CustomDropdownButton(
                   customDropdownButtonStyle: dropdownButtonCiviliteStyle,
                   customDropdownButtonContent:dropdownButtonCiviliteContent,
@@ -185,6 +225,6 @@ class _PageGestionnaireRandonneurs extends State<PageRequeteMultiCriteres> {
           ],
         ),
       ),
-    );
+    ));
   }
 }

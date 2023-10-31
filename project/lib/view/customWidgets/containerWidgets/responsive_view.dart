@@ -35,7 +35,12 @@ class ResponsiveView extends StatelessWidget{
           else{
             throw "Error";
           }
-          return Container(
+          return Container( 
+            width: double.maxFinite,
+            color: Colors.white,
+            child : Container(
+            margin: padding,
+            padding: EdgeInsets.all(10),
             height: height,
             width: width,
             decoration: const BoxDecoration(
@@ -51,11 +56,10 @@ class ResponsiveView extends StatelessWidget{
             ),
             child: Scrollbar(
               child: ListView(
-                padding: padding,
                 children: children
               ),
             ),
-          );
+          ));
         }
       ),
     );
