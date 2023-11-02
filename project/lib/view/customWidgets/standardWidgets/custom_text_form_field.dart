@@ -42,7 +42,10 @@ class CustomTextFormField extends StatelessWidget{
       margin: EdgeInsets.symmetric(vertical: 5),
       height: 70,
       child:TextFormField(
-        onChanged: (String no){customTextFormFieldEvent.getOnChanged();},
+        onChanged: (String no){
+          dynamic f=customTextFormFieldEvent.getOnChanged();
+          f();
+          },
         controller: controller,
         maxLength: 10,
         buildCounter: (BuildContext context, {int? currentLength, int? maxLength, bool? isFocused}) => Text("${currentLength.toString()}/${maxLength.toString()}"),

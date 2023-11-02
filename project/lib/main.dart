@@ -10,7 +10,7 @@ import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_
 import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_boite_a_outils.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_gestion_tarif.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_requete_multi_criteres.dart';
-
+import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_gestions_adhesions_en_cours.dart';
 
 
 void main() {
@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
         '/page_boite_a_outils': (context) => const PageBoiteAOutils(),
         '/page_gestion_tarif': (context) => const PageGestionTarif(),
         '/page_requete_multi_criteres': (context) => const PageRequeteMultiCriteres(),
-
+        '/page_gestions_adhesions_en_cours': (context) => const PageGestionsAdhesionsEnCours(),
         }
     );
   }

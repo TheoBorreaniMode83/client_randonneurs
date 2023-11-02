@@ -1,10 +1,10 @@
 class CustomTextFormFieldEvent{
-    void Function(String)? _onChanged;
+    void Function()? _onChanged;
     void Function()? _onClickButtom;
   //---------------------------------------------------------------------
   //Setteurs
   //---------------------------------------------------------------------
-  CustomTextFormFieldEvent setOnChanged(void Function(String)? onChanged){
+  CustomTextFormFieldEvent setOnChanged(void Function()? onChanged){
     _onChanged = onChanged;
     return this;
   }
@@ -15,7 +15,7 @@ class CustomTextFormFieldEvent{
   //---------------------------------------------------------------------
   //Getteurs
   //---------------------------------------------------------------------
-  void Function(String)? getOnChanged(){
+  void Function()? getOnChanged(){
     return _onChanged;
   }
   void Function()? getOnClickButtom(){

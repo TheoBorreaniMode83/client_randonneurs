@@ -92,7 +92,7 @@ class _PageConnexion extends State<PageConnexion> {
       .setCustomTextStyle(customTextStyle2);
 
     customTextFormFieldEvent2
-      .setOnChanged((p0) {setState((){});})
+      .setOnChanged(() {setState((){});})
       .setOnClickButtom((){
         if(customTextFormFieldStyle2.getObscureText()==true){
           customTextFormFieldStyle2

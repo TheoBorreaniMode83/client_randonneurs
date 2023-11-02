@@ -1,4 +1,14 @@
 import 'package:flutter/material.dart';
+
+import 'package:diacritic/diacritic.dart';
+
+import 'package:les_randonneurs_draceniens_client_administratif/model/adherent.dart';
+
+import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/tailorMadeWidgets/englobe_widgets.dart';
+
+import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/containerWidgets/responsive_view.dart';
+
+import 'package:flutter/material.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/standardWidgets/custom_text.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/standardWidgets/custom_text_button.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgetsStyles/styles/standardWidgetsStyles/custom_container_style.dart';
@@ -25,15 +35,29 @@ import 'package:http/http.dart' as http;
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/containerWidgets/percentage_double_container.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/tailorMadeWidgets/englobe_widgets.dart';
 
-class PageAjouterAdherent extends StatefulWidget {
-  const PageAjouterAdherent({super.key});
+
+
+
+class PageGestionsAdhesionsEnCours extends StatefulWidget {
+  const PageGestionsAdhesionsEnCours({super.key});
   @override
-  State<PageAjouterAdherent> createState() => _PageAjouterAdherent();
+  State<PageGestionsAdhesionsEnCours> createState() => _PageGestionsAdhesionsEnCours();
 }
 
-class _PageAjouterAdherent extends State<PageAjouterAdherent> {
-  
+class _PageGestionsAdhesionsEnCours extends State<PageGestionsAdhesionsEnCours> {
 
+  //Déclaration des arguments customTextFormField
+  final CustomTextFormFieldStyle customTextFormFieldStyle1 = StyleFactory.createCustomTextFormFieldStyleBasic();
+  final CustomTextFormFieldEvent customTextFormFieldEvent1 = CustomTextFormFieldEvent();
+  final CustomTextFormFieldValidator customTextFormFieldValidator1 = CustomTextFormFieldValidator();
+  final controller1 = TextEditingController();
+
+  final CustomTextFormFieldStyle customTextFormFieldStyle2 = StyleFactory.createCustomTextFormFieldStyleBasic();
+  final CustomTextFormFieldEvent customTextFormFieldEvent2 = CustomTextFormFieldEvent();
+  final CustomTextFormFieldValidator customTextFormFieldValidator2 = CustomTextFormFieldValidator();
+  final controller2 = TextEditingController();
+
+  
   final _formKey = GlobalKey<FormState>();
 
   //Déclaration des arguments customContainer
@@ -161,11 +185,37 @@ class _PageAjouterAdherent extends State<PageAjouterAdherent> {
   final CustomDropdownButtonContent dropdownButtonCiviliteContent = CustomDropdownButtonContent();
   final CustomDropdownButtonEvent dropdownButtonCiviliteEvent = CustomDropdownButtonEvent();
 
+  List<Adherent> adherents = [];
+  //final _formKey = GlobalKey<FormState>();
+  List<Adherent> list =[];
+
+   void validator()  {
+    if (_formKey.currentState!.validate()){
+    }
+  }
+
+
   @override
   void initState() {
     super.initState();
 
-    //Setting des arguments customText
+    get();
+    trie();
+
+      customTextFormFieldStyle1
+        .setLabelText("Nom de famille")
+        .setHintText('Entrez un nom de famille'); 
+      customTextFormFieldStyle2
+        .setLabelText("Prénom")
+        .setHintText('Entrez un prénom'); 
+
+      customTextFormFieldEvent1
+        .setOnChanged(() {trie();setState(() {});});
+      customTextFormFieldEvent2
+        .setOnChanged(() {trie();setState(() {});});
+
+
+       //Setting des arguments customText
     titleStyle
       .setContent("Ajouter adhérents");
     subTitle1Style
@@ -265,6 +315,105 @@ class _PageAjouterAdherent extends State<PageAjouterAdherent> {
         dropdownButtonCiviliteContent.setDropdownValue(p0.toString());
         setState(() {});
       });
+
+  }
+  
+  void get(){
+    list = [
+      Adherent(nom: "Martin", prenom: "Gabriel", civilite: "xxx"),
+      Adherent(nom: "Bernard", prenom: "Léo", civilite: "yyy"),
+      Adherent(nom: "Thomas", prenom: "Raphael", civilite: "zzz"),
+      Adherent(nom: "Petit", prenom: "Louis", civilite: "xxx"),
+      Adherent(nom: "Robert", prenom: "Mael", civilite: "yyy"),
+      Adherent(nom: "Richard", prenom: "Arthur", civilite: "zzz"),
+      Adherent(nom: "Durand", prenom: "Jules", civilite: "xxx"),
+      Adherent(nom: "Dubois", prenom: "Noah", civilite: "yyy"),
+      Adherent(nom: "Moreau", prenom: "Adam", civilite: "zzz"),
+      Adherent(nom: "Laurent", prenom: "Lucas", civilite: "zzz"),
+    ];
+  }
+
+  void trie(){
+    
+    RegExp regExp1 = RegExp(r"^"+removeDiacritics(controller1.value.text.toLowerCase())+r"(.*)");
+    RegExp regExp2 = RegExp(r"^"+removeDiacritics(controller2.value.text.toLowerCase())+r"(.*)");
+    
+
+    adherents.clear();
+
+    for (Adherent i in list){
+      if(regExp1.hasMatch(removeDiacritics(i.nom.toLowerCase())) && regExp2.hasMatch(removeDiacritics(i.prenom.toLowerCase()))){
+        adherents.add(i);
+      }
+
+    }
+
+  }
+
+  List<Widget> makeElt(){
+    List<Widget> list = [];
+    
+    list.add(
+      Column(children: [
+          const Text("Outil de recherche"),
+          
+             Row(
+            children: [
+              Flexible(
+                child: 
+              CustomTextFormField(
+                customTextFormFieldStyle: customTextFormFieldStyle1,
+                customTextFormFieldValidator: customTextFormFieldValidator1,
+                customTextFormFieldEvent: customTextFormFieldEvent1,
+                controller: controller1)),
+              Flexible(
+                child: CustomTextFormField(
+                customTextFormFieldStyle: customTextFormFieldStyle2,
+                customTextFormFieldValidator: customTextFormFieldValidator2,
+                customTextFormFieldEvent: customTextFormFieldEvent2,
+                controller: controller2))            ],
+          
+          ),
+          IconButton(
+            style: const ButtonStyle(
+              backgroundColor: MaterialStatePropertyAll<Color>(Colors.green),
+            ),
+            icon: const Icon(Icons.add),
+            onPressed: (){showDataAlert();},
+          ),
+        ],
+        )
+      
+    );
+
+    for(int i=0 ; i<adherents.length;i++){
+      list.add(
+        Container(
+          decoration: BoxDecoration(
+            color: const Color.fromARGB(255, 203, 202, 202),
+            border: Border.all(
+              width: 1
+            ),
+          ),
+          margin: const EdgeInsets.all(2),
+          child: Row(
+            children: [
+              Expanded(child:Text(adherents[i].nom)),
+              Expanded(child:Text(adherents[i].prenom)),
+              Container(
+                child: Row(
+                  children: [
+                    IconButton(onPressed: (){showDataAlert();}, icon: Icon(Icons.edit)),
+                    Icon(Icons.delete)
+                  ],
+                ),
+              )
+            ],
+          ),
+        )
+      );
+    }
+    return list;
   }
 
   @override
@@ -272,10 +421,52 @@ class _PageAjouterAdherent extends State<PageAjouterAdherent> {
     return Scaffold(
       body: EnglobeWidgets(
         child: Form(
-        key: _formKey,
-        child:ResponsiveView(
-          children:[
-            const CustomSeparator(),
+          key: _formKey,
+          child: ResponsiveView(
+            children: makeElt()
+          )
+        )
+      )
+    );
+  }
+
+
+
+
+  showDataAlert() {
+  showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(
+                20.0,
+              ),
+            ),
+          ),
+          contentPadding: EdgeInsets.only(
+            top: 10.0,
+          ),
+          title: Text(
+            "Create ID",
+            style: TextStyle(fontSize: 24.0),
+          ),
+          actions: [TextButton(onPressed: (){}, child: Text("Quiter"))],
+          content: Container(
+            height: 800,
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Container(
+                    child:SingleChildScrollView(child: Column(
+                      
+                      children: [
+                        const CustomSeparator(),
             Center(
               child: CustomText(
                 customTextStyle:subTitle1Style)),
@@ -413,70 +604,50 @@ class _PageAjouterAdherent extends State<PageAjouterAdherent> {
             CustomTextButton(
               customTextButtomStyle: textButtomValidatorStyle,
               customTextButtomEvent: textButtomValidatorEvent),
-          ],
-        ),
-      ),
-    ));
-  }
-  void validator()  {
-    if (_formKey.currentState!.validate()){
-      postRequest();
-    }
-  }
+                      ],
+                    ),
+                  ),),
+                  Container(
+                    width: double.infinity,
+                    height: 60,
+                    padding: const EdgeInsets.all(8.0),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.black,
+                        // fixedSize: Size(250, 50),
+                      ),
+                      child: const Text(
+                        "Confirmer",
+                      ),
+                    ),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(8.0),
+                    child:  const Text('Note'),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt'
+                      ' ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud'
+                      ' exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+                      ' Duis aute irure dolor in reprehenderit in voluptate velit esse cillum '
+                      'dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,'
+                      ' sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                      style: TextStyle(fontSize: 12),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      });}
 
 
- Future<void> postRequest() async{
-  String url = 'http://127.0.0.1:8000/create_adherent';
 
-  Adherent adherent = Adherent(
-    id: 878,
-    nom: "Borréani",
-    prenom: "Théo", 
-    civilite: "Homme",
-    joursNaissance:30,
-    moisNaissance:07,
-    anneeNaissance:2000,
-
-    nomVille:"Draguignan",
-    codeDepartement:"83",
-    codeCommune:"300",
-    codeNatureVoie:"av",
-    numeroVoie:"2946",
-    libeletVoie:"Des soldats",
-    telephonePortable:"06XXXXXXXX",
-    adresseMail:"XXXXXX@gmail.com",
-    typeLicence:"154",
-    nomLicence:"licence D",
-    prixLicence:45.0,
-    partFFRPLicence:78.0,
-    montantCheque:45.0,
-    montantLiquide:77.0,
-    montantBoutiqueEtRevue:54,
-    joursPremiereAdhesion:45,
-    moisPremiereAdhesion:45,
-    anneePremiereAdhesion:75,
-    numeroLicence:"yhjgsdfeq",
-    joursDernierCertificatMedical:54,
-    moisDernierCertificatMedical:75,
-    anneeDernierCertificatMedical:2009,
-    statut:"en cours",
-    nomContactUrgence:"Bertrant",
-    prenomContactUrgence:"Arnaux",
-    telephoneContactUrgence:"06XXXXXXXX"
-  );
-
-  Map map = {'name': 'eric','age':'20'};
-  try{ 
-    http.Response response = await http.post(Uri.parse(url), body: utf8.encode(jsonEncode(adherent.getJson())));
-    print(response.body);
-    }
-  catch(e){
-      print("ERREUR: $e");
-  }
- }
-      
 
 }
-
-  
- 
