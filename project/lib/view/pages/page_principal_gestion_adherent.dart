@@ -17,8 +17,6 @@ class PagePrincipalGestionAdherent extends StatefulWidget {
 class _PagePrincipalGestionAdherent extends State<PagePrincipalGestionAdherent> {
   
 
-  final _formKey = GlobalKey<FormState>();
-
   //Déclaration des arguments customContainer
   final CustomContainerStyle customContainerStyle = CustomContainerStyle();
   final CustomContainerStyle customContainerStyle2 = StyleFactory.createCustomContainerStyleSpace();
@@ -145,16 +143,13 @@ class _PagePrincipalGestionAdherent extends State<PagePrincipalGestionAdherent> 
     Navigator.pushNamed(context, "/page_gestion_adherent");
   }
   void app2(){
-    print("hello world");    
   }
   void app3(){
     Navigator.pushNamed(context, "/page_requete_multi_criteres");
   }
   void app4(){
-    print("hello world");    
   }
   void app5(){
-    print("hello world");    
   }
   void app6(){
     Navigator.pushNamed(context, '/page_boite_a_outils');    

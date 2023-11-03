@@ -26,7 +26,6 @@ class PageNavigationApplication extends StatefulWidget {
 class _PageNavigationApplication extends State<PageNavigationApplication> {
   
 
-  final _formKey = GlobalKey<FormState>();
 
   //Déclaration des arguments customContainer
   final CustomContainerStyle customContainerStyle = CustomContainerStyle();
@@ -120,13 +119,10 @@ class _PageNavigationApplication extends State<PageNavigationApplication> {
     Navigator.pushNamed(context, '/page_principal_gestion_adherent');
   }
   void app2(){
-    print("hello world");    
   }
   void app3(){
-    print("hello world");    
   }
   void app4(){
-    print("hello world");    
   }
 
 }

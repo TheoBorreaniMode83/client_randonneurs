@@ -106,8 +106,6 @@ class _PageGestionnaireRandonneurs extends State<PageRequeteMultiCriteres> {
             Container(height: 30),
             ComposentRequeteMultiCriteres(
               composentRequeteMultiCriteresStyle: composentRequeteMultiCriteresStyle1,
-              child: const Text("Année première adhésion", 
-                style:  TextStyle(fontWeight: FontWeight.bold)),
               children1: const [Text("Egale à :")],
               children2: [
                 CustomDropdownButton(
@@ -115,10 +113,11 @@ class _PageGestionnaireRandonneurs extends State<PageRequeteMultiCriteres> {
                   customDropdownButtonContent:dropdownButtonCiviliteContent,
                   customDropdownButtonEvent: dropdownButtonCiviliteEvent,),
               ],
+              child: const  Text("Année première adhésion", 
+                style:  TextStyle(fontWeight: FontWeight.bold)),
             ),
             ComposentRequeteMultiCriteres(
               composentRequeteMultiCriteresStyle: composentRequeteMultiCriteresStyle2,
-              child: Text("Civilité", style: const TextStyle(fontWeight: FontWeight.bold)),
               children1: const [Text("Etendue"),Text("Civilités")],
               children2: [
                 CustomDropdownButton(
@@ -130,10 +129,10 @@ class _PageGestionnaireRandonneurs extends State<PageRequeteMultiCriteres> {
                   customDropdownButtonContent:dropdownButtonCiviliteContent,
                   customDropdownButtonEvent: dropdownButtonCiviliteEvent,),
               ],
+              child: const Text("Civilité", style: TextStyle(fontWeight: FontWeight.bold)),
             ),
             ComposentRequeteMultiCriteres(
               composentRequeteMultiCriteresStyle: composentRequeteMultiCriteresStyle3,
-              child: Text("Statut",  style: const TextStyle(fontWeight: FontWeight.bold)),
               children1: const [Text("Etendue"),Text("Status")],
               children2: [
                 CustomDropdownButton(
@@ -145,10 +144,10 @@ class _PageGestionnaireRandonneurs extends State<PageRequeteMultiCriteres> {
                   customDropdownButtonContent:dropdownButtonCiviliteContent,
                   customDropdownButtonEvent: dropdownButtonCiviliteEvent,),
               ],
+              child: const Text("Statut",  style: TextStyle(fontWeight: FontWeight.bold)),
             ),
             ComposentRequeteMultiCriteres(
               composentRequeteMultiCriteresStyle: composentRequeteMultiCriteresStyle4,
-              child: Text("Ville", style: const TextStyle(fontWeight: FontWeight.bold)),
               children1: const [Text("Etendue"),Text("Villes")],
               children2: [
                 CustomDropdownButton(
@@ -160,10 +159,10 @@ class _PageGestionnaireRandonneurs extends State<PageRequeteMultiCriteres> {
                   customDropdownButtonContent:dropdownButtonCiviliteContent,
                   customDropdownButtonEvent: dropdownButtonCiviliteEvent,),
               ],
+              child: const Text("Ville", style: TextStyle(fontWeight: FontWeight.bold)),
             ),
             ComposentRequeteMultiCriteres(
               composentRequeteMultiCriteresStyle: composentRequeteMultiCriteresStyle5,
-              child: Text("Date de naissance",  style: const TextStyle(fontWeight: FontWeight.bold)),
               children1: const [Text("Etendue"),Text("Date")],
               children2: [
                 CustomDropdownButton(
@@ -175,10 +174,10 @@ class _PageGestionnaireRandonneurs extends State<PageRequeteMultiCriteres> {
                   customDropdownButtonContent:dropdownButtonCiviliteContent,
                   customDropdownButtonEvent: dropdownButtonCiviliteEvent,),
               ],
+              child: const Text("Date de naissance",  style: TextStyle(fontWeight: FontWeight.bold)),
             ),
             ComposentRequeteMultiCriteres(
               composentRequeteMultiCriteresStyle: composentRequeteMultiCriteresStyle6,
-              child: Text("Rubrique financières", style: const TextStyle(fontWeight: FontWeight.bold)),
               children1: const [Text("Rubriques"),Text("Etendue"),Text("Montant")],
               children2: [
                 CustomDropdownButton(
@@ -195,6 +194,7 @@ class _PageGestionnaireRandonneurs extends State<PageRequeteMultiCriteres> {
                   customDropdownButtonEvent: dropdownButtonCiviliteEvent,),
              
               ],
+              child: const Text("Rubrique financières", style: TextStyle(fontWeight: FontWeight.bold)),
             ),
             CustomTextButton(customTextButtomStyle: customTextButtomStyle, customTextButtomEvent: customTextButtomEvent)
           ],

@@ -17,7 +17,6 @@ import 'package:les_randonneurs_draceniens_client_administratif/controller/custo
 import 'package:les_randonneurs_draceniens_client_administratif/controller/customWidgetsControllers/custom_dropdown_button_event.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/tailorMadeWidgets/custom_text_form_date.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/tailorMadeWidgets/custom_separator.dart';
-import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/tailorMadeWidgets/custom_head.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/model/adherent.dart';
 import 'dart:convert';
 import 'dart:async';
@@ -465,7 +464,6 @@ class _PageAjouterAdherent extends State<PageAjouterAdherent> {
     telephoneContactUrgence:"06XXXXXXXX"
   );
 
-  Map map = {'name': 'eric','age':'20'};
   try{ 
     http.Response response = await http.post(Uri.parse(url), body: utf8.encode(jsonEncode(adherent.getJson())));
     print(response.body);

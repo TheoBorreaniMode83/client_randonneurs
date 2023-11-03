@@ -26,8 +26,8 @@ class ComposentRequeteMultiCriteres extends StatelessWidget{
                     width: 1,),
                 ),
                 
-                padding: EdgeInsets.all(3) ,
-                margin: EdgeInsets.fromLTRB(10,10,0,10),
+                padding: const EdgeInsets.all(3) ,
+                margin: const EdgeInsets.fromLTRB(10,10,0,10),
                 child: children1[i])]
           )));
     }
@@ -47,7 +47,7 @@ class ComposentRequeteMultiCriteres extends StatelessWidget{
                     color: composentRequeteMultiCriteresStyle.getBorderColor(),
                     width: 1,),
                 ),
-            margin: EdgeInsets.fromLTRB(10,0,10,10),
+            margin: const EdgeInsets.fromLTRB(10,0,10,10),
             child: children2[i])));
     }
     return newChildren;
@@ -64,13 +64,13 @@ class ComposentRequeteMultiCriteres extends StatelessWidget{
   Widget build(BuildContext context)
   {
     return Container(
-      padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+      padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
       child: Row(
         children: [
           Expanded(
             flex:1 ,
-            child: Container(
-              child: Container(padding: EdgeInsets.fromLTRB(0, 0, 10, 0),alignment: Alignment.topRight, child: child),
+            child: SizedBox(
+              child: Container(padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),alignment: Alignment.topRight, child: child),
             )
           ),
           Expanded(
@@ -85,14 +85,12 @@ class ComposentRequeteMultiCriteres extends StatelessWidget{
                 ),
               child: Column(
                 children: [
-                  Container(
-                    child:Row(
+                  Row(
                     children: makeBody1(),
-                  ),),
-                  Container(
-                    child:Row(
+                  ),
+                  Row(
                     children: makeBody2(),
-                  ),),
+                  ),
                 ],
               )
             )

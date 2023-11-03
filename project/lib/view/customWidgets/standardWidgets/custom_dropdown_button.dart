@@ -27,7 +27,7 @@ class CustomDropdownButton extends StatelessWidget{
       child: DropdownButton(
         value: customDropdownButtonContent.getDropDownValue(),
         icon: const Icon(Icons.keyboard_arrow_down),
-        underline: SizedBox(),
+        underline: const SizedBox(),
         items: customDropdownButtonContent.getItems().map((items) {
           return DropdownMenuItem(value: items, child: Text(items), );
         }).toList(),

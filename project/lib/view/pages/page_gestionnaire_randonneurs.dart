@@ -15,12 +15,11 @@ class PageGestionnaireRandonneurs extends StatefulWidget {
 
 class _PageGestionnaireRandonneurs extends State<PageGestionnaireRandonneurs> {
   
-//rferfrrfedz
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-
-    final _formKey = GlobalKey<FormState>();
 
     final CustomTextStyle customTextTextStyleTitle = StyleFactory.createCustomTextStyleTitle();
     final CustomTextStyle customTextTextStyle1 = StyleFactory.createCustomTextStyleTitle();
@@ -40,7 +39,7 @@ class _PageGestionnaireRandonneurs extends State<PageGestionnaireRandonneurs> {
     final CustomTextButtomEvent customButtonSupprimerEvent = CustomTextButtomEvent();
 
     @override
-    void initState() {
+    void initState(){
       super.initState();
 
       customTextTextStyleTitle

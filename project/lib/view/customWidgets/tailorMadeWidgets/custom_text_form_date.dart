@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgetsStyles/styles/standardWidgetsStyles/custom_text_style.dart';
 
 class CustomTextFormDate extends StatelessWidget{
 
@@ -51,7 +50,7 @@ class CustomTextFormDate extends StatelessWidget{
   @override
   Widget build(BuildContext context)
   {
-    return Container(
+    return SizedBox(
       height: 100,
       width: 100,
       child: Column(children: [

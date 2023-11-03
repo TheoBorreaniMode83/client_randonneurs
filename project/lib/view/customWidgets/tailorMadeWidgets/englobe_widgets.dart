@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
 
@@ -22,8 +23,15 @@ class EnglobeWidgets extends StatelessWidget{
           color: const Color.fromARGB(255, 102, 102, 102),
           child: ListView(
             children: [
+              SizedBox(
+                width: double.maxFinite,
+                child:Image.network(
+                  scale: 0.8,
+                  'lib/assets/LogoRandoAccueil.webp'
+                  ),
+              ),
               Container(
-                padding: const EdgeInsets.fromLTRB(10, 40, 10, 10),
+                padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
                 child:  Column(
                   children: [
                     TextButton(
@@ -34,9 +42,6 @@ class EnglobeWidgets extends StatelessWidget{
                         style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold),)),
-                    Text("Ajouter",),
-                    Text("Modifier",),
-                    Text("Supprimer",),
                   ],
                 )
               ),
@@ -123,12 +128,12 @@ class EnglobeWidgets extends StatelessWidget{
                         ),
                       )
                     ),
-                    Text("Liste des certificats médicaux obsolètes",),
-                    Text("Mise en forme & coloriage des fichiers",),
-                    Text("Création du nouvel exercice",),
-                    Text("Recensement des inchoérences",),
-                    Text("Accès aux paramétres & tarifs",),
-                    Text("Impression du bordeau de transmission",),
+                    const Text("Liste des certificats médicaux obsolètes",),
+                    const Text("Mise en forme & coloriage des fichiers",),
+                    const Text("Création du nouvel exercice",),
+                    const Text("Recensement des inchoérences",),
+                    const Text("Accès aux paramétres & tarifs",),
+                    const Text("Impression du bordeau de transmission",),
 
                   ],
                 )

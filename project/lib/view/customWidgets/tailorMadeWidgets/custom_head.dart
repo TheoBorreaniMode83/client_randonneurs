@@ -18,7 +18,7 @@ class CustomHead extends StatelessWidget{
   @override
   Widget build(BuildContext context)
   {
-    return Container(
+    return SizedBox(
       width: double.maxFinite,
       child: Row(
         children: [
@@ -30,11 +30,11 @@ class CustomHead extends StatelessWidget{
           Expanded(
             flex: 1,
             child: Container(
-              margin: EdgeInsets.fromLTRB(30, 0, 0, 0),
+              margin: const EdgeInsets.fromLTRB(30, 0, 0, 0),
               color: Colors.red,
               child:TextButton(
                 onPressed: customTextButtomEvent.getOnPressed(),
-                child: Text("retour")),),)
+                child: const Text("retour")),),)
         ],
       ),
     );

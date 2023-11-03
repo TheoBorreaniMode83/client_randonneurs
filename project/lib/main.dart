@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 //Importtation des pages accessible depuis une autre
 import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_connexion.dart';
@@ -40,7 +41,14 @@ class MyApp extends StatelessWidget {
         '/page_gestion_tarif': (context) => const PageGestionTarif(),
         '/page_requete_multi_criteres': (context) => const PageRequeteMultiCriteres(),
         '/page_gestions_adhesions_en_cours': (context) => const PageGestionsAdhesionsEnCours(),
-        }
+        },
+        localizationsDelegates: const [
+         GlobalMaterialLocalizations.delegate
+       ],
+        supportedLocales: const [
+         Locale('en'),
+         Locale('fr')
+       ],
     );
   }
 }

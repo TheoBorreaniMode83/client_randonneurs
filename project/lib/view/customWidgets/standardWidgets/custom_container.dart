@@ -16,9 +16,9 @@ class CustomContainer extends StatelessWidget{
   {
     return Container(
       color: customContainerStyle.getColor(),
-      child: child,
       padding: customContainerStyle.getPadding(),
       margin: customContainerStyle.getMargin(),
+      child: child,
     );
   }
 } 

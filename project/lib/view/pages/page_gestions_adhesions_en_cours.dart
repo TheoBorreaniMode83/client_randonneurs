@@ -4,7 +4,7 @@ import 'package:les_randonneurs_draceniens_client_administratif/model/adherent.d
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/tailorMadeWidgets/englobe_widgets.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/containerWidgets/responsive_view.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/standardWidgets/custom_text.dart';
-import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/standardWidgets/custom_text_button.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/standardWidgets/date_picker.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgetsStyles/styles/standardWidgetsStyles/custom_container_style.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgetsStyles/styles/standardWidgetsStyles/custom_text_buttom_style.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgetsStyles/styles/standardWidgetsStyles/custom_text_style.dart';
@@ -18,9 +18,9 @@ import 'package:les_randonneurs_draceniens_client_administratif/view/customWidge
 import 'package:les_randonneurs_draceniens_client_administratif/controller/customWidgetsControllers/custom_text_form_field_event.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/controller/customWidgetsControllers/custom_dropdown_button_content.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/controller/customWidgetsControllers/custom_dropdown_button_event.dart';
-import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/tailorMadeWidgets/custom_text_form_date.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/tailorMadeWidgets/custom_separator.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/containerWidgets/percentage_double_container.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/model/date.dart';
 
 
 
@@ -166,11 +166,15 @@ class _PageGestionsAdhesionsEnCours extends State<PageGestionsAdhesionsEnCours> 
   final CustomTextFormFieldEvent textFormNumberGuestEvent = CustomTextFormFieldEvent();
   final textFormNumberGuestController = TextEditingController();
 
-
   //Déclaration des arguments customDropdownButtom
   final CustomDropdownButtonStyle dropdownButtonCiviliteStyle = CustomDropdownButtonStyle();
   final CustomDropdownButtonContent dropdownButtonCiviliteContent = CustomDropdownButtonContent();
   final CustomDropdownButtonEvent dropdownButtonCiviliteEvent = CustomDropdownButtonEvent();
+
+  final Date date1 = Date(jours: 1, mois: 1, annee: 1900);
+  final Date date2 = Date(jours: 1, mois: 1, annee: 1900);
+  final Date date3 = Date(jours: 1, mois: 1, annee: 1900);
+
 
   List<Adherent> adherents = [];
   //final _formKey = GlobalKey<FormState>();
@@ -390,18 +394,16 @@ class _PageGestionsAdhesionsEnCours extends State<PageGestionsAdhesionsEnCours> 
             children: [
               Expanded(child:Text(adherents[i].nom)),
               Expanded(child:Text(adherents[i].prenom)),
-              Container(
-                child: Row(
+                Row(
                   children: [
                     IconButton(
                       onPressed: (){showDataAlert(adherent: adherents[i]);},
-                      icon: Icon(Icons.edit)),
+                      icon: const Icon(Icons.edit)),
                     IconButton(
                       onPressed: (){deleteElt(i);}, 
-                      icon: Icon(Icons.delete)),
+                      icon: const  Icon(Icons.delete)),
                   ],
-                ),
-              )
+                )
             ],
           ),
         )
@@ -446,7 +448,8 @@ void deleteElt(int i){
       textFormFirstNameController.text = adherent.nom;
     }
     else{
-      
+      textFormNameController.text="";
+      textFormFirstNameController.text="";
     }
 
 
@@ -458,8 +461,8 @@ void deleteElt(int i){
         title: const Text(
           "ID",
           style: TextStyle(fontSize: 24.0),),
-        actions: [TextButton(onPressed: (){Navigator.pop(context);}, child: Text("Quiter"))],
-        content: Container(
+        actions: [TextButton(onPressed: (){Navigator.pop(context);}, child: const Text("Quiter"))],
+        content: SizedBox(
           height: 800,
           child: SingleChildScrollView(
             padding: const EdgeInsets.all(8.0),
@@ -468,7 +471,7 @@ void deleteElt(int i){
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                Container(
+                SizedBox(
                   child:SingleChildScrollView(child: Column(
                     children: [
                       const CustomSeparator(),
@@ -490,7 +493,10 @@ void deleteElt(int i){
                         customDropdownButtonStyle: dropdownButtonCiviliteStyle,
                         customDropdownButtonContent:dropdownButtonCiviliteContent,
                         customDropdownButtonEvent: dropdownButtonCiviliteEvent,),
-                      const CustomTextFormDate(title: "Date de naissance"),
+                      DatePicker(
+                        title: "Date de naissance",
+                        date: date1,
+                      ),
                       const CustomSeparator(),
                       Center(
                         child: CustomText(
@@ -581,23 +587,30 @@ void deleteElt(int i){
                         customTextFormFieldEvent: textFormBoutiqueEtRevueEvent,
                         controller: textFormBoutiqueEtRevueController),
                       const CustomSeparator(),
-                      const CustomTextFormDate(title: "Date adhésion",),
+                      DatePicker(
+                        title: "Date de première adhérence",
+                        date: date2,
+                      ),
                       const CustomSeparator(),
-                      const CustomTextFormDate(title: "Sate certificat médical"),
+                      DatePicker(
+                        title: "Date du dernier certificat médical",
+                        date: date3,
+                      ),
                       const CustomSeparator(),
                       Center(
                         child: CustomText(
                         customTextStyle:subTitle2Style)),
-                      CustomTextFormField(
-                        customTextFormFieldStyle: textFormNameGuestStyle,
-                        customTextFormFieldValidator: textFormNameGuestValidator,
-                        customTextFormFieldEvent: textFormNameGuestEvent,
-                        controller: textFormNameGuestController),
-                      CustomTextFormField(
-                        customTextFormFieldStyle: textFormFirstNameGuestStyle,
-                        customTextFormFieldValidator: textFormFirstNameGuestValidator,
-                        customTextFormFieldEvent: textFormFirstNameGuestEvent,
-                        controller: textFormFirstNameGuestController),
+                      PercentageDoubleContainer(
+                        child1: CustomTextFormField(
+                          customTextFormFieldStyle: textFormNameGuestStyle,
+                          customTextFormFieldValidator: textFormNameGuestValidator,
+                          customTextFormFieldEvent: textFormNameGuestEvent,
+                          controller: textFormNameGuestController),
+                        child2: CustomTextFormField(
+                          customTextFormFieldStyle: textFormFirstNameGuestStyle,
+                          customTextFormFieldValidator: textFormFirstNameGuestValidator,
+                          customTextFormFieldEvent: textFormFirstNameGuestEvent,
+                          controller: textFormFirstNameGuestController),),
                       CustomTextFormField(
                         customTextFormFieldStyle: textFormNumberGuestStyle,
                         customTextFormFieldValidator: textFormNumberGuestValidator,
@@ -616,7 +629,9 @@ void deleteElt(int i){
                             setState((){});
                           }
                           else{ // si l'adherent est entrain d'etre crée
-
+                            adherents.add(Adherent(nom: textFormNameController.text, prenom: textFormFirstNameController.text, civilite: "x"));
+                            upgrade(adherents);
+                            setState(() {});
                           }
                           Navigator.of(context).pop();
                         },
@@ -654,6 +669,6 @@ void deleteElt(int i){
 
 
 
-  
+
 
 }
