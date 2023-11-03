@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
-
 import 'package:diacritic/diacritic.dart';
-
 import 'package:les_randonneurs_draceniens_client_administratif/model/adherent.dart';
-
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/tailorMadeWidgets/englobe_widgets.dart';
-
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/containerWidgets/responsive_view.dart';
-
-import 'package:flutter/material.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/standardWidgets/custom_text.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/standardWidgets/custom_text_button.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgetsStyles/styles/standardWidgetsStyles/custom_container_style.dart';
@@ -20,20 +14,13 @@ import 'package:les_randonneurs_draceniens_client_administratif/controller/custo
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/standardWidgets/custom_dropdown_button.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgetsStyles/styles/standardWidgetsStyles/custom_dropdown_button_style.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/controller/customWidgetsControllers/custom_text_buttom_event.dart';
-import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/containerWidgets/responsive_view.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgetsStyles/styles_factory.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/controller/customWidgetsControllers/custom_text_form_field_event.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/controller/customWidgetsControllers/custom_dropdown_button_content.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/controller/customWidgetsControllers/custom_dropdown_button_event.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/tailorMadeWidgets/custom_text_form_date.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/tailorMadeWidgets/custom_separator.dart';
-import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/tailorMadeWidgets/custom_head.dart';
-import 'package:les_randonneurs_draceniens_client_administratif/model/adherent.dart';
-import 'dart:convert';
-import 'dart:async';
-import 'package:http/http.dart' as http;
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/containerWidgets/percentage_double_container.dart';
-import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/tailorMadeWidgets/englobe_widgets.dart';
 
 
 
@@ -187,19 +174,31 @@ class _PageGestionsAdhesionsEnCours extends State<PageGestionsAdhesionsEnCours> 
 
   List<Adherent> adherents = [];
   //final _formKey = GlobalKey<FormState>();
-  List<Adherent> list =[];
+  List<Adherent> baseDonnees = [
+      Adherent(id: 0,nom: "Martin", prenom: "Gabriel", civilite: "xxx"),
+      Adherent(id: 1,nom: "Bernard", prenom: "Léo", civilite: "yyy"),
+      Adherent(id: 2,nom: "Thomas", prenom: "Raphael", civilite: "zzz"),
+      Adherent(id: 3,nom: "Petit", prenom: "Louis", civilite: "xxx"),
+      Adherent(id: 4,nom: "Robert", prenom: "Mael", civilite: "yyy"),
+      Adherent(id: 5,nom: "Richard", prenom: "Arthur", civilite: "zzz"),
+      Adherent(id: 6,nom: "Durand", prenom: "Jules", civilite: "xxx"),
+      Adherent(id: 7,nom: "Dubois", prenom: "Noah", civilite: "yyy"),
+      Adherent(id: 8,nom: "Moreau", prenom: "Adam", civilite: "zzz"),
+      Adherent(id: 9,nom: "Laurent", prenom: "Lucas", civilite: "zzz"),
+    ];
 
    void validator()  {
     if (_formKey.currentState!.validate()){
     }
   }
-
+  
 
   @override
   void initState() {
     super.initState();
 
-    get();
+    adherents=get();
+
     trie();
 
       customTextFormFieldStyle1
@@ -219,7 +218,7 @@ class _PageGestionsAdhesionsEnCours extends State<PageGestionsAdhesionsEnCours> 
     titleStyle
       .setContent("Ajouter adhérents");
     subTitle1Style
-      .setContent("Informations du nouvel adhérent");
+      .setContent("Identité de l'adhérent");
     subTitle2Style
       .setContent("Personne à contacter en cas d'urgences");
     subTitle3Style
@@ -318,34 +317,25 @@ class _PageGestionsAdhesionsEnCours extends State<PageGestionsAdhesionsEnCours> 
 
   }
   
-  void get(){
-    list = [
-      Adherent(nom: "Martin", prenom: "Gabriel", civilite: "xxx"),
-      Adherent(nom: "Bernard", prenom: "Léo", civilite: "yyy"),
-      Adherent(nom: "Thomas", prenom: "Raphael", civilite: "zzz"),
-      Adherent(nom: "Petit", prenom: "Louis", civilite: "xxx"),
-      Adherent(nom: "Robert", prenom: "Mael", civilite: "yyy"),
-      Adherent(nom: "Richard", prenom: "Arthur", civilite: "zzz"),
-      Adherent(nom: "Durand", prenom: "Jules", civilite: "xxx"),
-      Adherent(nom: "Dubois", prenom: "Noah", civilite: "yyy"),
-      Adherent(nom: "Moreau", prenom: "Adam", civilite: "zzz"),
-      Adherent(nom: "Laurent", prenom: "Lucas", civilite: "zzz"),
-    ];
+  List<Adherent> get(){
+    return  List.from(baseDonnees);
+  }
+  void upgrade(List<Adherent> x){
+    baseDonnees=List.from(x);
   }
 
   void trie(){
     
     RegExp regExp1 = RegExp(r"^"+removeDiacritics(controller1.value.text.toLowerCase())+r"(.*)");
     RegExp regExp2 = RegExp(r"^"+removeDiacritics(controller2.value.text.toLowerCase())+r"(.*)");
-    
-
+      
     adherents.clear();
 
-    for (Adherent i in list){
+    for (Adherent i in baseDonnees){
       if(regExp1.hasMatch(removeDiacritics(i.nom.toLowerCase())) && regExp2.hasMatch(removeDiacritics(i.prenom.toLowerCase()))){
         adherents.add(i);
       }
-
+      
     }
 
   }
@@ -403,8 +393,12 @@ class _PageGestionsAdhesionsEnCours extends State<PageGestionsAdhesionsEnCours> 
               Container(
                 child: Row(
                   children: [
-                    IconButton(onPressed: (){showDataAlert();}, icon: Icon(Icons.edit)),
-                    Icon(Icons.delete)
+                    IconButton(
+                      onPressed: (){showDataAlert(adherent: adherents[i]);},
+                      icon: Icon(Icons.edit)),
+                    IconButton(
+                      onPressed: (){deleteElt(i);}, 
+                      icon: Icon(Icons.delete)),
                   ],
                 ),
               )
@@ -431,223 +425,235 @@ class _PageGestionsAdhesionsEnCours extends State<PageGestionsAdhesionsEnCours> 
   }
 
 
+void deleteElt(int i){
+  for (Adherent ii in adherents){
+    if(ii.id == adherents[i].id){
+      adherents.remove(ii);
+      upgrade(adherents);
+      setState(() {});
+      break;
+    }
+  }
+}
 
-
-  showDataAlert() {
+  showDataAlert({Adherent? adherent}) {
   showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(
-                20.0,
-              ),
-            ),
-          ),
-          contentPadding: EdgeInsets.only(
-            top: 10.0,
-          ),
-          title: Text(
-            "Create ID",
-            style: TextStyle(fontSize: 24.0),
-          ),
-          actions: [TextButton(onPressed: (){}, child: Text("Quiter"))],
-          content: Container(
-            height: 800,
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Container(
-                    child:SingleChildScrollView(child: Column(
+    context: context,
+    builder: (context) {
+      
+    if(adherent!=null){
+      textFormNameController.text = adherent.prenom;
+      textFormFirstNameController.text = adherent.nom;
+    }
+    else{
+      
+    }
+
+
+      return AlertDialog(
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(20.0,),),),
+        contentPadding: const EdgeInsets.only(top: 10.0,),
+        title: const Text(
+          "ID",
+          style: TextStyle(fontSize: 24.0),),
+        actions: [TextButton(onPressed: (){Navigator.pop(context);}, child: Text("Quiter"))],
+        content: Container(
+          height: 800,
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Container(
+                  child:SingleChildScrollView(child: Column(
+                    children: [
+                      const CustomSeparator(),
+                      Center(
+                        child: CustomText(
+                        customTextStyle:subTitle1Style)),
+                      PercentageDoubleContainer(
+                        child1: CustomTextFormField(
+                          customTextFormFieldStyle: textFormNameStyle,
+                          customTextFormFieldValidator: textFormNameValidator,
+                          customTextFormFieldEvent: textFormNameEvent,
+                          controller: textFormNameController),
+                        child2: CustomTextFormField(
+                          customTextFormFieldStyle: textFormFirstNameStyle,
+                          customTextFormFieldValidator: textFormFirstNameValidator,
+                          customTextFormFieldEvent: textFormFirstNameEvent,
+                          controller: textFormFirstNameController),),
+                      CustomDropdownButton(
+                        customDropdownButtonStyle: dropdownButtonCiviliteStyle,
+                        customDropdownButtonContent:dropdownButtonCiviliteContent,
+                        customDropdownButtonEvent: dropdownButtonCiviliteEvent,),
+                      const CustomTextFormDate(title: "Date de naissance"),
+                      const CustomSeparator(),
+                      Center(
+                        child: CustomText(
+                        customTextStyle:subTitle3Style)),
+                      CustomTextFormField(
+                        customTextFormFieldStyle: textFormNumVoieStyle,
+                        customTextFormFieldValidator: textFormNumVoieValidator,
+                        customTextFormFieldEvent: textFormNumVoieEvent,
+                        controller: textFormNumVoieController),
+                      CustomTextFormField(
+                        customTextFormFieldStyle: textFormLibelleVoieStyle,
+                        customTextFormFieldValidator: textFormLibelleVoieValidator,
+                        customTextFormFieldEvent: textFormLibelleVoieEvent,
+                        controller: textFormLibelleVoieController),
+                      CustomTextFormField(
+                        customTextFormFieldStyle: textFormCodeNatureVoieStyle,
+                        customTextFormFieldValidator: textFormCodeNatureVoieValidator,
+                        customTextFormFieldEvent: textFormCodeNatureVoieEvent,
+                        controller: textFormCodeNatureVoieController),
+                      CustomTextFormField(
+                        customTextFormFieldStyle: textFormCityStyle,
+                        customTextFormFieldValidator: textFormCityValidator,
+                        customTextFormFieldEvent: textFormCityEvent,
+                        controller: textFormCityController),
+                      CustomTextFormField(
+                        customTextFormFieldStyle: textFormNumCommuneStyle,
+                        customTextFormFieldValidator: textFormNumCommuneValidator,
+                        customTextFormFieldEvent: textFormNumCommuneEvent,
+                        controller: textFormNumCommuneController),
+                      CustomTextFormField(
+                        customTextFormFieldStyle: textFormRegionStyle,
+                        customTextFormFieldValidator: textFormRegionValidator,
+                        customTextFormFieldEvent: textFormRegionEvent,
+                        controller: textFormRegionController),
+                      const CustomSeparator(),
                       
-                      children: [
-                        const CustomSeparator(),
-            Center(
-              child: CustomText(
-                customTextStyle:subTitle1Style)),
-            CustomTextFormField(
-              customTextFormFieldStyle: textFormNameStyle,
-              customTextFormFieldValidator: textFormNameValidator,
-              customTextFormFieldEvent: textFormNameEvent,
-              controller: textFormNameController),
-            CustomTextFormField(
-              customTextFormFieldStyle: textFormFirstNameStyle,
-              customTextFormFieldValidator: textFormFirstNameValidator,
-              customTextFormFieldEvent: textFormFirstNameEvent,
-              controller: textFormFirstNameController),
-            CustomDropdownButton(
-              customDropdownButtonStyle: dropdownButtonCiviliteStyle,
-              customDropdownButtonContent:dropdownButtonCiviliteContent,
-              customDropdownButtonEvent: dropdownButtonCiviliteEvent,),
-            const CustomTextFormDate(title: "Date de naissance"),
-            const CustomSeparator(),
-            Center(
-              child: CustomText(
-              customTextStyle:subTitle3Style)),
-            CustomTextFormField(
-              customTextFormFieldStyle: textFormNumVoieStyle,
-              customTextFormFieldValidator: textFormNumVoieValidator,
-              customTextFormFieldEvent: textFormNumVoieEvent,
-              controller: textFormNumVoieController),
-            CustomTextFormField(
-              customTextFormFieldStyle: textFormLibelleVoieStyle,
-              customTextFormFieldValidator: textFormLibelleVoieValidator,
-              customTextFormFieldEvent: textFormLibelleVoieEvent,
-              controller: textFormLibelleVoieController),
-            CustomTextFormField(
-              customTextFormFieldStyle: textFormCodeNatureVoieStyle,
-              customTextFormFieldValidator: textFormCodeNatureVoieValidator,
-              customTextFormFieldEvent: textFormCodeNatureVoieEvent,
-              controller: textFormCodeNatureVoieController),
-            CustomTextFormField(
-              customTextFormFieldStyle: textFormCityStyle,
-              customTextFormFieldValidator: textFormCityValidator,
-              customTextFormFieldEvent: textFormCityEvent,
-              controller: textFormCityController),
-            CustomTextFormField(
-              customTextFormFieldStyle: textFormNumCommuneStyle,
-              customTextFormFieldValidator: textFormNumCommuneValidator,
-              customTextFormFieldEvent: textFormNumCommuneEvent,
-              controller: textFormNumCommuneController),
-            CustomTextFormField(
-              customTextFormFieldStyle: textFormRegionStyle,
-              customTextFormFieldValidator: textFormRegionValidator,
-              customTextFormFieldEvent: textFormRegionEvent,
-              controller: textFormRegionController),
-            const CustomSeparator(),
-            Center(
-              child: CustomText(
-              customTextStyle:subTitle4Style)),
-            PercentageDoubleContainer(
-              child1: CustomTextFormField(
-                customTextFormFieldStyle: textFormTelStyle,
-                customTextFormFieldValidator: textFormTelValidator,
-                customTextFormFieldEvent: textFormTelEvent,
-                controller: textFormTelController),
-              child2: CustomTextFormField(
-                customTextFormFieldStyle: textFormMailStyle,
-                customTextFormFieldValidator: textFormMailValidator,
-                customTextFormFieldEvent: textFormMailEvent,
-                controller: textFormMailController),
-            ),
-            
-            
-            const CustomSeparator(),
-            Center(
-              child: CustomText(
-              customTextStyle:subTitle5Style)),
-            CustomTextFormField(
-              customTextFormFieldStyle: textFormTypeLicenceStyle,
-              customTextFormFieldValidator: textFormTypeLicenceValidator,
-              customTextFormFieldEvent: textFormTypeLicenceEvent,
-              controller: textFormTypeLicenceController),
-            CustomTextFormField(
-              customTextFormFieldStyle: textFormNomLicenceStyle,
-              customTextFormFieldValidator: textFormNomLicenceValidator,
-              customTextFormFieldEvent: textFormNomLicenceEvent,
-              controller: textFormNomLicenceController),
-            CustomTextFormField(
-              customTextFormFieldStyle: textFormPrixLicenceStyle,
-              customTextFormFieldValidator: textFormPrixLicenceValidator,
-              customTextFormFieldEvent: textFormPrixLicenceEvent,
-              controller: textFormPrixLicenceController),
-            CustomTextFormField(
-              customTextFormFieldStyle: textFormPartFFRPLicenceStyle,
-              customTextFormFieldValidator: textFormPartFFRPLicenceValidator,
-              customTextFormFieldEvent: textFormPartFFRPLicenceEvent,
-              controller: textFormPartFFRPLicenceController),
-            CustomTextFormField(
-              customTextFormFieldStyle: textFormMontantChequeStyle,
-              customTextFormFieldValidator: textFormMontantChequeValidator,
-              customTextFormFieldEvent: textFormMontantChequeEvent,
-              controller: textFormMontantChequeController),
-            CustomTextFormField(
-              customTextFormFieldStyle: textFormMontantLiquideStyle,
-              customTextFormFieldValidator: textFormMontantLiquideValidator,
-              customTextFormFieldEvent: textFormMontantLiquideEvent,
-              controller: textFormMontantLiquideController),
-            CustomTextFormField(
-              customTextFormFieldStyle: textFormBoutiqueEtRevueStyle,
-              customTextFormFieldValidator: textFormBoutiqueEtRevueValidator,
-              customTextFormFieldEvent: textFormBoutiqueEtRevueEvent,
-              controller: textFormBoutiqueEtRevueController),
-            const CustomSeparator(),
-            const CustomTextFormDate(title: "Date adhésion",),
-            const CustomSeparator(),
-            const CustomTextFormDate(title: "Sate certificat médical"),
-            const CustomSeparator(),
-            Center(
-              child: CustomText(
-              customTextStyle:subTitle2Style)),
-            CustomTextFormField(
-              customTextFormFieldStyle: textFormNameGuestStyle,
-              customTextFormFieldValidator: textFormNameGuestValidator,
-              customTextFormFieldEvent: textFormNameGuestEvent,
-              controller: textFormNameGuestController),
-            CustomTextFormField(
-              customTextFormFieldStyle: textFormFirstNameGuestStyle,
-              customTextFormFieldValidator: textFormFirstNameGuestValidator,
-              customTextFormFieldEvent: textFormFirstNameGuestEvent,
-              controller: textFormFirstNameGuestController),
-            CustomTextFormField(
-              customTextFormFieldStyle: textFormNumberGuestStyle,
-              customTextFormFieldValidator: textFormNumberGuestValidator,
-              customTextFormFieldEvent: textFormNumberGuestEvent,
-              controller: textFormNumberGuestController),
-            
-            const CustomSeparator(),
-            CustomTextButton(
-              customTextButtomStyle: textButtomValidatorStyle,
-              customTextButtomEvent: textButtomValidatorEvent),
-                      ],
-                    ),
-                  ),),
-                  Container(
-                    width: double.infinity,
-                    height: 60,
-                    padding: const EdgeInsets.all(8.0),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.black,
+                      Center(
+                        child: CustomText(
+                        customTextStyle:subTitle4Style)),
+                      PercentageDoubleContainer(
+                        child1: CustomTextFormField(
+                          customTextFormFieldStyle: textFormTelStyle,
+                          customTextFormFieldValidator: textFormTelValidator,
+                          customTextFormFieldEvent: textFormTelEvent,
+                          controller: textFormTelController),
+                        child2: CustomTextFormField(
+                          customTextFormFieldStyle: textFormMailStyle,
+                          customTextFormFieldValidator: textFormMailValidator,
+                          customTextFormFieldEvent: textFormMailEvent,
+                          controller: textFormMailController),),
+                      const CustomSeparator(),
+                      Center(
+                        child: CustomText(
+                        customTextStyle:subTitle5Style)),
+                      CustomTextFormField(
+                        customTextFormFieldStyle: textFormTypeLicenceStyle,
+                        customTextFormFieldValidator: textFormTypeLicenceValidator,
+                        customTextFormFieldEvent: textFormTypeLicenceEvent,
+                        controller: textFormTypeLicenceController),
+                      CustomTextFormField(
+                        customTextFormFieldStyle: textFormNomLicenceStyle,
+                        customTextFormFieldValidator: textFormNomLicenceValidator,
+                        customTextFormFieldEvent: textFormNomLicenceEvent,
+                        controller: textFormNomLicenceController),
+                      CustomTextFormField(
+                        customTextFormFieldStyle: textFormPrixLicenceStyle,
+                        customTextFormFieldValidator: textFormPrixLicenceValidator,
+                        customTextFormFieldEvent: textFormPrixLicenceEvent,
+                        controller: textFormPrixLicenceController),
+                      CustomTextFormField(
+                        customTextFormFieldStyle: textFormPartFFRPLicenceStyle,
+                        customTextFormFieldValidator: textFormPartFFRPLicenceValidator,
+                        customTextFormFieldEvent: textFormPartFFRPLicenceEvent,
+                        controller: textFormPartFFRPLicenceController),
+                      CustomTextFormField(
+                        customTextFormFieldStyle: textFormMontantChequeStyle,
+                        customTextFormFieldValidator: textFormMontantChequeValidator,
+                        customTextFormFieldEvent: textFormMontantChequeEvent,
+                        controller: textFormMontantChequeController),
+                      CustomTextFormField(
+                        customTextFormFieldStyle: textFormMontantLiquideStyle,
+                        customTextFormFieldValidator: textFormMontantLiquideValidator,
+                        customTextFormFieldEvent: textFormMontantLiquideEvent,
+                        controller: textFormMontantLiquideController),
+                      CustomTextFormField(
+                        customTextFormFieldStyle: textFormBoutiqueEtRevueStyle,
+                        customTextFormFieldValidator: textFormBoutiqueEtRevueValidator,
+                        customTextFormFieldEvent: textFormBoutiqueEtRevueEvent,
+                        controller: textFormBoutiqueEtRevueController),
+                      const CustomSeparator(),
+                      const CustomTextFormDate(title: "Date adhésion",),
+                      const CustomSeparator(),
+                      const CustomTextFormDate(title: "Sate certificat médical"),
+                      const CustomSeparator(),
+                      Center(
+                        child: CustomText(
+                        customTextStyle:subTitle2Style)),
+                      CustomTextFormField(
+                        customTextFormFieldStyle: textFormNameGuestStyle,
+                        customTextFormFieldValidator: textFormNameGuestValidator,
+                        customTextFormFieldEvent: textFormNameGuestEvent,
+                        controller: textFormNameGuestController),
+                      CustomTextFormField(
+                        customTextFormFieldStyle: textFormFirstNameGuestStyle,
+                        customTextFormFieldValidator: textFormFirstNameGuestValidator,
+                        customTextFormFieldEvent: textFormFirstNameGuestEvent,
+                        controller: textFormFirstNameGuestController),
+                      CustomTextFormField(
+                        customTextFormFieldStyle: textFormNumberGuestStyle,
+                        customTextFormFieldValidator: textFormNumberGuestValidator,
+                        customTextFormFieldEvent: textFormNumberGuestEvent,
+                        controller: textFormNumberGuestController),
+                      ],),),),
+                    Container(
+                      width: double.infinity,
+                      height: 60,
+                      padding: const EdgeInsets.all(8.0),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if(adherent!=null){ // si l'adherent est entrain d'etre modifier
+                            adherent.nom = textFormNameController.text;
+                            adherent.prenom = textFormFirstNameController.text;
+                            setState((){});
+                          }
+                          else{ // si l'adherent est entrain d'etre crée
+
+                          }
+                          Navigator.of(context).pop();
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.black,
                         // fixedSize: Size(250, 50),
-                      ),
-                      child: const Text(
-                        "Confirmer",
+                        ),
+                        child: const Text(
+                          "Confirmer",
+                        ),
                       ),
                     ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(8.0),
-                    child:  const Text('Note'),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text(
-                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt'
-                      ' ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud'
-                      ' exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
-                      ' Duis aute irure dolor in reprehenderit in voluptate velit esse cillum '
-                      'dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,'
-                      ' sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                      style: TextStyle(fontSize: 12),
+                    Container(
+                      padding: const EdgeInsets.all(8.0),
+                      child:  const Text('Note'),
                     ),
-                  ),
-                ],
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt'
+                        ' ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud'
+                        ' exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+                        ' Duis aute irure dolor in reprehenderit in voluptate velit esse cillum '
+                        'dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,'
+                        ' sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                        style: TextStyle(fontSize: 12),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        );
-      });}
+          );});}
 
 
 
+
+  
 
 }

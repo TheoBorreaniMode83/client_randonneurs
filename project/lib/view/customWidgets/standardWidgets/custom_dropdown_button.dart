@@ -19,7 +19,11 @@ class CustomDropdownButton extends StatelessWidget{
   Widget build(BuildContext context)
   {
     return Container(
-      color: Colors.white,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: Border.all(width: 2)
+      ),
+      width: double.maxFinite,
       child: DropdownButton(
         value: customDropdownButtonContent.getDropDownValue(),
         icon: const Icon(Icons.keyboard_arrow_down),
