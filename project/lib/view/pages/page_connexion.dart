@@ -138,16 +138,15 @@ class _PageConnexion extends State<PageConnexion> {
     //print(Crypt.sha256('p@ssw0rd', salt: 'abcdefghijklmnop', rounds: 10000).hashCode.toString());
     String url = 'http://127.0.0.1:8000/obtenir_token';
     try{
-          http.Response response = await http.post(Uri.parse(url), body: utf8.encode(jsonEncode(content)));
-          print(response.body);
+      http.Response response = await http.post(Uri.parse(url), body: utf8.encode(jsonEncode(content)));
+      print(response.body);
     }
     catch(e)
     {
       print(e.toString());
     }
     //print(response.body);
-    if (_formKey.currentState!.validate()){
-      
+    if (_formKey.currentState!.validate()){     
       Navigator.popAndPushNamed(context, "/pageNavigationApplication");
     }
   }

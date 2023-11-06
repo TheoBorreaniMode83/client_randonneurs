@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Les randonneurs Dracéniens',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -42,13 +42,15 @@ class MyApp extends StatelessWidget {
         '/page_requete_multi_criteres': (context) => const PageRequeteMultiCriteres(),
         '/page_gestions_adhesions_en_cours': (context) => const PageGestionsAdhesionsEnCours(),
         },
-        localizationsDelegates: const [
-         GlobalMaterialLocalizations.delegate
-       ],
-        supportedLocales: const [
-         Locale('en'),
-         Locale('fr')
-       ],
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        ],
+      supportedLocales: const [
+        Locale('en'),
+        Locale('fr')
+        ],
     );
   }
 }

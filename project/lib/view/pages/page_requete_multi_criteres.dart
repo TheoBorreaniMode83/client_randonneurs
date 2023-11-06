@@ -103,7 +103,7 @@ class _PageGestionnaireRandonneurs extends State<PageRequeteMultiCriteres> {
         key: _formKey,
         child:ResponsiveView(
           children:[
-            Container(height: 30),
+            Container(height: 30, ),
             ComposentRequeteMultiCriteres(
               composentRequeteMultiCriteresStyle: composentRequeteMultiCriteresStyle1,
               children1: const [Text("Egale à :")],

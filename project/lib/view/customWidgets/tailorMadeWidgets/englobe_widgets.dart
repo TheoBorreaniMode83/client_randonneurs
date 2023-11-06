@@ -23,11 +23,12 @@ class EnglobeWidgets extends StatelessWidget{
           color: const Color.fromARGB(255, 102, 102, 102),
           child: ListView(
             children: [
-              SizedBox(
+              Container(
+                padding: const EdgeInsets.fromLTRB(10,20,10,30),
                 width: double.maxFinite,
                 child:Image.network(
-                  scale: 0.8,
-                  'lib/assets/LogoRandoAccueil.webp'
+                  scale: 2,
+                  'lib/assets/LogoRando.webp'
                   ),
               ),
               Container(
@@ -128,12 +129,67 @@ class EnglobeWidgets extends StatelessWidget{
                         ),
                       )
                     ),
-                    const Text("Liste des certificats médicaux obsolètes",),
-                    const Text("Mise en forme & coloriage des fichiers",),
-                    const Text("Création du nouvel exercice",),
-                    const Text("Recensement des inchoérences",),
-                    const Text("Accès aux paramétres & tarifs",),
-                    const Text("Impression du bordeau de transmission",),
+                    TextButton(
+                      style: ButtonStyle(overlayColor:  MaterialStatePropertyAll<Color>(Colors.amber.withOpacity(0.3))),
+                      onPressed:  (){},
+                      child: const Text(
+                        "Liste des certificats médicaux obsolètes",
+                        style: TextStyle(
+                          color: Colors.black
+                        ),
+                      )
+                    ),
+                    TextButton(
+                      style: ButtonStyle(overlayColor:  MaterialStatePropertyAll<Color>(Colors.amber.withOpacity(0.3))),
+                      onPressed:  (){},
+                      child: const Text(
+                        "Mise en forme & coloriage des fichiers",
+                        style: TextStyle(
+                          color: Colors.black
+                        ),
+                      )
+                    ),
+                    TextButton(
+                      style: ButtonStyle(overlayColor:  MaterialStatePropertyAll<Color>(Colors.amber.withOpacity(0.3))),
+                      onPressed:  (){},
+                      child: const Text(
+                        "Création du nouvel exercice",
+                        style: TextStyle(
+                          color: Colors.black
+                        ),
+                      )
+                    ),
+                    TextButton(
+                      style: ButtonStyle(overlayColor:  MaterialStatePropertyAll<Color>(Colors.amber.withOpacity(0.3))),
+                      onPressed:  (){},
+                      child: const Text(
+                        "Recensement des inchoérences",
+                        style: TextStyle(
+                          color: Colors.black
+                        ),
+                      )
+                    ),
+                    TextButton(
+                      style: ButtonStyle(overlayColor:  MaterialStatePropertyAll<Color>(Colors.amber.withOpacity(0.3))),
+                      onPressed:  (){},
+                      child: const Text(
+                        "Accès aux paramétres & tarifs",
+                        style: TextStyle(
+                          color: Colors.black
+                        ),
+                      )
+                    ),
+                    TextButton(
+                      style: ButtonStyle(overlayColor:  MaterialStatePropertyAll<Color>(Colors.amber.withOpacity(0.3))),
+                      onPressed:  (){},
+                      child: const Text(
+                        "Impression du bordeau de transmission",
+                        style: TextStyle(
+                          color: Colors.black
+                        ),
+                      )
+                    ),
+                    
 
                   ],
                 )

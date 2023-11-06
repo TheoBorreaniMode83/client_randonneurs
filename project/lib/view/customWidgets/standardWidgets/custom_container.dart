@@ -15,7 +15,17 @@ class CustomContainer extends StatelessWidget{
   Widget build(BuildContext context)
   {
     return Container(
-      color: customContainerStyle.getColor(),
+      constraints: BoxConstraints( 
+        maxWidth: customContainerStyle.getMaxWidth(), 
+        maxHeight: customContainerStyle.getMaxHeight(),
+        minWidth: customContainerStyle.getMinWidth(),
+        minHeight: customContainerStyle.getMinHeight(),),
+      decoration: BoxDecoration(
+            border: customContainerStyle.getBorder(),
+            borderRadius: customContainerStyle.getBorderRadius(),
+            color: customContainerStyle.getColor(),),
+      height: customContainerStyle.getHeight(),
+      width: customContainerStyle.getWidth(),
       padding: customContainerStyle.getPadding(),
       margin: customContainerStyle.getMargin(),
       child: child,

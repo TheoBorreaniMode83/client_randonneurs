@@ -39,7 +39,7 @@ class CustomTextFormField extends StatelessWidget{
   Widget build(BuildContext context)
   {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 5),
+      margin: const EdgeInsets.symmetric(vertical: 5),
       height: 70,
       child:TextFormField(
         onChanged: (String no){
@@ -56,7 +56,7 @@ class CustomTextFormField extends StatelessWidget{
         maxLines: customTextFormFieldStyle.getMaxLines(),
         validator: (value) {return _functionValidator(value);},
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 5.0),
+          contentPadding: const EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 5.0),
           hintText: customTextFormFieldStyle.getHintText(),
           suffixIcon: _getButtom(),
           labelText: customTextFormFieldStyle.getLabelText(),
