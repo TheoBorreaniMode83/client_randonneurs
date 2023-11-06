@@ -11,17 +11,13 @@ class PageGestionnaireRandonneurs extends StatefulWidget {
   const PageGestionnaireRandonneurs({super.key});
   @override
   State<PageGestionnaireRandonneurs> createState() => _PageGestionnaireRandonneurs();
+
+  
 }
 
 class _PageGestionnaireRandonneurs extends State<PageGestionnaireRandonneurs> {
-  
 
-  final _formKey = GlobalKey<FormState>();
-
-  @override
-  Widget build(BuildContext context) {
-
-    final CustomTextStyle customTextTextStyleTitle = StyleFactory.createCustomTextStyleTitle();
+   final CustomTextStyle customTextTextStyleTitle = StyleFactory.createCustomTextStyleTitle();
     final CustomTextStyle customTextTextStyle1 = StyleFactory.createCustomTextStyleTitle();
     final CustomTextStyle customTextTextStyle2 = StyleFactory.createCustomTextStyleTitle();
     final CustomTextStyle customTextTextStyle3 = StyleFactory.createCustomTextStyleTitle();
@@ -38,7 +34,7 @@ class _PageGestionnaireRandonneurs extends State<PageGestionnaireRandonneurs> {
     final CustomTextButtomEvent customButtonModifierEvent = CustomTextButtomEvent();
     final CustomTextButtomEvent customButtonSupprimerEvent = CustomTextButtomEvent();
 
-    @override
+  @override
     void initState(){
       super.initState();
 
@@ -65,6 +61,10 @@ class _PageGestionnaireRandonneurs extends State<PageGestionnaireRandonneurs> {
         .setCustomTextStyle(customTextTextStyle3);
     }
 
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Form(
         key: _formKey,

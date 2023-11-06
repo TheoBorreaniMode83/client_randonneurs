@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/standardWidgets/custom_text.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgetsStyles/styles/standardWidgetsStyles/custom_text_style.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/controller/customWidgetsControllers/custom_text_buttom_event.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgetsStyles/styles_factory.dart';
@@ -12,6 +13,7 @@ import 'package:les_randonneurs_draceniens_client_administratif/view/customWidge
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/standardWidgets/custom_dropdown_button.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/tailorMadeWidgets/englobe_widgets.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/tailorMadeWidgets/composent_requete_multi_criteres.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/assets/text_content.dart';
 
 
 class PageRequeteMultiCriteres extends StatefulWidget {
@@ -22,6 +24,7 @@ class PageRequeteMultiCriteres extends StatefulWidget {
 
 class _PageGestionnaireRandonneurs extends State<PageRequeteMultiCriteres> {
   
+
   final _formKey = GlobalKey<FormState>();
   final CustomTextStyle customTextTextStyleTitle = StyleFactory.createCustomTextStyleTitle();
   final CustomTextButtomEvent customButtonHeadEvent = CustomTextButtomEvent();
@@ -45,13 +48,15 @@ class _PageGestionnaireRandonneurs extends State<PageRequeteMultiCriteres> {
   final CustomDropdownButtonEvent customDropdownButtonEvent = CustomDropdownButtonEvent();
   final CustomDropdownButtonContent customDropdownButtonContent = CustomDropdownButtonContent();
   
+  
+
   @override
   void initState() {
     super.initState();
     customButtonHeadEvent 
       .setOnPressed(() {Navigator.pop(context);});
     customTextTextStyleTitle
-      .setContent("Requete multi critere");
+      .setContent(TextContent.titleRequeteMultiCriteres);
 
     composentRequeteMultiCriteresStyle1
       .setBackgroundColor(const Color(0xFFFFC0FF))
@@ -103,6 +108,9 @@ class _PageGestionnaireRandonneurs extends State<PageRequeteMultiCriteres> {
         key: _formKey,
         child:ResponsiveView(
           children:[
+            Center(
+              child: CustomText(
+                customTextStyle: customTextTextStyleTitle),),
             Container(height: 30, ),
             ComposentRequeteMultiCriteres(
               composentRequeteMultiCriteresStyle: composentRequeteMultiCriteresStyle1,

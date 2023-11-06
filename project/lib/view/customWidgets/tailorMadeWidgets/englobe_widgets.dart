@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/assets/text_content.dart';
 
 class EnglobeWidgets extends StatelessWidget{
 
@@ -39,7 +40,7 @@ class EnglobeWidgets extends StatelessWidget{
                       onPressed:  (){Navigator.pushNamed(context, '/page_gestions_adhesions_en_cours'); },
                       style: ButtonStyle(overlayColor:  MaterialStatePropertyAll<Color>(Colors.amber.withOpacity(0.3))),
                       child: const Text(
-                        "Gestions des adhésions en cours",
+                        TextContent.titleGestionsDesAdhesions,
                         style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold),)),
@@ -55,7 +56,7 @@ class EnglobeWidgets extends StatelessWidget{
                       onPressed:  (){},
                       style: ButtonStyle(overlayColor:  MaterialStatePropertyAll<Color>(Colors.amber.withOpacity(0.3))),
                       child: const Text(
-                        "Etats statistique",
+                        TextContent.titleStatistiques,
                         style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold),)),
@@ -71,7 +72,7 @@ class EnglobeWidgets extends StatelessWidget{
                       style: ButtonStyle(overlayColor:  MaterialStatePropertyAll<Color>(Colors.amber.withOpacity(0.3))),
                       onPressed:  (){Navigator.pushNamed(context, "/page_requete_multi_criteres");},
                       child: const Text(
-                        "Requête multi critères",
+                        TextContent.titleRequeteMultiCriteres,
                         style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold),)),
@@ -87,7 +88,7 @@ class EnglobeWidgets extends StatelessWidget{
                       style: ButtonStyle(overlayColor:  MaterialStatePropertyAll<Color>(Colors.amber.withOpacity(0.3))),
                       onPressed:  (){},
                       child: const Text(
-                        "Transfert des Adhésions non renouvelées A1",
+                        TextContent.titleTransfertAdgesionsNonRenouvelees,
                         style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold),)),
@@ -103,7 +104,7 @@ class EnglobeWidgets extends StatelessWidget{
                       style: ButtonStyle(overlayColor:  MaterialStatePropertyAll<Color>(Colors.amber.withOpacity(0.3))),
                       onPressed:  (){},
                       child: const Text(
-                        "Recherche des adhérents éligibles",
+                        TextContent.titleRechercheAdherentsEliginlesMedailles,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.black
@@ -122,7 +123,7 @@ class EnglobeWidgets extends StatelessWidget{
                       style: ButtonStyle(overlayColor:  MaterialStatePropertyAll<Color>(Colors.amber.withOpacity(0.3))),
                       onPressed:  (){},
                       child: const Text(
-                        "Gestion: Tarifs, paramétres, Cert. Médicau, Nlle saison",
+                        TextContent.titleParametres,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.black
@@ -133,7 +134,7 @@ class EnglobeWidgets extends StatelessWidget{
                       style: ButtonStyle(overlayColor:  MaterialStatePropertyAll<Color>(Colors.amber.withOpacity(0.3))),
                       onPressed:  (){},
                       child: const Text(
-                        "Liste des certificats médicaux obsolètes",
+                        TextContent.titleCertificatsMedicaux,
                         style: TextStyle(
                           color: Colors.black
                         ),
@@ -143,7 +144,7 @@ class EnglobeWidgets extends StatelessWidget{
                       style: ButtonStyle(overlayColor:  MaterialStatePropertyAll<Color>(Colors.amber.withOpacity(0.3))),
                       onPressed:  (){},
                       child: const Text(
-                        "Mise en forme & coloriage des fichiers",
+                        TextContent.miseEnForme,
                         style: TextStyle(
                           color: Colors.black
                         ),
@@ -153,7 +154,7 @@ class EnglobeWidgets extends StatelessWidget{
                       style: ButtonStyle(overlayColor:  MaterialStatePropertyAll<Color>(Colors.amber.withOpacity(0.3))),
                       onPressed:  (){},
                       child: const Text(
-                        "Création du nouvel exercice",
+                        TextContent.titleExercice,
                         style: TextStyle(
                           color: Colors.black
                         ),
@@ -163,7 +164,7 @@ class EnglobeWidgets extends StatelessWidget{
                       style: ButtonStyle(overlayColor:  MaterialStatePropertyAll<Color>(Colors.amber.withOpacity(0.3))),
                       onPressed:  (){},
                       child: const Text(
-                        "Recensement des inchoérences",
+                        TextContent.titleInchoerence,
                         style: TextStyle(
                           color: Colors.black
                         ),
@@ -173,7 +174,7 @@ class EnglobeWidgets extends StatelessWidget{
                       style: ButtonStyle(overlayColor:  MaterialStatePropertyAll<Color>(Colors.amber.withOpacity(0.3))),
                       onPressed:  (){},
                       child: const Text(
-                        "Accès aux paramétres & tarifs",
+                        TextContent.titleParametresTarifs,
                         style: TextStyle(
                           color: Colors.black
                         ),
@@ -183,7 +184,7 @@ class EnglobeWidgets extends StatelessWidget{
                       style: ButtonStyle(overlayColor:  MaterialStatePropertyAll<Color>(Colors.amber.withOpacity(0.3))),
                       onPressed:  (){},
                       child: const Text(
-                        "Impression du bordeau de transmission",
+                        TextContent.titleImpression,
                         style: TextStyle(
                           color: Colors.black
                         ),
@@ -222,7 +223,7 @@ class EnglobeWidgets extends StatelessWidget{
           ],
         
           ),
-      sliderOpenSize: 400,
+      sliderOpenSize: 460,
       child: child,);
   }
 } 

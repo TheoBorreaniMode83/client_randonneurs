@@ -28,11 +28,14 @@ class _DatePickerState extends State<DatePicker>
 
   DateTime now = DateTime.now();
 late String  title;
-String?  restorationId;
+@override
+String? restorationId;
 late Date  date;
 late RestorableDateTime b;
+
 @override
 void initState() {
+    super.initState();
     restorationId = widget.restorationId;
     title = widget.title;
     date = widget.date;
@@ -84,7 +87,6 @@ void initState() {
     if (newSelectedDate != null) {
       setState(() {
         _selectedDate.value = newSelectedDate;
-        print(_selectedDate.value);
         date.a=_selectedDate.value.year;
         date.j=_selectedDate.value.day;
         date.m=_selectedDate.value.month; 

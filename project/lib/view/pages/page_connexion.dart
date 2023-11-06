@@ -14,6 +14,7 @@ import 'package:les_randonneurs_draceniens_client_administratif/view/customWidge
 import 'package:les_randonneurs_draceniens_client_administratif/controller/customWidgetsControllers/custom_text_form_field_event.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:les_randonneurs_draceniens_client_administratif/controller/customWidgetsControllers/custom_text_form_field_content.dart';
 
 class PageConnexion extends StatefulWidget {
   const PageConnexion({super.key});
@@ -43,6 +44,10 @@ class _PageConnexion extends State<PageConnexion> {
 
   final CustomTextFormFieldEvent customTextFormFieldEvent1 = CustomTextFormFieldEvent();
   final CustomTextFormFieldEvent customTextFormFieldEvent2 = CustomTextFormFieldEvent();
+
+  final CustomTextFormFieldContent customTextFormFieldContent1 = CustomTextFormFieldContent();
+  final CustomTextFormFieldContent customTextFormFieldContent2 = CustomTextFormFieldContent();
+
 
   final controller1 = TextEditingController();
   final controller2 = TextEditingController();
@@ -112,6 +117,7 @@ class _PageConnexion extends State<PageConnexion> {
               controller: controller1,
               customTextFormFieldStyle: customTextFormFieldStyle,
               customTextFormFieldEvent: customTextFormFieldEvent1,
+              customTextFormFieldContent: customTextFormFieldContent1,
               customTextFormFieldValidator: customTextFormFieldValidator),
             CustomContainer(
               customContainerStyle: customContainerStyle2),
@@ -119,6 +125,7 @@ class _PageConnexion extends State<PageConnexion> {
               controller: controller2,
               customTextFormFieldStyle: customTextFormFieldStyle2,
               customTextFormFieldEvent: customTextFormFieldEvent2,
+              customTextFormFieldContent: customTextFormFieldContent2 ,
               customTextFormFieldValidator: customTextFormFieldValidator2),
             CustomContainer(
               customContainerStyle: customContainerStyle2),

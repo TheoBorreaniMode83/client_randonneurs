@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgetsStyles/styles/standardWidgetsStyles/custom_text_form_field_style.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/controller/customWidgetsControllers/custom_text_form_field_validator.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/controller/customWidgetsControllers/custom_text_form_field_event.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/controller/customWidgetsControllers/custom_text_form_field_content.dart';
 
 
 class CustomTextFormField extends StatelessWidget{
@@ -10,6 +11,7 @@ class CustomTextFormField extends StatelessWidget{
   final CustomTextFormFieldStyle customTextFormFieldStyle;
   final CustomTextFormFieldValidator customTextFormFieldValidator;
   final CustomTextFormFieldEvent customTextFormFieldEvent;
+  final CustomTextFormFieldContent customTextFormFieldContent;
   final TextEditingController controller;
 
   
@@ -18,6 +20,7 @@ class CustomTextFormField extends StatelessWidget{
     required this.customTextFormFieldStyle,
     required this.customTextFormFieldValidator,
     required this.customTextFormFieldEvent,
+    required this.customTextFormFieldContent,
     required this.controller,
   }):super(key: key);
 
@@ -47,8 +50,11 @@ class CustomTextFormField extends StatelessWidget{
           f();
           },
         controller: controller,
-        maxLength: 10,
-        buildCounter: (BuildContext context, {int? currentLength, int? maxLength, bool? isFocused}) => Text("${currentLength.toString()}/${maxLength.toString()}"),
+        maxLength: customTextFormFieldContent.getMaxLength(),
+        buildCounter: (BuildContext context, {int? currentLength, int? maxLength, bool? isFocused}){
+          if(maxLength!=null){return Text("${currentLength.toString()}/${maxLength.toString()}");}
+          else{return Text("");}
+          },
         obscureText: customTextFormFieldStyle.getObscureText(),
         //keyboardType:  TextInputType.multiline,
         textAlign: TextAlign.center,
