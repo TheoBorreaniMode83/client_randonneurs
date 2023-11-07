@@ -12,8 +12,11 @@ import 'package:les_randonneurs_draceniens_client_administratif/view/customWidge
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/containerWidgets/responsive_view.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/standardWidgets/custom_dropdown_button.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/tailorMadeWidgets/englobe_widgets.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/tailorMadeWidgets/composent_array.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/standardWidgets/custom_alert_dialog.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/tailorMadeWidgets/composent_requete_multi_criteres.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/assets/text_content.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgetsStyles/styles/standardWidgetsStyles/custom_alert_dialog_style.dart';
 
 
 class PageRequeteMultiCriteres extends StatefulWidget {
@@ -24,6 +27,8 @@ class PageRequeteMultiCriteres extends StatefulWidget {
 
 class _PageGestionnaireRandonneurs extends State<PageRequeteMultiCriteres> {
   
+
+  final CustomAlertDialogStyle customAlertDialogStyle = CustomAlertDialogStyle();
 
   final _formKey = GlobalKey<FormState>();
   final CustomTextStyle customTextTextStyleTitle = StyleFactory.createCustomTextStyleTitle();
@@ -95,7 +100,42 @@ class _PageGestionnaireRandonneurs extends State<PageRequeteMultiCriteres> {
     customTextButtomStyle
       .setCustomTextStyle(customTextStyle);
 
+    customAlertDialogStyle
+      .setHeight(double.maxFinite)
+      .setWidth(double.maxFinite)
+      .setTitle("Résultat");
 
+    customTextButtomEvent
+      .setOnPressed(() {
+        CustomAlertDialog(
+          customAlertDialogStyle: customAlertDialogStyle,
+          children: 
+          [
+          const Center(
+            child :ComposentArray(
+              width: 50000,
+              matrice: 
+              [
+                ["nom","prenom","age","autres","autres","hh"],
+                ["1","2","3","4","5","6"],
+                ["1","2","3","4","5","6"],
+                ["1","2","3","4","5","6"],
+                ["1","2","3","4","5","6"],
+              ]),),],
+        context: context);
+      });
+      /*
+      ComposentArray(
+              height: 500,
+              width: 100,
+              matrice: 
+              [
+                ["1","2","3","4","5"],
+                ["1","2","3","4","5"],
+                ["1","2","3","4","5"],
+                ["1","2","3","4","5"],
+              ])
+      */
     }
   
   @override
@@ -204,7 +244,9 @@ class _PageGestionnaireRandonneurs extends State<PageRequeteMultiCriteres> {
               ],
               child: const Text("Rubrique financières", style: TextStyle(fontWeight: FontWeight.bold)),
             ),
-            CustomTextButton(customTextButtomStyle: customTextButtomStyle, customTextButtomEvent: customTextButtomEvent)
+            CustomTextButton(
+              customTextButtomStyle: customTextButtomStyle, 
+              customTextButtomEvent: customTextButtomEvent)
           ],
         ),
       ),

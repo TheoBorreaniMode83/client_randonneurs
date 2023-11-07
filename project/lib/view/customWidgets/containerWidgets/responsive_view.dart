@@ -59,12 +59,16 @@ class ResponsiveView extends StatelessWidget{
             child: Scrollbar(
               thickness: 5, //largeur scroll barre
               controller: yourScrollController, 
-              child: ListView(
-                controller: yourScrollController, // AND Here
-                children: children
+              child:SingleChildScrollView(
+                controller: yourScrollController ,
+                child: Column(
+                  //controller: yourScrollController, // AND Here
+                  children: children
+                ),
               ),
-            ),
-          ));
+              )
+            )
+          );
         }
       ),
     );

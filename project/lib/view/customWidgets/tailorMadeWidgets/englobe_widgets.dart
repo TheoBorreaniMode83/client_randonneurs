@@ -190,6 +190,22 @@ class EnglobeWidgets extends StatelessWidget{
                         ),
                       )
                     ),
+                    const Divider(height: 2,thickness: 1,indent: 0,endIndent: 0,color: Colors.black,),
+                    Container(
+                      padding: const EdgeInsets.all(10),
+                      child:  Column(
+                      children: [
+                        TextButton(
+                          style: ButtonStyle(overlayColor:  MaterialStatePropertyAll<Color>(Colors.amber.withOpacity(0.3))),
+                          onPressed:  (){Navigator.pushNamed(context,"/page_test");},
+                          child: const Text(
+                            TextContent.titleTest,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black
+                        ),
+                      )
+                    ),]))
                     
 
                   ],

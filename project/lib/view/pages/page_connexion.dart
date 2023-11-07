@@ -138,8 +138,16 @@ class _PageConnexion extends State<PageConnexion> {
     );
   }
 
-  void tdest() async {
+  void tdest()  {
 
+    commWithServ();
+    
+    if (_formKey.currentState!.validate()){     
+      Navigator.popAndPushNamed(context, "/pageNavigationApplication");
+    }
+  }
+
+  commWithServ()async{
     Map<String, dynamic> content = {"id":"1234", "mdp":"mdp"};
 
     //print(Crypt.sha256('p@ssw0rd', salt: 'abcdefghijklmnop', rounds: 10000).hashCode.toString());
@@ -153,9 +161,6 @@ class _PageConnexion extends State<PageConnexion> {
       print(e.toString());
     }
     //print(response.body);
-    if (_formKey.currentState!.validate()){     
-      Navigator.popAndPushNamed(context, "/pageNavigationApplication");
-    }
   }
 
 }

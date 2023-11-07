@@ -53,7 +53,7 @@ class CustomTextFormField extends StatelessWidget{
         maxLength: customTextFormFieldContent.getMaxLength(),
         buildCounter: (BuildContext context, {int? currentLength, int? maxLength, bool? isFocused}){
           if(maxLength!=null){return Text("${currentLength.toString()}/${maxLength.toString()}");}
-          else{return Text("");}
+          else{return const Text("");}
           },
         obscureText: customTextFormFieldStyle.getObscureText(),
         //keyboardType:  TextInputType.multiline,

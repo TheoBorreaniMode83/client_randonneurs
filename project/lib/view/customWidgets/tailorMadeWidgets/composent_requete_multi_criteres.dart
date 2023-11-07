@@ -65,7 +65,7 @@ class ComposentRequeteMultiCriteres extends StatelessWidget{
   {
     return Container(
       constraints: const BoxConstraints( 
-        maxWidth: 500, ),
+        maxWidth: 700, ),
       padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
       child: Row(
         children: [

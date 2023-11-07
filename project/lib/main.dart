@@ -12,6 +12,7 @@ import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_
 import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_gestion_tarif.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_requete_multi_criteres.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_gestions_adhesions_en_cours.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_test.dart';
 
 
 void main() {
@@ -41,6 +42,7 @@ class MyApp extends StatelessWidget {
         '/page_gestion_tarif': (context) => const PageGestionTarif(),
         '/page_requete_multi_criteres': (context) => const PageRequeteMultiCriteres(),
         '/page_gestions_adhesions_en_cours': (context) => const PageGestionsAdhesionsEnCours(),
+        '/page_test': (context) => const PageTest(),
         },
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,

@@ -39,7 +39,7 @@ void initState() {
     restorationId = widget.restorationId;
     title = widget.title;
     date = widget.date;
-    b = RestorableDateTime(DateTime(1950, 10, date.a));
+    b = RestorableDateTime(DateTime(1950, 10, date.annee));
 
     
     }
@@ -87,9 +87,9 @@ void initState() {
     if (newSelectedDate != null) {
       setState(() {
         _selectedDate.value = newSelectedDate;
-        date.a=_selectedDate.value.year;
-        date.j=_selectedDate.value.day;
-        date.m=_selectedDate.value.month; 
+        date.annee=_selectedDate.value.year;
+        date.jours=_selectedDate.value.day;
+        date.mois=_selectedDate.value.month; 
       });
     }
   }
@@ -100,7 +100,7 @@ void initState() {
       child: Column(
         children: [
           Text(title),
-          Text("${date.j.toString()}/${date.m.toString()}/${date.a.toString()}"),
+          Text(date.toString()),
           OutlinedButton(
             onPressed: () {
               _restorableDatePickerRouteFuture.present();
