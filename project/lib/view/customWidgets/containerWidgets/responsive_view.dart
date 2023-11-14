@@ -46,7 +46,7 @@ class ResponsiveView extends StatelessWidget{
             height: height,
             width: width,
             decoration: const BoxDecoration(
-              color: Colors.amber,
+              color: Color.fromARGB(255, 255, 228, 145),
               border: Border(
                 left: BorderSide(
                   color: Color.fromARGB(255, 0, 0, 0)

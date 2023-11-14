@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/assets/text_content.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/controller/gstRoute/gst_route.dart';
 
 class EnglobeWidgets extends StatelessWidget{
 
@@ -37,7 +38,7 @@ class EnglobeWidgets extends StatelessWidget{
                 child:  Column(
                   children: [
                     TextButton(
-                      onPressed:  (){Navigator.pushNamed(context, '/page_gestions_adhesions_en_cours'); },
+                      onPressed:  (){GstRoute.goToRoute(context, GstRoute.goToGestionsAdhesionsEnCours); },
                       style: ButtonStyle(overlayColor:  MaterialStatePropertyAll<Color>(Colors.amber.withOpacity(0.3))),
                       child: const Text(
                         TextContent.titleGestionsDesAdhesions,
@@ -70,7 +71,7 @@ class EnglobeWidgets extends StatelessWidget{
                   children: [
                     TextButton(
                       style: ButtonStyle(overlayColor:  MaterialStatePropertyAll<Color>(Colors.amber.withOpacity(0.3))),
-                      onPressed:  (){Navigator.pushNamed(context, "/page_requete_multi_criteres");},
+                      onPressed:  (){GstRoute.goToRoute(context, GstRoute.goToAdherentsEligibles);},
                       child: const Text(
                         TextContent.titleRequeteMultiCriteres,
                         style: TextStyle(
@@ -102,7 +103,7 @@ class EnglobeWidgets extends StatelessWidget{
                   children: [
                     TextButton(
                       style: ButtonStyle(overlayColor:  MaterialStatePropertyAll<Color>(Colors.amber.withOpacity(0.3))),
-                      onPressed:  (){},
+                      onPressed:  (){GstRoute.goToRoute(context, GstRoute.goToAdherentsEligibles);},
                       child: const Text(
                         TextContent.titleRechercheAdherentsEliginlesMedailles,
                         style: TextStyle(
@@ -197,7 +198,7 @@ class EnglobeWidgets extends StatelessWidget{
                       children: [
                         TextButton(
                           style: ButtonStyle(overlayColor:  MaterialStatePropertyAll<Color>(Colors.amber.withOpacity(0.3))),
-                          onPressed:  (){Navigator.pushNamed(context,"/page_test");},
+                          onPressed:  (){GstRoute.goToRoute(context, GstRoute.goToTest);},
                           child: const Text(
                             TextContent.titleTest,
                             style: TextStyle(
@@ -234,8 +235,9 @@ class EnglobeWidgets extends StatelessWidget{
             IconButton(
             color: Colors.white,
             icon: const Icon(Icons.arrow_back_outlined ),
-            onPressed: () {Navigator.pop(context);},
+            onPressed: () {GstRoute.goToRoute(context, GstRoute.goToNavigatePage);},
           ),
+
           ],
         
           ),

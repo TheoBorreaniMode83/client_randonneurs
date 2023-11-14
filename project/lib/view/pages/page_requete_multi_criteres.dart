@@ -113,7 +113,7 @@ class _PageGestionnaireRandonneurs extends State<PageRequeteMultiCriteres> {
           [
           const Center(
             child :ComposentArray(
-              width: 50000,
+              width: double.maxFinite,
               matrice: 
               [
                 ["nom","prenom","age","autres","autres","hh"],
@@ -124,18 +124,6 @@ class _PageGestionnaireRandonneurs extends State<PageRequeteMultiCriteres> {
               ]),),],
         context: context);
       });
-      /*
-      ComposentArray(
-              height: 500,
-              width: 100,
-              matrice: 
-              [
-                ["1","2","3","4","5"],
-                ["1","2","3","4","5"],
-                ["1","2","3","4","5"],
-                ["1","2","3","4","5"],
-              ])
-      */
     }
   
   @override

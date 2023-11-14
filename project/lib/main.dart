@@ -1,18 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/controller/gstRoute/gst_route.dart';
 
-//Importtation des pages accessible depuis une autre
-import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_connexion.dart';
-import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_ajouter_adherent.dart';
-import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_navigation_application.dart';
-import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_gestionnaire_randonneurs.dart';
-import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_principal_gestion_adherent.dart';
-import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_gestion_adherent.dart';
-import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_boite_a_outils.dart';
-import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_gestion_tarif.dart';
-import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_requete_multi_criteres.dart';
-import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_gestions_adhesions_en_cours.dart';
-import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_test.dart';
 
 
 void main() {
@@ -31,19 +20,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const PageConnexion(),
-      routes: {
-        '/pageAjouterAdherent': (context) => const PageAjouterAdherent(),
-        '/pageNavigationApplication': (context) => const PageNavigationApplication(),
-        '/page_gestionnaire_randonneurs': (context) => const PageGestionnaireRandonneurs(),
-        '/page_principal_gestion_adherent': (context) => const PagePrincipalGestionAdherent(),
-        '/page_gestion_adherent': (context) => const PageGestionAdherent(),
-        '/page_boite_a_outils': (context) => const PageBoiteAOutils(),
-        '/page_gestion_tarif': (context) => const PageGestionTarif(),
-        '/page_requete_multi_criteres': (context) => const PageRequeteMultiCriteres(),
-        '/page_gestions_adhesions_en_cours': (context) => const PageGestionsAdhesionsEnCours(),
-        '/page_test': (context) => const PageTest(),
-        },
+      home: GstRoute.routeRoot,
+      routes: GstRoute.routes,
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,

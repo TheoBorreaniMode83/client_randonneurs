@@ -138,29 +138,58 @@ class _PageConnexion extends State<PageConnexion> {
     );
   }
 
-  void tdest()  {
-
-    commWithServ();
-    
+  void tdest() async {
     if (_formKey.currentState!.validate()){     
-      Navigator.popAndPushNamed(context, "/pageNavigationApplication");
+      _onLoading();
+      bool b = await commWithServ();
+      if(b){
+         Navigator.popAndPushNamed(context, "/pageNavigationApplication");
+      }else{
+        Navigator.popAndPushNamed(context, "/pageNavigationApplication");
+      }
     }
   }
 
-  commWithServ()async{
-    Map<String, dynamic> content = {"id":"1234", "mdp":"mdp"};
+  Future<bool> commWithServ()async{
 
-    //print(Crypt.sha256('p@ssw0rd', salt: 'abcdefghijklmnop', rounds: 10000).hashCode.toString());
-    String url = 'http://127.0.0.1:8000/obtenir_token';
+    Map<String, dynamic> content = {"id":controller1.text, "mdp":controller2.text};
+
+    String url = 'http://127.0.0.1:8000/testConn';
     try{
       http.Response response = await http.post(Uri.parse(url), body: utf8.encode(jsonEncode(content)));
-      print(response.body);
+      if (response.statusCode == 200) {
+        return (jsonDecode(response.body)['bool']);
+      }else{
+        throw Exception('Failed to create album.');
+      }
     }
     catch(e)
     {
-      print(e.toString());
+      return false;
     }
-    //print(response.body);
   }
+
+
+  void _onLoading() {
+  //Affichage de la modale
+  showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (BuildContext context) {
+      return const Dialog(
+        child:  Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+             CircularProgressIndicator(),
+             Text("Chargement"),
+          ],
+        ),
+      );
+    },
+  );
+//Après 3 secondes, on effectue la connexion
+   Future.delayed(new Duration(seconds: 3), () {
+    //Navigator.pop(context); //pop dialog
+  });}
 
 }
