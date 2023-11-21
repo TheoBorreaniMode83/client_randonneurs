@@ -67,7 +67,7 @@ class _PageNavigationApplication extends State<PageNavigationApplication> {
     buttonApp3
       .setContent("Evènementiel");
     buttonApp4
-      .setContent("Extraction de documents");
+      .setContent("Messagerie");
 
     //Setting des arguments customTextButtom
     textButtomApp1Style
