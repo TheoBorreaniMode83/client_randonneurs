@@ -19,6 +19,7 @@ class CustomTextButton extends StatelessWidget{
   {
     return Container(
       padding: customTextButtomStyle.getPadding(),
+      width: double.maxFinite,
       child: TextButton(
         onPressed: customTextButtomEvent.getOnPressed(),
         onLongPress: customTextButtomEvent.getOnLongPress(),

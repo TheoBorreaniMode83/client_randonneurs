@@ -11,13 +11,14 @@ import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_
 import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_gestions_adhesions_en_cours.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_test.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_adherents_eligibles.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_certificaux_medicaux.dart';
 
 class GstRoute{
   
   // Si dessous la première page de l'application
   static dynamic routeRoot = const PageConnexion();
 
-  //
+  //Si dessous ensemble des routes
   static Map<String, Widget Function(BuildContext)> routes ={
     '/pageNavigationApplication': (context) => const PageNavigationApplication(),
     '/page_gestionnaire_randonneurs': (context) => const PageGestionnaireRandonneurs(),
@@ -25,6 +26,7 @@ class GstRoute{
     '/page_requete_multi_criteres': (context) => const PageRequeteMultiCriteres(),
     '/page_gestions_adhesions_en_cours': (context) => const PageGestionsAdhesionsEnCours(),
     '/page_test': (context) => const PageTest(),
+    '/page_certificaux_medicaux': (context) => const PageCertificauxMedicaux(),
   };
 
   //https://www.dhiwise.com/post/creating-engaging-apps-flutter-page-transitions
@@ -61,6 +63,7 @@ class GstRoute{
       'page_gestions_adhesions_en_cours' : Triplet<Function,Widget,Function>( Navigator.of(context).pushReplacement , const PageGestionsAdhesionsEnCours() , tabTransition['Transition2']! ),
       'page_test'                        : Triplet<Function,Widget,Function>( Navigator.of(context).pushReplacement , const PageTest()                     , tabTransition['Transition2']! ),
       'page_adherents_eligibles'         : Triplet<Function,Widget,Function>( Navigator.of(context).pushReplacement , const PageAdherentsEligibles()       , tabTransition['Transition2']! ),
+      'page_certificaux_medicaux'        : Triplet<Function,Widget,Function>( Navigator.of(context).pushReplacement , const PageCertificauxMedicaux()       , tabTransition['Transition2']! ),
       };
       if(routesFunctions[name]!=null){
         Function f = routesFunctions[name]!.getFirst();
@@ -85,6 +88,7 @@ class GstRoute{
   static String goToGestionsAdhesionsEnCours = "page_gestions_adhesions_en_cours";
   static String goToTest                     = "page_test";
   static String goToAdherentsEligibles       = "page_adherents_eligibles";
+  static String goToCertificauxMedicaux       = "page_certificaux_medicaux";
 
 
 }

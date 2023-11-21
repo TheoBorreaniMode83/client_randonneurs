@@ -71,7 +71,7 @@ class EnglobeWidgets extends StatelessWidget{
                   children: [
                     TextButton(
                       style: ButtonStyle(overlayColor:  MaterialStatePropertyAll<Color>(Colors.amber.withOpacity(0.3))),
-                      onPressed:  (){GstRoute.goToRoute(context, GstRoute.goToAdherentsEligibles);},
+                      onPressed:  (){GstRoute.goToRoute(context, GstRoute.goToRequeteMultiCriteres);},
                       child: const Text(
                         TextContent.titleRequeteMultiCriteres,
                         style: TextStyle(
@@ -133,7 +133,7 @@ class EnglobeWidgets extends StatelessWidget{
                     ),
                     TextButton(
                       style: ButtonStyle(overlayColor:  MaterialStatePropertyAll<Color>(Colors.amber.withOpacity(0.3))),
-                      onPressed:  (){},
+                      onPressed:  (){GstRoute.goToRoute(context, GstRoute.goToCertificauxMedicaux);},
                       child: const Text(
                         TextContent.titleCertificatsMedicaux,
                         style: TextStyle(
