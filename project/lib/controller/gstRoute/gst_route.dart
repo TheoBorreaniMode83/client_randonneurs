@@ -5,14 +5,14 @@ import 'package:page_transition/page_transition.dart';
 //Importation des pages
 import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_connexion.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_navigation_application.dart';
-import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_gestionnaire_randonneurs.dart';
-import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_gestion_tarif.dart';
-import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_requete_multi_criteres.dart';
-import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_gestions_adhesions_en_cours.dart';
-import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_test.dart';
-import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_adherents_eligibles.dart';
-import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_certificaux_medicaux.dart';
-import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_archivage.dart';
+//import 'package:les_randonneurs_draceniens_client_administratif/view/pages/pages_module_adherents/old_page_gestionnaire_randonneurs.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/view/pages/pages_module_adherents/page_gestion_tarif.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/view/pages/pages_module_adherents/page_requete_multi_criteres.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/view/pages/pages_module_adherents/page_gestions_adhesions_en_cours.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/view/pages/pages_module_adherents/page_test.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/view/pages/pages_module_adherents/page_adherents_eligibles.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/view/pages/pages_module_adherents/page_certificaux_medicaux.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/view/pages/pages_module_adherents/page_archivage.dart';
 
 class GstRoute{
   
@@ -22,7 +22,7 @@ class GstRoute{
   //Si dessous ensemble des routes
   static Map<String, Widget Function(BuildContext)> routes ={
     '/pageNavigationApplication': (context) => const PageNavigationApplication(),
-    '/page_gestionnaire_randonneurs': (context) => const PageGestionnaireRandonneurs(),
+    //'/page_gestionnaire_randonneurs': (context) => const PageGestionnaireRandonneurs(),
     '/page_gestion_tarif': (context) => const PageGestionTarif(),
     '/page_requete_multi_criteres': (context) => const PageRequeteMultiCriteres(),
     '/page_gestions_adhesions_en_cours': (context) => const PageGestionsAdhesionsEnCours(),
@@ -59,7 +59,7 @@ class GstRoute{
     //Si dessous les navigations avec l'interaction avec la pile associé
     Map<String, Triplet> routesFunctions = {
       'pageNavigationApplication'        : Triplet<Function,Widget,Function>( Navigator.of(context).pushReplacement , const PageNavigationApplication()    , tabTransition['Transition1']! ),
-      'page_gestionnaire_randonneurs'    : Triplet<Function,Widget,Function>( Navigator.of(context).pushReplacement , const PageGestionnaireRandonneurs()  , tabTransition['Transition1']! ),
+      //'page_gestionnaire_randonneurs'    : Triplet<Function,Widget,Function>( Navigator.of(context).pushReplacement , const PageGestionnaireRandonneurs()  , tabTransition['Transition1']! ),
       'page_gestion_tarif'               : Triplet<Function,Widget,Function>( Navigator.of(context).pushReplacement , const PageGestionTarif()             , tabTransition['Transition2']! ),
       'page_requete_multi_criteres'      : Triplet<Function,Widget,Function>( Navigator.of(context).pushReplacement , const PageRequeteMultiCriteres()     , tabTransition['Transition2']! ),
       'page_gestions_adhesions_en_cours' : Triplet<Function,Widget,Function>( Navigator.of(context).pushReplacement , const PageGestionsAdhesionsEnCours() , tabTransition['Transition2']! ),

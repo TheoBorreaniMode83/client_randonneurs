@@ -69,6 +69,11 @@ class _PageNavigationApplication extends State<PageNavigationApplication> {
     buttonApp4
       .setContent("Messagerie");
 
+    buttonApp1.setColor(Colors.black);
+    buttonApp2.setColor(Colors.black);
+    buttonApp3.setColor(Colors.black);
+    buttonApp4.setColor(Colors.black);
+
     //Setting des arguments customTextButtom
     textButtomApp1Style
       .setCustomTextStyle(buttonApp1);

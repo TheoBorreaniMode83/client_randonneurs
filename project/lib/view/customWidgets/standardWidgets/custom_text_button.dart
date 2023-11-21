@@ -35,7 +35,7 @@ class CustomTextButton extends StatelessWidget{
           foregroundColor: customTextButtomStyle.getForegroundColor(),
         ),
         child: CustomText(
-          customTextStyle: customTextButtomStyle.getCustomText().setColor(Colors.black)
+          customTextStyle: customTextButtomStyle.getCustomText(),
         )
       ),
     );

@@ -22,7 +22,7 @@ class EnglobeWidgets extends StatelessWidget{
     return  SliderDrawer(
         key: sliderDrawerKey,
         slider: Container(
-          color: const Color.fromARGB(255, 102, 102, 102),
+          color: Color.fromARGB(255, 179, 179, 179),
           child: ListView(
             children: [
               Container(
