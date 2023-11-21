@@ -19,9 +19,11 @@ class StyleFactory{
   static CustomTextStyle createCustomTextStyleSubTitle(){
     CustomTextStyle customTextStyle = CustomTextStyle();
     customTextStyle
-      .setFontSize(20);
+      .setFontSize(20)
+      .setColor(Colors.black);
     return customTextStyle;
   }
+  
   //---------------------------------------------------------------------
   //
   //---------------------------------------------------------------------
@@ -66,7 +68,7 @@ class StyleFactory{
       .setColor(Colors.black);
     CustomTextButtomStyle customTextButtomStyle = CustomTextButtomStyle();
     customTextButtomStyle
-      .setBackgroundColor(const Color.fromRGBO(186, 218, 85, 0) 
+      .setBackgroundColor(Color.fromARGB(255, 212, 119, 53) 
       .withOpacity(1))
       .setCustomTextStyle(customTextStyle)
       .setPadding(const EdgeInsets.symmetric(vertical:10));

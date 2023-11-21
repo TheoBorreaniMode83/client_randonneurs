@@ -87,7 +87,7 @@ class EnglobeWidgets extends StatelessWidget{
                   children: [
                     TextButton(
                       style: ButtonStyle(overlayColor:  MaterialStatePropertyAll<Color>(Colors.amber.withOpacity(0.3))),
-                      onPressed:  (){},
+                      onPressed:  (){GstRoute.goToRoute(context, GstRoute.goToArchivage);},
                       child: const Text(
                         TextContent.titleTransfertAdgesionsNonRenouvelees,
                         style: TextStyle(
