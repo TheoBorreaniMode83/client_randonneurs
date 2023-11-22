@@ -59,7 +59,7 @@ class _PageNavigationApplication extends State<PageNavigationApplication> {
 
     //Setting des arguments customText
     title
-      .setContent("Choix de l'application");
+      .setContent("Accueil");
     buttonApp1
       .setContent("Gestion adhérents");
     buttonApp2
