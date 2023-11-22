@@ -1,6 +1,6 @@
 class TextContent{
   //Title page
-  static const titleGestionsDesAdhesions = "Gestions des adhesions en cours";
+  static const titleGestionsDesAdhesions = "Gestions des adhérents";
   static const titleStatistiques = "Etats statistique";
   static const titleRequeteMultiCriteres = "Requete multi critères";
   static const titleTransfertAdgesionsNonRenouvelees = "Transfert des Adhésions non renouvelées";
