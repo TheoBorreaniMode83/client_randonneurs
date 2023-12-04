@@ -19,13 +19,12 @@ import 'package:les_randonneurs_draceniens_client_administratif/controller/custo
 import 'package:les_randonneurs_draceniens_client_administratif/controller/customWidgetsControllers/custom_dropdown_button_content.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/controller/customWidgetsControllers/custom_dropdown_button_event.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/tailorMadeWidgets/custom_separator.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/tailorMadeWidgets/composent_search.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/containerWidgets/percentage_double_container.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/model/date.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/controller/customWidgetsControllers/custom_text_form_field_content.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/assets/text_content.dart';
-
-
-
+import 'package:les_randonneurs_draceniens_client_administratif/controller/gstHttpServer/gst_http_server.dart';
 
 class PageGestionsAdhesionsEnCours extends StatefulWidget {
   const PageGestionsAdhesionsEnCours({super.key});
@@ -198,25 +197,16 @@ class _PageGestionsAdhesionsEnCours extends State<PageGestionsAdhesionsEnCours> 
   final CustomDropdownButtonContent dropdownButtonCiviliteContent = CustomDropdownButtonContent();
   final CustomDropdownButtonEvent dropdownButtonCiviliteEvent = CustomDropdownButtonEvent();
 
+
+  CustomDropdownButtonContent customDropdownButtonContent1 = CustomDropdownButtonContent();
+  CustomDropdownButtonContent customDropdownButtonContent2 = CustomDropdownButtonContent();
+
+
   final Date date1 = Date(jours: 1, mois: 1, annee: 1900);
   final Date date2 = Date(jours: 1, mois: 1, annee: 1900);
   final Date date3 = Date(jours: 1, mois: 1, annee: 1900);
 
-
   List<Adherent> adherents = [];
-  //final _formKey = GlobalKey<FormState>();
-  List<Adherent> baseDonnees = [
-      Adherent(id: 0,nom: "Martin", prenom: "Gabriel", civilite: "xxx"),
-      Adherent(id: 1,nom: "Bernard", prenom: "Léo", civilite: "yyy"),
-      Adherent(id: 2,nom: "Thomas", prenom: "Raphael", civilite: "zzz"),
-      Adherent(id: 3,nom: "Petit", prenom: "Louis", civilite: "xxx"),
-      Adherent(id: 4,nom: "Robert", prenom: "Mael", civilite: "yyy"),
-      Adherent(id: 5,nom: "Richard", prenom: "Arthur", civilite: "zzz"),
-      Adherent(id: 6,nom: "Durand", prenom: "Jules", civilite: "xxx"),
-      Adherent(id: 7,nom: "Dubois", prenom: "Noah", civilite: "yyy"),
-      Adherent(id: 8,nom: "Moreau", prenom: "Adam", civilite: "zzz"),
-      Adherent(id: 9,nom: "Laurent", prenom: "Lucas", civilite: "zzz"),
-    ];
 
    void validator()  {
     if (_formKey.currentState!.validate()){
@@ -228,10 +218,12 @@ class _PageGestionsAdhesionsEnCours extends State<PageGestionsAdhesionsEnCours> 
   void initState() {
     super.initState();
 
-    adherents=get();
-
-    trie();
-
+    customDropdownButtonContent1
+      .setDropdownValue('>')
+      .setItems(['<','>','=']);
+    customDropdownButtonContent2
+      .setDropdownValue('>')
+      .setItems(['<','>','=']);;
 
       title.setContent(
         TextContent.titleGestionsDesAdhesions);
@@ -244,9 +236,9 @@ class _PageGestionsAdhesionsEnCours extends State<PageGestionsAdhesionsEnCours> 
         .setHintText('Entrez un prénom'); 
 
       customTextFormFieldEvent1
-        .setOnChanged(() {trie();setState(() {});});
+        .setOnChanged(() {trie(adherents);setState(() {});});
       customTextFormFieldEvent2
-        .setOnChanged(() {trie();setState(() {});});
+        .setOnChanged(() {trie(adherents);setState(() {});});
 
 
        //Setting des arguments customText
@@ -355,68 +347,77 @@ class _PageGestionsAdhesionsEnCours extends State<PageGestionsAdhesionsEnCours> 
       });
 
   }
-  
-  List<Adherent> get(){
-    return  List.from(baseDonnees);
-  }
-  void upgrade(List<Adherent> x){
-    baseDonnees=List.from(x);
-  }
 
-  void trie(){
+  
+  void trie(List<Adherent> adherents){
     
     RegExp regExp1 = RegExp(r"^"+removeDiacritics(controller1.value.text.toLowerCase())+r"(.*)");
     RegExp regExp2 = RegExp(r"^"+removeDiacritics(controller2.value.text.toLowerCase())+r"(.*)");
       
     adherents.clear();
-
-    for (Adherent i in baseDonnees){
+    for (Adherent i in GstHttpServer.getAdherent()){
       if(regExp1.hasMatch(removeDiacritics(i.nom.toLowerCase())) && regExp2.hasMatch(removeDiacritics(i.prenom.toLowerCase()))){
         adherents.add(i);
       }
       
     }
-
   }
+  
 
   List<Widget> makeElt(){
     List<Widget> list = [];
     
     list.add(
       Column(children: [
-        CustomText(
-          customTextStyle: title),
+        CustomText(customTextStyle: title),
         const Text("Outil de recherche"),
-          
-             Row(
-            children: [
-              Flexible(
-                child: 
-              CustomTextFormField(
+        Row(
+          children: [
+            Flexible(
+              child: CustomTextFormField(
                 customTextFormFieldStyle: customTextFormFieldStyle1,
                 customTextFormFieldValidator: customTextFormFieldValidator1,
                 customTextFormFieldEvent: customTextFormFieldEvent1,
                 customTextFormFieldContent: customTextFormFieldContent1,
                 controller: controller1)),
-              Flexible(
-                child: CustomTextFormField(
+            Flexible(
+              child: CustomTextFormField(
                 customTextFormFieldStyle: customTextFormFieldStyle2,
                 customTextFormFieldValidator: customTextFormFieldValidator2,
                 customTextFormFieldEvent: customTextFormFieldEvent2,
                 customTextFormFieldContent: customTextFormFieldContent2,
-                controller: controller2))            ],
-          
-          ),
-          IconButton(
-            style: const ButtonStyle(
-              backgroundColor: MaterialStatePropertyAll<Color>(Colors.green),
+                controller: controller2)),           
+          ],
+        ),
+        Row(
+          children: [
+            Expanded(
+              flex: 1,
+              child: ComposentSearch(
+                customDropdownButtonContent: customDropdownButtonContent1,
+                items: ['<','>','='],
+                wrapSetState: (){setState(() {});},
+              )
             ),
-            icon: const Icon(Icons.add),
-            onPressed: (){showDataAlert();},
+            Expanded(
+              flex: 1,
+              child: ComposentSearch(
+                customDropdownButtonContent: customDropdownButtonContent2,
+                items: ['<','>','='],
+                wrapSetState: (){setState(() {});},
+              )
+            )
+          ],
+        ),
+        IconButton(
+          style: const ButtonStyle(
+            backgroundColor: MaterialStatePropertyAll<Color>(Colors.green),
+          ),
+          icon: const Icon(Icons.add),
+          onPressed: (){showDataAlert();},
           ),
         ],
-        )
-      
+      )  
     );
 
     for(int i=0 ; i<adherents.length;i++){
@@ -439,7 +440,10 @@ class _PageGestionsAdhesionsEnCours extends State<PageGestionsAdhesionsEnCours> 
                       onPressed: (){showDataAlert(adherent: adherents[i]);},
                       icon: const Icon(Icons.edit)),
                     IconButton(
-                      onPressed: (){deleteElt(i);}, 
+                      onPressed: (){
+                        GstHttpServer.deleteAdherent(i);
+                        setState((){});
+                      }, 
                       icon: const  Icon(Icons.delete)),
                   ],
                 )
@@ -453,6 +457,7 @@ class _PageGestionsAdhesionsEnCours extends State<PageGestionsAdhesionsEnCours> 
 
   @override
   Widget build(BuildContext context) {
+    trie(adherents);
     return Scaffold(
       body: EnglobeWidgets(
         child: Form(
@@ -466,16 +471,7 @@ class _PageGestionsAdhesionsEnCours extends State<PageGestionsAdhesionsEnCours> 
   }
 
 
-void deleteElt(int i){
-  for (Adherent ii in adherents){
-    if(ii.id == adherents[i].id){
-      adherents.remove(ii);
-      upgrade(adherents);
-      setState(() {});
-      break;
-    }
-  }
-}
+
 
   showDataAlert({Adherent? adherent}) {
   showDialog(
@@ -685,11 +681,11 @@ void deleteElt(int i){
                           if(adherent!=null){ // si l'adherent est entrain d'etre modifier
                             adherent.nom = textFormNameController.text;
                             adherent.prenom = textFormFirstNameController.text;
+                            GstHttpServer.setAdherent(adherent);
                             setState((){});
                           }
                           else{ // si l'adherent est entrain d'etre crée
-                            adherents.add(Adherent(nom: textFormNameController.text, prenom: textFormFirstNameController.text, civilite: "x"));
-                            upgrade(adherents);
+                            GstHttpServer.addAdherent(Adherent(nom: textFormNameController.text, prenom: textFormFirstNameController.text, civilite: "x"));
                             setState(() {});
                           }
                           Navigator.of(context).pop();
@@ -723,11 +719,8 @@ void deleteElt(int i){
                 ),
               ),
             ),
-          );});}
-
-
-
-
-
-
+          );
+      }
+    );
+  }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgetsStyles/styles/standardWidgetsStyles/custom_dropdown_button_style.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/controller/customWidgetsControllers/custom_dropdown_button_content.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/controller/customWidgetsControllers/custom_dropdown_button_event.dart';
@@ -23,8 +24,9 @@ class CustomDropdownButton extends StatelessWidget{
         color: Colors.white,
         border: Border.all(width: 2)
       ),
-      width: double.maxFinite,
+      width: 100,
       child: DropdownButton(
+        isExpanded: true,
         value: customDropdownButtonContent.getDropDownValue(),
         icon: const Icon(Icons.keyboard_arrow_down),
         underline: const SizedBox(),

@@ -41,10 +41,7 @@ class CustomTextFormField extends StatelessWidget{
   @override
   Widget build(BuildContext context)
   {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 5),
-      height: 70,
-      child:TextFormField(
+    return TextFormField(
         onChanged: (String no){
           dynamic f=customTextFormFieldEvent.getOnChanged();
           f();
@@ -78,7 +75,7 @@ class CustomTextFormField extends StatelessWidget{
           ),
         ),
       style: const TextStyle(fontSize: 10),
-      ),
+      
     );
   }
 } 
