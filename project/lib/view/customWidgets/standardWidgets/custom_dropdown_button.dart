@@ -25,6 +25,7 @@ class CustomDropdownButton extends StatelessWidget{
         border: Border.all(width: 2)
       ),
       width: 100,
+      height: 100,
       child: DropdownButton(
         isExpanded: true,
         value: customDropdownButtonContent.getDropDownValue(),

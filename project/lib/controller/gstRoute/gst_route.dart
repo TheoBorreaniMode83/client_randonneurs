@@ -7,7 +7,6 @@ import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_
 import 'package:les_randonneurs_draceniens_client_administratif/view/pages/page_navigation_application.dart';
 //import 'package:les_randonneurs_draceniens_client_administratif/view/pages/pages_module_adherents/old_page_gestionnaire_randonneurs.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/pages/pages_module_adherents/page_gestion_tarif.dart';
-import 'package:les_randonneurs_draceniens_client_administratif/view/pages/pages_module_adherents/page_requete_multi_criteres.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/pages/pages_module_adherents/page_gestions_adhesions_en_cours.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/pages/pages_module_adherents/page_test.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/pages/pages_module_adherents/page_adherents_eligibles.dart';
@@ -22,9 +21,7 @@ class GstRoute{
   //Si dessous ensemble des routes
   static Map<String, Widget Function(BuildContext)> routes ={
     '/pageNavigationApplication': (context) => const PageNavigationApplication(),
-    //'/page_gestionnaire_randonneurs': (context) => const PageGestionnaireRandonneurs(),
     '/page_gestion_tarif': (context) => const PageGestionTarif(),
-    '/page_requete_multi_criteres': (context) => const PageRequeteMultiCriteres(),
     '/page_gestions_adhesions_en_cours': (context) => const PageGestionsAdhesionsEnCours(),
     '/page_test': (context) => const PageTest(),
     '/page_certificaux_medicaux': (context) => const PageCertificauxMedicaux(),
@@ -59,9 +56,7 @@ class GstRoute{
     //Si dessous les navigations avec l'interaction avec la pile associé
     Map<String, Triplet> routesFunctions = {
       'pageNavigationApplication'        : Triplet<Function,Widget,Function>( Navigator.of(context).pushReplacement , const PageNavigationApplication()    , tabTransition['Transition1']! ),
-      //'page_gestionnaire_randonneurs'    : Triplet<Function,Widget,Function>( Navigator.of(context).pushReplacement , const PageGestionnaireRandonneurs()  , tabTransition['Transition1']! ),
       'page_gestion_tarif'               : Triplet<Function,Widget,Function>( Navigator.of(context).pushReplacement , const PageGestionTarif()             , tabTransition['Transition2']! ),
-      'page_requete_multi_criteres'      : Triplet<Function,Widget,Function>( Navigator.of(context).pushReplacement , const PageRequeteMultiCriteres()     , tabTransition['Transition2']! ),
       'page_gestions_adhesions_en_cours' : Triplet<Function,Widget,Function>( Navigator.of(context).pushReplacement , const PageGestionsAdhesionsEnCours() , tabTransition['Transition2']! ),
       'page_test'                        : Triplet<Function,Widget,Function>( Navigator.of(context).pushReplacement , const PageTest()                     , tabTransition['Transition2']! ),
       'page_adherents_eligibles'         : Triplet<Function,Widget,Function>( Navigator.of(context).pushReplacement , const PageAdherentsEligibles()       , tabTransition['Transition2']! ),
@@ -87,7 +82,6 @@ class GstRoute{
   static String goToNavigatePage             = "pageNavigationApplication";
   static String goToGestionnaireRandonneurs  = "page_gestionnaire_randonneurs";
   static String goToGestionTarif             = "page_gestion_tarif";
-  static String goToRequeteMultiCriteres     = "page_requete_multi_criteres";
   static String goToGestionsAdhesionsEnCours = "page_gestions_adhesions_en_cours";
   static String goToTest                     = "page_test";
   static String goToAdherentsEligibles       = "page_adherents_eligibles";

@@ -389,31 +389,14 @@ class _PageGestionsAdhesionsEnCours extends State<PageGestionsAdhesionsEnCours> 
                 controller: controller2)),           
           ],
         ),
-        Row(
-          children: [
-            Expanded(
-              flex: 1,
-              child: ComposentSearch(
-                customDropdownButtonContent: customDropdownButtonContent1,
-                items: ['<','>','='],
-                wrapSetState: (){setState(() {});},
-              )
-            ),
-            Expanded(
-              flex: 1,
-              child: ComposentSearch(
-                customDropdownButtonContent: customDropdownButtonContent2,
-                items: ['<','>','='],
-                wrapSetState: (){setState(() {});},
-              )
-            )
-          ],
-        ),
-        IconButton(
+        ComposentSearch(),
+        TextButton(
           style: const ButtonStyle(
             backgroundColor: MaterialStatePropertyAll<Color>(Colors.green),
           ),
-          icon: const Icon(Icons.add),
+          child:Text(
+            "Ajouter",
+            style: TextStyle(color: Colors.black),),
           onPressed: (){showDataAlert();},
           ),
         ],

@@ -71,22 +71,6 @@ class EnglobeWidgets extends StatelessWidget{
                   children: [
                     TextButton(
                       style: ButtonStyle(overlayColor:  MaterialStatePropertyAll<Color>(Colors.amber.withOpacity(0.3))),
-                      onPressed:  (){GstRoute.goToRoute(context, GstRoute.goToRequeteMultiCriteres);},
-                      child: const Text(
-                        TextContent.titleRequeteMultiCriteres,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold),)),
-                  ],
-                )
-              ),
-              const Divider(height: 2,thickness: 1,indent: 0,endIndent: 0,color: Colors.black,),
-              Container(
-                padding: const EdgeInsets.all(10),
-                child: Column(
-                  children: [
-                    TextButton(
-                      style: ButtonStyle(overlayColor:  MaterialStatePropertyAll<Color>(Colors.amber.withOpacity(0.3))),
                       onPressed:  (){GstRoute.goToRoute(context, GstRoute.goToArchivage);},
                       child: const Text(
                         TextContent.titleTransfertAdgesionsNonRenouvelees,
