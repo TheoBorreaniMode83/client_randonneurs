@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/controller/gstHttpServer/gst_http_server.dart';
 
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgetsStyles/styles/standardWidgetsStyles/custom_dropdown_button_style.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/controller/customWidgetsControllers/custom_dropdown_button_content.dart';
@@ -296,6 +297,7 @@ class _ComposentSearchState extends State<ComposentSearch> {
       onTap: (){
         setState(() {switchVar = !switchVar;});},
       child:Container(
+        margin: const EdgeInsets.symmetric(vertical: 10),
         color: Colors.red,
         child: Column(
           children: [
@@ -306,20 +308,20 @@ class _ComposentSearchState extends State<ComposentSearch> {
               width: double.maxFinite,
               child: Row(
                 children: [
-                  Text("Requête multi critères"),
+                  const Text("Requête multi critères"),
                   Expanded(
                     flex: 1,
                     child: Container( 
                       alignment: Alignment.centerRight, 
-                      child:Icon(Icons.south,),),),           
+                      child: const Icon(Icons.south,),),),           
                 ],
               ),
             ),
             if(switchVar == false) ...[
               Container(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 decoration:const BoxDecoration(
-                  color: const Color.fromARGB(255, 255, 144, 144),
+                  color: Color.fromARGB(255, 255, 144, 144),
                   border: Border(
                     left: BorderSide( 
                       color: Colors.black,
@@ -335,12 +337,12 @@ class _ComposentSearchState extends State<ComposentSearch> {
                 ),
                 child: Column(
                   children: [
-                    rowType1(name: "Année de première adhésion", tab1:['=','>','<','≠'] , tab2: ['vide','b','c']),
+                    rowType1(name: "Année de première adhésion", tab1:['=','>','<','≠'] , tab2: ['vide']+GstHttpServer.getListAnneesPremiereAdhesion()),
                     rowType1(name: "Civilité", tab1:['=','≠'] , tab2: ['vide','b','c']),
-                    rowType1(name: "Statut", tab1:['=','≠'] , tab2: ['vide','b','c']),
-                    rowType1(name: "Ville", tab1:['=','≠'] , tab2: ['vide','b','c']),
+                    rowType1(name: "Statut", tab1:['=','≠'] , tab2: ['vide']+GstHttpServer.getListStatuts()),
+                    rowType1(name: "Ville", tab1:['=','≠'] , tab2: ['vide']+GstHttpServer.getVille()),
                     rowType2(name: "Date de naissance", tab1:['=','≠','>','<']),
-                    rowType3(name: "Date de naissance", tab1:['=','≠','>','<'],tab2: ['vide','a','b'],tab3: ['vide','a','b','c']),
+                    rowType3(name: "Rubrique financières", tab1:['=','≠','>','<'],tab2: ['vide','a','b'],tab3: ['vide','a','b','c']),
                   ]
                 ),
               ),
