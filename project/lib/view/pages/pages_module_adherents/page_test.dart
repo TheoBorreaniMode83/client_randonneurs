@@ -18,24 +18,29 @@ class _PageGestionsAdhesionsEnCours extends State<PageTest> {
   
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: EnglobeWidgets(
-       child: ResponsiveView(
+    return  Scaffold(
+      body: Row(
         children: [
-          ComposentArray(
-              height: 500,
-              width: 100,
-              matrice: 
-              [
-                ["1","2","3","4","5"],
-                ["1","2","3","4","5"],
-                ["1","2","3","4","5"],
-                ["1","2","3","4","5"],
-              ])
-          ],
+          TextButton(
+        onPressed: (){print("hello");},
+        child: Text("Ai-je réussi ?"),
+        style: TextButton.styleFrom(
+        backgroundColor: Color.fromARGB(255, 249, 19, 3), 
         
-      ))
-    );
+        )//Text("Hi world we work in a \"programmation\" project",style: TextStyle(color: Colors.red),)
+    ),
+    TextButton(
+        onPressed: (){print("hello");},
+        child: Text("Ai-je réussi ?"),
+        style: TextButton.styleFrom(
+        backgroundColor: Color.fromARGB(151, 58, 255, 134), 
+        
+        )//Text("Hi world we work in a \"programmation\" project",style: TextStyle(color: Colors.red),)
+    )
+        ],
+      )
+
+      );
   }
 
 

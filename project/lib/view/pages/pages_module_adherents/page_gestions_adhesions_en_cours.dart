@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:diacritic/diacritic.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/controller/controller_page_gestion_adherents.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/model/adherent.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/tailorMadeWidgets/englobe_widgets.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/containerWidgets/responsive_view.dart';
@@ -25,14 +26,24 @@ import 'package:les_randonneurs_draceniens_client_administratif/model/date.dart'
 import 'package:les_randonneurs_draceniens_client_administratif/controller/customWidgetsControllers/custom_text_form_field_content.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/assets/text_content.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/controller/gstHttpServer/gst_http_server.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/model/wrapper.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/controller/contollerMultiCiriteres/filtrage_adherent.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/controller/controller_page_gestion_adherents.dart';
 
 class PageGestionsAdhesionsEnCours extends StatefulWidget {
+
+  
+ 
+
   const PageGestionsAdhesionsEnCours({super.key});
   @override
   State<PageGestionsAdhesionsEnCours> createState() => _PageGestionsAdhesionsEnCours();
 }
 
 class _PageGestionsAdhesionsEnCours extends State<PageGestionsAdhesionsEnCours> {
+
+
+
 
   final CustomTextStyle title = StyleFactory.createCustomTextStyleTitle();
 
@@ -202,6 +213,8 @@ class _PageGestionsAdhesionsEnCours extends State<PageGestionsAdhesionsEnCours> 
   CustomDropdownButtonContent customDropdownButtonContent2 = CustomDropdownButtonContent();
 
 
+
+
   final Date date1 = Date(jours: 1, mois: 1, annee: 1900);
   final Date date2 = Date(jours: 1, mois: 1, annee: 1900);
   final Date date3 = Date(jours: 1, mois: 1, annee: 1900);
@@ -236,9 +249,9 @@ class _PageGestionsAdhesionsEnCours extends State<PageGestionsAdhesionsEnCours> 
         .setHintText('Entrez un prénom'); 
 
       customTextFormFieldEvent1
-        .setOnChanged(() {trie(adherents);setState(() {});});
+        .setOnChanged(() {trie();setState(() {});});
       customTextFormFieldEvent2
-        .setOnChanged(() {trie(adherents);setState(() {});});
+        .setOnChanged(() {trie();setState(() {});});
 
 
        //Setting des arguments customText
@@ -349,24 +362,33 @@ class _PageGestionsAdhesionsEnCours extends State<PageGestionsAdhesionsEnCours> 
   }
 
   
-  void trie(List<Adherent> adherents){
-    
-    RegExp regExp1 = RegExp(r"^"+removeDiacritics(controller1.value.text.toLowerCase())+r"(.*)");
-    RegExp regExp2 = RegExp(r"^"+removeDiacritics(controller2.value.text.toLowerCase())+r"(.*)");
+  void trie(){
       
     adherents.clear();
-    for (Adherent i in GstHttpServer.getAdherent()){
-      if(regExp1.hasMatch(removeDiacritics(i.nom.toLowerCase())) && regExp2.hasMatch(removeDiacritics(i.prenom.toLowerCase()))){
-        adherents.add(i);
-      }
-      
-    }
+
+
+
+    adherents = List.from(FiltrageAdherents.runAdherents(
+      adherents: GstHttpServer.getAdherent(),
+      exerciceAnneeActuel: 2023, 
+      filtreNom: controller1.text,
+      filtrePrenom: controller2.text,
+      filtreCivilite: ControllerPageGestionAdherents.value1_2.content, 
+      filtreCivilite2: ControllerPageGestionAdherents.value1_1.content, 
+      filtreStatut: ControllerPageGestionAdherents.value2_2.content, 
+      filtreStatut2: ControllerPageGestionAdherents.value2_1.content, 
+      filtreVille:  ControllerPageGestionAdherents.value3_2.content, 
+      filtreVille2: ControllerPageGestionAdherents.value3_1.content, 
+      dateNaissance1: ControllerPageGestionAdherents.controlleur1.text, 
+      dateNaissance2: ControllerPageGestionAdherents.value4.content, ));
+
   }
   
 
   List<Widget> makeElt(){
     List<Widget> list = [];
-    
+        
+
     list.add(
       Column(children: [
         CustomText(customTextStyle: title),
@@ -374,27 +396,33 @@ class _PageGestionsAdhesionsEnCours extends State<PageGestionsAdhesionsEnCours> 
         Row(
           children: [
             Flexible(
-              child: CustomTextFormField(
-                customTextFormFieldStyle: customTextFormFieldStyle1,
-                customTextFormFieldValidator: customTextFormFieldValidator1,
-                customTextFormFieldEvent: customTextFormFieldEvent1,
-                customTextFormFieldContent: customTextFormFieldContent1,
-                controller: controller1)),
+              child: Container( 
+                padding: const EdgeInsets.fromLTRB(0, 0, 2, 0),
+                child: CustomTextFormField(
+                  customTextFormFieldStyle: customTextFormFieldStyle1,
+                  customTextFormFieldValidator: customTextFormFieldValidator1,
+                  customTextFormFieldEvent: customTextFormFieldEvent1,
+                  customTextFormFieldContent: customTextFormFieldContent1,
+                  controller: controller1),),),
             Flexible(
-              child: CustomTextFormField(
+              child: Container(
+                padding: const EdgeInsets.fromLTRB(2, 0, 0, 0),
+                child: CustomTextFormField(
                 customTextFormFieldStyle: customTextFormFieldStyle2,
                 customTextFormFieldValidator: customTextFormFieldValidator2,
                 customTextFormFieldEvent: customTextFormFieldEvent2,
                 customTextFormFieldContent: customTextFormFieldContent2,
-                controller: controller2)),           
+                controller: controller2)),),      
           ],
         ),
-        ComposentSearch(),
+        ComposentSearch(
+          function: (){setState(() {});}
+          ),
         TextButton(
           style: const ButtonStyle(
             backgroundColor: MaterialStatePropertyAll<Color>(Colors.green),
           ),
-          child:Text(
+          child: const Text(
             "Ajouter",
             style: TextStyle(color: Colors.black),),
           onPressed: (){showDataAlert();},
@@ -402,7 +430,6 @@ class _PageGestionsAdhesionsEnCours extends State<PageGestionsAdhesionsEnCours> 
         ],
       )  
     );
-
     for(int i=0 ; i<adherents.length;i++){
       list.add(
         Container(
@@ -440,7 +467,7 @@ class _PageGestionsAdhesionsEnCours extends State<PageGestionsAdhesionsEnCours> 
 
   @override
   Widget build(BuildContext context) {
-    trie(adherents);
+    trie();
     return Scaffold(
       body: EnglobeWidgets(
         child: Form(
@@ -695,14 +722,14 @@ class _PageGestionsAdhesionsEnCours extends State<PageGestionsAdhesionsEnCours> 
                         ' Duis aute irure dolor in reprehenderit in voluptate velit esse cillum '
                         'dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,'
                         ' sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                        style: TextStyle(fontSize: 12),
-                      ),
+                      style: TextStyle(fontSize: 12),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-          );
+          ),
+        );
       }
     );
   }

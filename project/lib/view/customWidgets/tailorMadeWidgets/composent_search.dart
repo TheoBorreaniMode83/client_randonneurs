@@ -13,15 +13,27 @@ import 'package:les_randonneurs_draceniens_client_administratif/controller/custo
 
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgetsStyles/styles_factory.dart';
 
+import 'package:les_randonneurs_draceniens_client_administratif/model/wrapper.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/controller/controller_page_gestion_adherents.dart';
 
 class ComposentSearch extends StatefulWidget {
-    const ComposentSearch ({Key? key});
+
+  Function function;
+
+  ComposentSearch ({
+    required this.function,
+
+    Key? key
+  });
 
   @override
   State<ComposentSearch> createState() => _ComposentSearchState();
+
+  
 }
 
 class _ComposentSearchState extends State<ComposentSearch> {
+
 
   CustomDropdownButtonEvent customDropdownButtonEvent = CustomDropdownButtonEvent();
   CustomDropdownButtonStyle customDropdownButtonStyle = CustomDropdownButtonStyle();
@@ -32,15 +44,15 @@ class _ComposentSearchState extends State<ComposentSearch> {
   CustomTextFormFieldValidator customTextFormFieldValidator = CustomTextFormFieldValidator();
   CustomTextFormFieldEvent customTextFormFieldEvent = CustomTextFormFieldEvent();
   CustomTextFormFieldContent customTextFormFieldContent = CustomTextFormFieldContent();
-  final controller = TextEditingController();
+
+
+
 
   bool switchVar = true;
 
-
-
-
   @override
   void initState() {
+
     a = customDropdownButtonContent;
 
     customDropdownButtonEvent
@@ -58,7 +70,9 @@ class _ComposentSearchState extends State<ComposentSearch> {
     super.initState();
   }
 
-  Widget rowType1({required name,required List<String> tab1 ,required List<String> tab2}){
+  Widget rowType1({required name,required List<String> tab1 ,required List<String> tab2, required Wrapper elt1, required Wrapper elt2}){
+
+
     return Container(
       margin: EdgeInsets.symmetric(vertical: 5),
       child: Row(
@@ -74,8 +88,13 @@ class _ComposentSearchState extends State<ComposentSearch> {
               color: Colors.white,
               child: DropdownButton<String>(
                 isExpanded: true,
-                value: tab1[0],
-                onChanged:(value) => {},
+                value: elt1.content,
+                onChanged:(value) =>  {
+                  setState(() {
+                    elt1.content = value!;
+                    widget.function();
+                  })
+                  },
                 alignment: Alignment.center,
                 items: tab1.map((value) => DropdownMenuItem(
                   child:  Center( 
@@ -90,7 +109,7 @@ class _ComposentSearchState extends State<ComposentSearch> {
                   child: const Icon(Icons.arrow_downward),
                 ),
                 elevation: 16,
-                style: const TextStyle(color: Colors.deepPurple),
+                style: const TextStyle(color: Color.fromARGB(255, 93, 0, 255)),
                 underline: Container(
                   height: 2,
                   color: Colors.transparent,)
@@ -105,8 +124,12 @@ class _ComposentSearchState extends State<ComposentSearch> {
               color: Colors.white,
               child: DropdownButton<String>(
                 isExpanded: true,
-                value: tab2[0],
-                onChanged:(value) => {},
+                value: elt2.content,
+                onChanged:(value) =>  {
+                  setState(() {
+                    elt2.content = value!;
+                    widget.function();
+                    })},
                 alignment: Alignment.center,
                 items: tab2.map((value) => DropdownMenuItem(
                   child:  Center( 
@@ -133,7 +156,7 @@ class _ComposentSearchState extends State<ComposentSearch> {
     );
   }
 
-  Widget rowType2({required name,required List<String> tab1}){
+  Widget rowType2({required name,required List<String> tab1, required Wrapper x, required TextEditingController controlleurX}){
     return Container(
       margin: EdgeInsets.symmetric(vertical: 5),
       child: Row(
@@ -149,8 +172,13 @@ class _ComposentSearchState extends State<ComposentSearch> {
               color: Colors.white,
               child: DropdownButton<String>(
                 isExpanded: true,
-                value: tab1[0],
-                onChanged:(value) => {},
+                value: x.content,
+                onChanged:(value) => {
+                  setState(() {
+                  x.content = value!;
+                  }),
+                  widget.function()
+                  },
                 alignment: Alignment.center,
                 items: tab1.map((value) => DropdownMenuItem(
                   child:  Center( 
@@ -176,7 +204,13 @@ class _ComposentSearchState extends State<ComposentSearch> {
             flex:4,
             child: Container(                   
               color: Colors.white,
-              child: TextField()
+              child: TextField(
+                onChanged: (value){
+                  setState(() {});
+                  widget.function();
+                } ,
+                controller: controlleurX,
+              )
             ),
           ),
         ]
@@ -293,15 +327,16 @@ class _ComposentSearchState extends State<ComposentSearch> {
   @override
   Widget build(BuildContext context)
   {
-    return  GestureDetector(
-      onTap: (){
-        setState(() {switchVar = !switchVar;});},
-      child:Container(
+
+    return Container(
         margin: const EdgeInsets.symmetric(vertical: 10),
         color: Colors.red,
         child: Column(
           children: [
-            Container(
+            GestureDetector(
+              onTap: (){
+                setState(() {switchVar = !switchVar;});},
+              child:Container(
               decoration: BoxDecoration(
                 border: Border.all(
                   width: 2),),
@@ -314,8 +349,9 @@ class _ComposentSearchState extends State<ComposentSearch> {
                     child: Container( 
                       alignment: Alignment.centerRight, 
                       child: const Icon(Icons.south,),),),           
-                ],
-              ),
+                  ],
+                ),
+              )
             ),
             if(switchVar == false) ...[
               Container(
@@ -337,18 +373,49 @@ class _ComposentSearchState extends State<ComposentSearch> {
                 ),
                 child: Column(
                   children: [
-                    rowType1(name: "Année de première adhésion", tab1:['=','>','<','≠'] , tab2: ['vide']+GstHttpServer.getListAnneesPremiereAdhesion()),
-                    rowType1(name: "Civilité", tab1:['=','≠'] , tab2: ['vide','b','c']),
-                    rowType1(name: "Statut", tab1:['=','≠'] , tab2: ['vide']+GstHttpServer.getListStatuts()),
-                    rowType1(name: "Ville", tab1:['=','≠'] , tab2: ['vide']+GstHttpServer.getVille()),
-                    rowType2(name: "Date de naissance", tab1:['=','≠','>','<']),
-                    rowType3(name: "Rubrique financières", tab1:['=','≠','>','<'],tab2: ['vide','a','b'],tab3: ['vide','a','b','c']),
-                  ]
-                ),
+                    rowType1(
+                      name: "Civilité", tab1:['=','≠'] ,
+                      tab2: ['vide']+GstHttpServer.getCivilite(),
+                      elt1: ControllerPageGestionAdherents.value1_1,
+                      elt2: ControllerPageGestionAdherents.value1_2
+                    ),
+                    rowType1(
+                      name: "Statut",
+                      tab1: ['=','≠'] ,
+                      tab2: ['vide']+GstHttpServer.getListStatuts(),
+                      elt1: ControllerPageGestionAdherents.value2_1,
+                      elt2: ControllerPageGestionAdherents.value2_2
+                    ),
+                    rowType1(
+                      name: "Ville",
+                      tab1: ['=','≠'],
+                      tab2: ['vide']+GstHttpServer.getVille(),
+                      elt1: ControllerPageGestionAdherents.value3_1,
+                      elt2: ControllerPageGestionAdherents.value3_2
+                    ),
+                    rowType2(
+                      name: "Date de naissance",
+                      tab1:['=','≠','>','<'],
+                      x: ControllerPageGestionAdherents.value5,
+                      controlleurX: ControllerPageGestionAdherents.controlleur1
+                    ),
+                    rowType2(
+                      name: "Nombre d'années consécutifs",
+                      tab1:['=','≠','>','<'],
+                      x: ControllerPageGestionAdherents.value6,
+                      controlleurX: ControllerPageGestionAdherents.controlleur2
+                    ),
+                    rowType2(
+                      name: "Année de première adhésion",
+                      tab1: ['=','>','<','≠'] ,
+                      x: ControllerPageGestionAdherents.value6,
+                      controlleurX: ControllerPageGestionAdherents.controlleur3
+                    ),
+                ]
               ),
-            ],    
-          ],
-        ),
+            ),
+          ],    
+        ],
       ),
     );
   }
