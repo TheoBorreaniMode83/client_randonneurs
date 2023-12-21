@@ -38,8 +38,8 @@ class FiltrageAdherents{
       booleanTab[i]?_filtre2(tmp: tmp, booleanTab: booleanTab, indice: i, eltVerifier: tmp[i].nomVille, input: filtreVille, input2: filtreVille2):(){};
 
       booleanTab[i]?_filtre3(tmp: tmp, booleanTab: booleanTab, indice: i, eltVerifier: tmp[i].joursNaissance!+tmp[i].moisNaissance!*100+tmp[i].anneeNaissance!*10000 , input: Utility.dateToInt(dateNaissance1), input2: dateNaissance2):(){};
-      //booleanTab[i]?_filtre3(tmp: tmp, booleanTab: booleanTab, indice: i, eltVerifier: exerciceAnneeActuel-tmp[i].anneePremiereAdhesion!, input: Utility.f(filtreAnneePremiereAdhesion), input2: filtreAnneePremiereAdhesion2):(){};
-      //booleanTab[i]?_filtre3(tmp: tmp, booleanTab: booleanTab, indice: i, eltVerifier: tmp[i].anneePremiereAdhesion, input: Utility.f(filtreAnneePremiereAdhesion3), input2: filtreAnneePremiereAdhesion4):(){};
+      booleanTab[i]?_filtre3(tmp: tmp, booleanTab: booleanTab, indice: i, eltVerifier: exerciceAnneeActuel-tmp[i].anneePremiereAdhesion!, input: Utility.f(filtreAnneePremiereAdhesion), input2: filtreAnneePremiereAdhesion2):(){};
+      booleanTab[i]?_filtre3(tmp: tmp, booleanTab: booleanTab, indice: i, eltVerifier: tmp[i].anneePremiereAdhesion, input: Utility.f(filtreAnneePremiereAdhesion3), input2: filtreAnneePremiereAdhesion4):(){};
 
       if(booleanTab[i]){
         result.add(tmp[i]);
