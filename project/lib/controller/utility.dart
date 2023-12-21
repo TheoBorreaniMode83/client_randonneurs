@@ -14,4 +14,6 @@ class Utility{
     throw "error calcSizeAppareil";
     
   }
+
+
 }

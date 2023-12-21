@@ -366,8 +366,6 @@ class _PageGestionsAdhesionsEnCours extends State<PageGestionsAdhesionsEnCours> 
       
     adherents.clear();
 
-
-
     adherents = List.from(FiltrageAdherents.runAdherents(
       adherents: GstHttpServer.getAdherent(),
       exerciceAnneeActuel: 2023, 
@@ -380,7 +378,12 @@ class _PageGestionsAdhesionsEnCours extends State<PageGestionsAdhesionsEnCours> 
       filtreVille:  ControllerPageGestionAdherents.value3_2.content, 
       filtreVille2: ControllerPageGestionAdherents.value3_1.content, 
       dateNaissance1: ControllerPageGestionAdherents.controlleur1.text, 
-      dateNaissance2: ControllerPageGestionAdherents.value4.content, ));
+      dateNaissance2: ControllerPageGestionAdherents.value4.content,
+      filtreAnneePremiereAdhesion: ControllerPageGestionAdherents.controlleur2.text, 
+      filtreAnneePremiereAdhesion2: ControllerPageGestionAdherents.value5.content,
+      filtreAnneePremiereAdhesion3: ControllerPageGestionAdherents.controlleur3.text, 
+      filtreAnneePremiereAdhesion4: ControllerPageGestionAdherents.value6.content,
+      ));
 
   }
   

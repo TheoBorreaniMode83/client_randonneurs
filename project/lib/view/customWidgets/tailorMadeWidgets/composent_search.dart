@@ -173,11 +173,11 @@ class _ComposentSearchState extends State<ComposentSearch> {
               child: DropdownButton<String>(
                 isExpanded: true,
                 value: x.content,
-                onChanged:(value) => {
+                onChanged:(value) {
                   setState(() {
                   x.content = value!;
-                  }),
-                  widget.function()
+                  });
+                  widget.function();
                   },
                 alignment: Alignment.center,
                 items: tab1.map((value) => DropdownMenuItem(
@@ -235,7 +235,9 @@ class _ComposentSearchState extends State<ComposentSearch> {
               child: DropdownButton<String>(
                 isExpanded: true,
                 value: tab1[0],
-                onChanged:(value) => {},
+                onChanged:(value) {
+                  
+                },
                 alignment: Alignment.center,
                 items: tab1.map((value) => DropdownMenuItem(
                   child:  Center( 
@@ -396,13 +398,13 @@ class _ComposentSearchState extends State<ComposentSearch> {
                     rowType2(
                       name: "Date de naissance",
                       tab1:['=','≠','>','<'],
-                      x: ControllerPageGestionAdherents.value5,
+                      x: ControllerPageGestionAdherents.value4,
                       controlleurX: ControllerPageGestionAdherents.controlleur1
                     ),
                     rowType2(
                       name: "Nombre d'années consécutifs",
                       tab1:['=','≠','>','<'],
-                      x: ControllerPageGestionAdherents.value6,
+                      x: ControllerPageGestionAdherents.value5,
                       controlleurX: ControllerPageGestionAdherents.controlleur2
                     ),
                     rowType2(

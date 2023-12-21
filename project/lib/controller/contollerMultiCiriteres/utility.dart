@@ -20,14 +20,26 @@ class Utility{
     if(RegExp(r'^[0-9][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]$').hasMatch(date)){
       int x =0;
       dynamic tmp = date.split('/');
-      x=int.parse(tmp[0])+int.parse(tmp[1])*100+int.parse(tmp[2])*10000;
+      /*
+      La formule ici permet de transformer les 3 entiers qui forme une date en un entier qui sont  comparable entre eux
+      */
+      x=(31-int.parse(tmp[0]))+(12-int.parse(tmp[1]))*100+int.parse(tmp[2])*10000;
+      print(x);
       return x;
     }
     else{
       return -1;
     }
+  }
 
-    
+  static f(String? integer){
+    try{
+      print(integer);
+      return int.parse(integer!);
+    }
+    catch(e){
+      return -1;
+    }
   }
   
 }

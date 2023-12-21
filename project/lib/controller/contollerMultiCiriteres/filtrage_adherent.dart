@@ -21,8 +21,8 @@ class FiltrageAdherents{
     required String filtreVille,required String filtreVille2,
 
     required String dateNaissance1,  required String dateNaissance2, // required int dateNaissance3,  required String dateNaissance4, 
-    required int filtreAnneePremiereAdhesion,required String filtreAnneePremiereAdhesion2,
-    //required int filtreAnneePremiereAdhesion4, required String filtreAnneePremiereAdhesion5,
+    required String filtreAnneePremiereAdhesion,required String filtreAnneePremiereAdhesion2,
+    required String filtreAnneePremiereAdhesion3, required String filtreAnneePremiereAdhesion4,
     }){
 
     List<Adherent> tmp = new List<Adherent>.from(adherents);
@@ -38,8 +38,8 @@ class FiltrageAdherents{
       booleanTab[i]?_filtre2(tmp: tmp, booleanTab: booleanTab, indice: i, eltVerifier: tmp[i].nomVille, input: filtreVille, input2: filtreVille2):(){};
 
       booleanTab[i]?_filtre3(tmp: tmp, booleanTab: booleanTab, indice: i, eltVerifier: tmp[i].joursNaissance!+tmp[i].moisNaissance!*100+tmp[i].anneeNaissance!*10000 , input: Utility.dateToInt(dateNaissance1), input2: dateNaissance2):(){};
-      //booleanTab[i]?_filtre3(tmp: tmp, booleanTab: booleanTab, indice: i, eltVerifier: exerciceAnneeActuel-tmp[i].anneePremiereAdhesion!, input: filtreAnneePremiereAdhesion, input2: filtreAnneePremiereAdhesion2):(){};
-      //booleanTab[i]?_filtre3(tmp: tmp, booleanTab: booleanTab, indice: i, eltVerifier: tmp[i].anneePremiereAdhesion, input: filtreAnneePremiereAdhesion4, input2: filtreAnneePremiereAdhesion5):(){};
+      //booleanTab[i]?_filtre3(tmp: tmp, booleanTab: booleanTab, indice: i, eltVerifier: exerciceAnneeActuel-tmp[i].anneePremiereAdhesion!, input: Utility.f(filtreAnneePremiereAdhesion), input2: filtreAnneePremiereAdhesion2):(){};
+      //booleanTab[i]?_filtre3(tmp: tmp, booleanTab: booleanTab, indice: i, eltVerifier: tmp[i].anneePremiereAdhesion, input: Utility.f(filtreAnneePremiereAdhesion3), input2: filtreAnneePremiereAdhesion4):(){};
 
       if(booleanTab[i]){
         result.add(tmp[i]);
@@ -69,6 +69,9 @@ class FiltrageAdherents{
   ///
   ///
   static void _filtre2({required List<Adherent> tmp , required List<bool> booleanTab  , required int indice , required eltVerifier ,required String input ,required String input2}){
+    
+
+    
     if(!(eltVerifier==input)&&(input2=="=")&&!(input=='vide')){
       booleanTab[indice]=false;
     }
@@ -82,8 +85,9 @@ class FiltrageAdherents{
   ///
   static void _filtre3({required List<Adherent> tmp , required List<bool> booleanTab  , required int indice , required eltVerifier ,required int input ,required String input2}){
 
-
-
+    print(eltVerifier);
+    print(input);
+    print(input2);
 
     if((eltVerifier!=input)&&(input2=="=")&&!(input==-1)){
       booleanTab[indice]=false;
@@ -91,10 +95,10 @@ class FiltrageAdherents{
     else if((eltVerifier==input)&&(input2=="≠")&&!(input==-1)){
       booleanTab[indice]=false;
     }
-    else if((eltVerifier>=input)&&(input2=="<")&&!(input==-1)){
+    else if((eltVerifier<=input)&&(input2==">")&&!(input==-1)){
       booleanTab[indice]=false;
     }
-    else if((eltVerifier<=input)&&(input2==">")&&!(input==-1)){
+    else if((eltVerifier>=input)&&(input2=="<")&&!(input==-1)){
       booleanTab[indice]=false;
     }
   }
