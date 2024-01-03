@@ -73,14 +73,26 @@ class _ComposentSearchState extends State<ComposentSearch> {
     super.initState();
   }
 
+  BoxDecoration myDeco=BoxDecoration(
+    color:const Color.fromARGB(255, 176, 176, 174),
+        border: Border.all(
+          color: Colors.black));
+
+  double myContainerHeight = 50;
+  double myContainerMargin = 5;
+  double myContainerPadding = 5;
+
   Widget rowType1({required name,required List<String> tab1 ,required List<String> tab2, required Wrapper elt0,required Wrapper elt1, required Wrapper elt2}){
-
-
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 5),
+      decoration: myDeco,
+      margin: EdgeInsets.symmetric(vertical: myContainerMargin),
+      padding: EdgeInsets.all( myContainerPadding),
+      height:myContainerHeight,
+
       child: Row(
         children: [
           Checkbox(
+            activeColor:Colors.black,
             value: elt0.content,
             onChanged: (bool? value){setState(() {
               elt0.content = !elt0.content;
@@ -114,8 +126,8 @@ class _ComposentSearchState extends State<ComposentSearch> {
                 icon: Container(
                   height: double.maxFinite,
                   width: 30,
-                  color:Colors.amber,
-                  child: const Icon(Icons.arrow_downward),
+                  color:Colors.black,
+                  child: const Icon(Icons.arrow_downward, color:Colors.white),
                 ),
                 elevation: 16,
                 style: const TextStyle(color: Color.fromARGB(255, 93, 0, 255)),
@@ -149,8 +161,8 @@ class _ComposentSearchState extends State<ComposentSearch> {
                 icon: Container(
                   height: double.maxFinite,
                   width: 30,
-                  color:Colors.amber,
-                  child: const Icon(Icons.arrow_downward),
+                  color:Colors.black,
+                  child: const Icon(Icons.arrow_downward,color:Colors.white),
                 ),
                 elevation: 16,
                 style: const TextStyle(color: Colors.deepPurple),
@@ -167,10 +179,14 @@ class _ComposentSearchState extends State<ComposentSearch> {
 
   Widget rowType2({required name,required List<String> tab1, required Wrapper x, required TextEditingController controlleurX,required Wrapper elt0}){
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 5),
+      decoration: myDeco,
+      margin: EdgeInsets.symmetric(vertical: myContainerMargin),
+      padding: EdgeInsets.all( myContainerPadding),
+      height:myContainerHeight,
       child: Row(
         children: [
           Checkbox(
+            activeColor:Colors.black,
             value: elt0.content,
             onChanged: (bool? value){
               setState(() {
@@ -205,8 +221,10 @@ class _ComposentSearchState extends State<ComposentSearch> {
                 icon: Container(
                   height: double.maxFinite,
                   width: 30,
-                  color:Colors.amber,
-                  child: const Icon(Icons.arrow_downward),
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                  ) ,
+                  child: const Icon(Icons.arrow_downward,color: Colors.white,),
                 ),
                 elevation: 16,
                 style: const TextStyle(color: Colors.deepPurple),
@@ -236,12 +254,18 @@ class _ComposentSearchState extends State<ComposentSearch> {
 
   Widget rowType3({required name,required Wrapper elt0}){
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 5),
+      decoration: myDeco,
+      margin: EdgeInsets.symmetric(vertical: myContainerMargin),
+      padding: EdgeInsets.all( myContainerPadding),
+      height:myContainerHeight,
       child: Row(
         children: [
           Checkbox(
+            activeColor:Colors.black,
             value: elt0.content,
-            onChanged: (bool? value){elt0.content=!elt0.content;},
+            onChanged: (bool? value){setState(() {
+              elt0.content=!elt0.content;
+            });},
           ),
           Expanded(
             flex:4,
@@ -257,7 +281,7 @@ class _ComposentSearchState extends State<ComposentSearch> {
 
     return Container(
         margin: const EdgeInsets.symmetric(vertical: 10),
-        color: Colors.red,
+        color: const Color.fromARGB(255, 63, 62, 62),
         child: Column(
           children: [
             GestureDetector(
@@ -270,12 +294,20 @@ class _ComposentSearchState extends State<ComposentSearch> {
               width: double.maxFinite,
               child: Row(
                 children: [
-                  const Text("Requête multi critères"),
+                  const Text(
+                    "Requête multi critères",
+                    style: TextStyle(   
+                      color: Colors.white,
+                      )
+                    ),
                   Expanded(
                     flex: 1,
                     child: Container( 
                       alignment: Alignment.centerRight, 
-                      child: const Icon(Icons.south,),),),           
+                      child: const Icon(
+                        Icons.add,
+                        color: Colors.white ,
+                        ),),),           
                   ],
                 ),
               )
@@ -284,7 +316,7 @@ class _ComposentSearchState extends State<ComposentSearch> {
               Container(
                 padding: const EdgeInsets.all(20),
                 decoration:const BoxDecoration(
-                  color: Color.fromARGB(255, 255, 144, 144),
+                  color: Color.fromARGB(255, 222, 222, 222),
                   border: Border(
                     left: BorderSide( 
                       color: Colors.black,
@@ -353,32 +385,52 @@ class _ComposentSearchState extends State<ComposentSearch> {
                       elt0: ControllerPageGestionAdherents.value8_0 ,
                     ),
                     Container(
+                      margin: EdgeInsets.fromLTRB(0,30,0,0),
                       alignment: Alignment.topRight,
                       width: double.maxFinite,
-                      child: TextButton(
-                        onPressed: (){
-                          List<List<dynamic>> result = [];
-                          for(int i = 0 ; i<widget.listeAdherents.length ; i++){
-                            result.add([]);
-                            (ControllerPageGestionAdherents.value1_0.content)?{result[result.length-1].add(widget.listeAdherents[i].civilite.toString())}:{};
-                            (ControllerPageGestionAdherents.value2_0.content)?{result[result.length-1].add(widget.listeAdherents[i].statut.toString())}:{};
-                            (ControllerPageGestionAdherents.value3_0.content)?{result[result.length-1].add(widget.listeAdherents[i].nomVille.toString())}:{};
-                            (ControllerPageGestionAdherents.value4_0.content)?{result[result.length-1].add(widget.listeAdherents[i].joursNaissance.toString()+'/'+widget.listeAdherents[i].moisNaissance.toString()+'/'+widget.listeAdherents[i].anneeNaissance.toString())}:{};
-                            (ControllerPageGestionAdherents.value5_0.content)?{result[result.length-1].add((widget.listeAdherents[i].anneePremiereAdhesion-GstHttpServer.getAnneeExerciceActuel()).toString())}:{};
-                            (ControllerPageGestionAdherents.value6_0.content)?{result[result.length-1].add(widget.listeAdherents[i].anneePremiereAdhesion.toString())}:{};
-                            (ControllerPageGestionAdherents.value7_0.content)?{result[result.length-1].add(widget.listeAdherents[i].nom.toString())}:{};
-                            (ControllerPageGestionAdherents.value8_0.content)?{result[result.length-1].add(widget.listeAdherents[i].prenom.toString())}:{};
-                          }
-
-                          GstDownloadFiles.downloadFile(fileName: "adherents.csv", fileContent: GstDownloadFiles.makeCSV(result));
-                        },
-                        child: Text(
-                          "Exporter",
-                          style: TextStyle(
-                            backgroundColor: Colors.red
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            topRight: Radius.circular(20),
+                            bottomLeft: Radius.circular(20),
+                            bottomRight: Radius.circular(20)
                           ),
-                        )),
-                    ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.3),
+                              spreadRadius: 8,
+                              blurRadius: 8,
+                              offset: const Offset(0, 3), //position de l'ombre
+                            )
+                          ]
+                        ),
+                        child: TextButton(
+                          onPressed: (){
+                            List<List<dynamic>> result = [];
+                            for(int i = 0 ; i<widget.listeAdherents.length ; i++){
+                              result.add([]);
+                              (ControllerPageGestionAdherents.value1_0.content)?{result[result.length-1].add(widget.listeAdherents[i].civilite.toString())}:{};
+                              (ControllerPageGestionAdherents.value2_0.content)?{result[result.length-1].add(widget.listeAdherents[i].statut.toString())}:{};
+                              (ControllerPageGestionAdherents.value3_0.content)?{result[result.length-1].add(widget.listeAdherents[i].nomVille.toString())}:{};
+                              (ControllerPageGestionAdherents.value4_0.content)?{result[result.length-1].add(widget.listeAdherents[i].joursNaissance.toString()+'/'+widget.listeAdherents[i].moisNaissance.toString()+'/'+widget.listeAdherents[i].anneeNaissance.toString())}:{};
+                              (ControllerPageGestionAdherents.value5_0.content)?{result[result.length-1].add((widget.listeAdherents[i].anneePremiereAdhesion-GstHttpServer.getAnneeExerciceActuel()).toString())}:{};
+                              (ControllerPageGestionAdherents.value6_0.content)?{result[result.length-1].add(widget.listeAdherents[i].anneePremiereAdhesion.toString())}:{};
+                              (ControllerPageGestionAdherents.value7_0.content)?{result[result.length-1].add(widget.listeAdherents[i].nom.toString())}:{};
+                              (ControllerPageGestionAdherents.value8_0.content)?{result[result.length-1].add(widget.listeAdherents[i].prenom.toString())}:{};
+                            }
+
+                            GstDownloadFiles.downloadFile(fileName: "adherents.csv", fileContent: GstDownloadFiles.makeCSV(result));
+                          },
+                          style: ButtonStyle(
+                            backgroundColor : MaterialStateProperty.all(Colors.black)),
+                          child: const Text(
+                            "Exporter",
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          )),
+                    ),)
                 ]
               ),
             ),

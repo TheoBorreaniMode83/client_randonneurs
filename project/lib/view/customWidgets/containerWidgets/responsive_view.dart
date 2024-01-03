@@ -42,11 +42,11 @@ class ResponsiveView extends StatelessWidget{
             color: Colors.white,
             child : Container(
             margin: padding,
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.all(20),
             height: height,
             width: width,
             decoration: const BoxDecoration(
-              color: Color.fromARGB(255, 255, 228, 145),
+              color: Color.fromARGB(255, 241, 233, 209),
               border: Border(
                 left: BorderSide(
                   color: Color.fromARGB(255, 0, 0, 0)
