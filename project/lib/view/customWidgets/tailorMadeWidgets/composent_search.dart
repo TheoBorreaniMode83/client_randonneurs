@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/controller/gstHttpServer/gst_http_server.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/controller/gstDownloadFiles/gstDownloadFiles.dart';
 
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgetsStyles/styles/standardWidgetsStyles/custom_dropdown_button_style.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/controller/customWidgetsControllers/custom_dropdown_button_content.dart';
@@ -12,6 +13,7 @@ import 'package:les_randonneurs_draceniens_client_administratif/controller/custo
 import 'package:les_randonneurs_draceniens_client_administratif/controller/customWidgetsControllers/custom_text_form_field_content.dart';
 
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgetsStyles/styles_factory.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/model/adherent.dart';
 
 import 'package:les_randonneurs_draceniens_client_administratif/model/wrapper.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/controller/controller_page_gestion_adherents.dart';
@@ -70,13 +72,19 @@ class _ComposentSearchState extends State<ComposentSearch> {
     super.initState();
   }
 
-  Widget rowType1({required name,required List<String> tab1 ,required List<String> tab2, required Wrapper elt1, required Wrapper elt2}){
+  Widget rowType1({required name,required List<String> tab1 ,required List<String> tab2, required Wrapper elt0,required Wrapper elt1, required Wrapper elt2}){
 
 
     return Container(
       margin: EdgeInsets.symmetric(vertical: 5),
       child: Row(
         children: [
+          Checkbox(
+            value: elt0.content,
+            onChanged: (bool? value){setState(() {
+              elt0.content = !elt0.content;
+            });},
+          ), 
           Expanded(
             flex:4,
             child: Text(name),),
@@ -156,11 +164,18 @@ class _ComposentSearchState extends State<ComposentSearch> {
     );
   }
 
-  Widget rowType2({required name,required List<String> tab1, required Wrapper x, required TextEditingController controlleurX}){
+  Widget rowType2({required name,required List<String> tab1, required Wrapper x, required TextEditingController controlleurX,required Wrapper elt0}){
     return Container(
       margin: EdgeInsets.symmetric(vertical: 5),
       child: Row(
         children: [
+          Checkbox(
+            value: elt0.content,
+            onChanged: (bool? value){
+              setState(() {
+              elt0.content = !elt0.content;
+            });},
+          ),
           Expanded(
             flex:4,
             child: Text(name),),
@@ -218,11 +233,15 @@ class _ComposentSearchState extends State<ComposentSearch> {
     );
   }
 
-  Widget rowType3({required name,required List<String> tab1, required List<String> tab2,required List<String> tab3}){
+  Widget rowType3({required name,required List<String> tab1, required List<String> tab2,required List<String> tab3,required Wrapper elt0}){
     return Container(
       margin: EdgeInsets.symmetric(vertical: 5),
       child: Row(
         children: [
+          Checkbox(
+            value: elt0.content,
+            onChanged: (bool? value){elt0.content=!elt0.content;},
+          ),
           Expanded(
             flex:4,
             child: Text(name),),
@@ -378,6 +397,7 @@ class _ComposentSearchState extends State<ComposentSearch> {
                     rowType1(
                       name: "Civilité", tab1:['=','≠'] ,
                       tab2: ['vide']+GstHttpServer.getCivilite(),
+                      elt0: ControllerPageGestionAdherents.value1_0,
                       elt1: ControllerPageGestionAdherents.value1_1,
                       elt2: ControllerPageGestionAdherents.value1_2
                     ),
@@ -385,6 +405,7 @@ class _ComposentSearchState extends State<ComposentSearch> {
                       name: "Statut",
                       tab1: ['=','≠'] ,
                       tab2: ['vide']+GstHttpServer.getListStatuts(),
+                      elt0: ControllerPageGestionAdherents.value2_0,
                       elt1: ControllerPageGestionAdherents.value2_1,
                       elt2: ControllerPageGestionAdherents.value2_2
                     ),
@@ -392,27 +413,52 @@ class _ComposentSearchState extends State<ComposentSearch> {
                       name: "Ville",
                       tab1: ['=','≠'],
                       tab2: ['vide']+GstHttpServer.getVille(),
+                      elt0: ControllerPageGestionAdherents.value3_0 ,
                       elt1: ControllerPageGestionAdherents.value3_1,
                       elt2: ControllerPageGestionAdherents.value3_2
                     ),
                     rowType2(
                       name: "Date de naissance",
                       tab1:['=','≠','>','<'],
-                      x: ControllerPageGestionAdherents.value4,
+                      elt0: ControllerPageGestionAdherents.value4_0 ,
+                      x: ControllerPageGestionAdherents.value4_1,
                       controlleurX: ControllerPageGestionAdherents.controlleur1
                     ),
                     rowType2(
                       name: "Nombre d'années consécutifs",
                       tab1:['=','≠','>','<'],
-                      x: ControllerPageGestionAdherents.value5,
+                      x: ControllerPageGestionAdherents.value5_1,
+                      elt0: ControllerPageGestionAdherents.value5_0 ,
                       controlleurX: ControllerPageGestionAdherents.controlleur2
                     ),
                     rowType2(
                       name: "Année de première adhésion",
                       tab1: ['=','>','<','≠'] ,
-                      x: ControllerPageGestionAdherents.value6,
+                      x: ControllerPageGestionAdherents.value6_1,
+                      elt0: ControllerPageGestionAdherents.value6_0 ,
                       controlleurX: ControllerPageGestionAdherents.controlleur3
                     ),
+                    TextButton(
+                      onPressed: (){
+                        List<Adherent> tmp = GstHttpServer.getAdherent();
+                        List<List<dynamic>> result = [];
+                        for(int i = 0 ; i<tmp.length ; i++){
+                          result.add([]);
+                          if(ControllerPageGestionAdherents.value1_0.content){result[result.length-1].add(tmp[i].civilite.toString());}
+                          /* tmp[i].prenom.toString(),
+                            tmp[i].civilite.toString(),
+                            tmp[i].statut.toString(),
+                            tmp[i].nom.toString(), */
+                        }
+
+                        GstDownloadFiles.downloadFile(fileName: "adherents.csv", fileContent: GstDownloadFiles.makeCSV(result));
+                      },
+                      child: Text(
+                        "Exporter",
+                        style: TextStyle(
+                          backgroundColor: Colors.red
+                        ),
+                      )),
                 ]
               ),
             ),
