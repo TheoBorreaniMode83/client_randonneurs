@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/controller/customWidgetsControllers/custom_text_form_field_content.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/controller/customWidgetsControllers/custom_text_form_field_event.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/controller/customWidgetsControllers/custom_text_form_field_validator.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/model/wrapper.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgetsStyles/styles/standardWidgetsStyles/custom_text_form_field_style.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgetsStyles/styles_factory.dart';
 
 class ControllerPageGestionAdherents{
   
@@ -31,4 +36,17 @@ class ControllerPageGestionAdherents{
   static TextEditingController  controlleur1 = TextEditingController();
   static TextEditingController  controlleur2 = TextEditingController();
   static TextEditingController  controlleur3 = TextEditingController();
+
+  static CustomTextFormFieldStyle customTextFormFieldStyle1 = StyleFactory.createCustomTextFormFieldStyleBasic();
+  static CustomTextFormFieldEvent customTextFormFieldEvent1 = CustomTextFormFieldEvent();
+  static CustomTextFormFieldValidator customTextFormFieldValidator1 = CustomTextFormFieldValidator();
+  static CustomTextFormFieldContent customTextFormFieldContent1 = CustomTextFormFieldContent();
+  static final controller1 = TextEditingController();
+
+  static CustomTextFormFieldStyle customTextFormFieldStyle2 = StyleFactory.createCustomTextFormFieldStyleBasic();
+  static CustomTextFormFieldEvent customTextFormFieldEvent2 = CustomTextFormFieldEvent();
+  static CustomTextFormFieldValidator customTextFormFieldValidator2 = CustomTextFormFieldValidator();
+  static CustomTextFormFieldContent customTextFormFieldContent2 = CustomTextFormFieldContent();
+  static final controller2 = TextEditingController();
+
 }

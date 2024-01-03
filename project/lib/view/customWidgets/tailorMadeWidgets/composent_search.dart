@@ -1,3 +1,5 @@
+import 'package:get/get.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/standardWidgets/custom_text_form_field.dart';
 
 import 'package:flutter/material.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/controller/gstHttpServer/gst_http_server.dart';
@@ -48,13 +50,21 @@ class _ComposentSearchState extends State<ComposentSearch> {
   CustomTextFormFieldEvent customTextFormFieldEvent = CustomTextFormFieldEvent();
   CustomTextFormFieldContent customTextFormFieldContent = CustomTextFormFieldContent();
 
-
-
+  
+    
 
   bool switchVar = true;
 
   @override
   void initState() {
+
+      ControllerPageGestionAdherents.customTextFormFieldStyle1
+        .setLabelText("Nom de famille")
+        .setHintText('Entrez un nom de famille'); 
+      ControllerPageGestionAdherents.customTextFormFieldStyle2
+        .setLabelText("Prénom")
+        .setHintText('Entrez un prénom'); 
+
 
     a = customDropdownButtonContent;
 
@@ -252,7 +262,7 @@ class _ComposentSearchState extends State<ComposentSearch> {
     );
   }
 
-  Widget rowType3({required name,required Wrapper elt0}){
+  Widget rowType3({required name,required Wrapper elt0, required  controller }){
     return Container(
       decoration: myDeco,
       margin: EdgeInsets.symmetric(vertical: myContainerMargin),
@@ -270,10 +280,26 @@ class _ComposentSearchState extends State<ComposentSearch> {
           Expanded(
             flex:4,
             child: Text(name),),
+          Expanded(
+            flex: 5,
+            child: Container( 
+              color: Colors.white,
+              height: double.maxFinite,
+              width: double.maxFinite,
+              padding: const EdgeInsets.fromLTRB(0, 0, 2, 0),
+              child: TextField(
+                onChanged: (value){
+                  setState(() {});
+                  widget.function();
+                } ,
+                controller: controller,
+              )))
         ]
       )
     );
   }
+
+
 
   @override
   Widget build(BuildContext context)
@@ -332,6 +358,16 @@ class _ComposentSearchState extends State<ComposentSearch> {
                 ),
                 child: Column(
                   children: [
+                    rowType3(
+                      name: "Nom",
+                      elt0: ControllerPageGestionAdherents.value7_0 ,
+                      controller:  ControllerPageGestionAdherents.controller1
+                    ),
+                    rowType3(
+                      name: "Prénom",
+                      elt0: ControllerPageGestionAdherents.value8_0 ,
+                      controller:  ControllerPageGestionAdherents.controller2
+                    ),
                     rowType1(
                       name: "Civilité", tab1:['=','≠'] ,
                       tab2: ['vide']+GstHttpServer.getCivilite(),
@@ -375,14 +411,6 @@ class _ComposentSearchState extends State<ComposentSearch> {
                       x: ControllerPageGestionAdherents.value6_1,
                       elt0: ControllerPageGestionAdherents.value6_0 ,
                       controlleurX: ControllerPageGestionAdherents.controlleur3
-                    ),
-                    rowType3(
-                      name: "Nom",
-                      elt0: ControllerPageGestionAdherents.value7_0 ,
-                    ),
-                    rowType3(
-                      name: "Prenom",
-                      elt0: ControllerPageGestionAdherents.value8_0 ,
                     ),
                     Container(
                       margin: EdgeInsets.fromLTRB(0,30,0,0),
