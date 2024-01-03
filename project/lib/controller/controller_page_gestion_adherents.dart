@@ -25,6 +25,8 @@ class ControllerPageGestionAdherents{
   static Wrapper value6_0=Wrapper(contentA: true);
   static Wrapper value6_1=Wrapper(contentA: '=');
 
+  static Wrapper value7_0=Wrapper(contentA: true);
+  static Wrapper value8_0=Wrapper(contentA: true);
   
   static TextEditingController  controlleur1 = TextEditingController();
   static TextEditingController  controlleur2 = TextEditingController();

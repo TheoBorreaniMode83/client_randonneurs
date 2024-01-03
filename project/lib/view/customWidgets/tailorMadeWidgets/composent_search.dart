@@ -21,10 +21,11 @@ import 'package:les_randonneurs_draceniens_client_administratif/controller/contr
 class ComposentSearch extends StatefulWidget {
 
   Function function;
+  List<Adherent> listeAdherents;
 
   ComposentSearch ({
     required this.function,
-
+    required this.listeAdherents,
     Key? key
   });
 
@@ -233,7 +234,7 @@ class _ComposentSearchState extends State<ComposentSearch> {
     );
   }
 
-  Widget rowType3({required name,required List<String> tab1, required List<String> tab2,required List<String> tab3,required Wrapper elt0}){
+  Widget rowType3({required name,required Wrapper elt0}){
     return Container(
       margin: EdgeInsets.symmetric(vertical: 5),
       child: Row(
@@ -245,101 +246,6 @@ class _ComposentSearchState extends State<ComposentSearch> {
           Expanded(
             flex:4,
             child: Text(name),),
-          Expanded(
-            flex: 2,
-            child: Container(
-              margin: const EdgeInsets.symmetric(horizontal: 5),
-              height: 50,
-              color: Colors.white,
-              child: DropdownButton<String>(
-                isExpanded: true,
-                value: tab1[0],
-                onChanged:(value) {
-                  
-                },
-                alignment: Alignment.center,
-                items: tab1.map((value) => DropdownMenuItem(
-                  child:  Center( 
-                    child: Text(value), 
-                  ),
-                  value: value,
-                )).toList(),
-                icon: Container(
-                  height: double.maxFinite,
-                  width: 30,
-                  color:Colors.amber,
-                  child: const Icon(Icons.arrow_downward),
-                ),
-                elevation: 16,
-                style: const TextStyle(color: Colors.deepPurple),
-                underline: Container(
-                  height: 2,
-                  color: Colors.transparent,)
-              )
-            )
-          ),
-          Expanded(
-            flex: 2,
-            child: Container(
-              margin: const EdgeInsets.symmetric(horizontal: 5),
-              height: 50,
-              color: Colors.white,
-              child: DropdownButton<String>(
-                isExpanded: true,
-                value: tab2[0],
-                onChanged:(value) => {},
-                alignment: Alignment.center,
-                items: tab2.map((value) => DropdownMenuItem(
-                  child:  Center( 
-                    child: Text(value), 
-                  ),
-                  value: value,
-                )).toList(),
-                icon: Container(
-                  height: double.maxFinite,
-                  width: 30,
-                  color:Colors.amber,
-                  child: const Icon(Icons.arrow_downward),
-                ),
-                elevation: 16,
-                style: const TextStyle(color: Colors.deepPurple),
-                underline: Container(
-                  height: 2,
-                  color: Colors.transparent,)
-              )
-            )
-          ),
-          Expanded(
-            flex: 2,
-            child: Container(
-              margin: const EdgeInsets.symmetric(horizontal: 5),
-              height: 50,
-              color: Colors.white,
-              child: DropdownButton<String>(
-                isExpanded: true,
-                value: tab3[0],
-                onChanged:(value) => {},
-                alignment: Alignment.center,
-                items: tab3.map((value) => DropdownMenuItem(
-                  child:  Center( 
-                    child: Text(value), 
-                  ),
-                  value: value,
-                )).toList(),
-                icon: Container(
-                  height: double.maxFinite,
-                  width: 30,
-                  color:Colors.amber,
-                  child: const Icon(Icons.arrow_downward),
-                ),
-                elevation: 16,
-                style: const TextStyle(color: Colors.deepPurple),
-                underline: Container(
-                  height: 2,
-                  color: Colors.transparent,)
-              )
-            )
-          ),
         ]
       )
     );
@@ -438,27 +344,41 @@ class _ComposentSearchState extends State<ComposentSearch> {
                       elt0: ControllerPageGestionAdherents.value6_0 ,
                       controlleurX: ControllerPageGestionAdherents.controlleur3
                     ),
-                    TextButton(
-                      onPressed: (){
-                        List<Adherent> tmp = GstHttpServer.getAdherent();
-                        List<List<dynamic>> result = [];
-                        for(int i = 0 ; i<tmp.length ; i++){
-                          result.add([]);
-                          if(ControllerPageGestionAdherents.value1_0.content){result[result.length-1].add(tmp[i].civilite.toString());}
-                          /* tmp[i].prenom.toString(),
-                            tmp[i].civilite.toString(),
-                            tmp[i].statut.toString(),
-                            tmp[i].nom.toString(), */
-                        }
+                    rowType3(
+                      name: "Nom",
+                      elt0: ControllerPageGestionAdherents.value7_0 ,
+                    ),
+                    rowType3(
+                      name: "Prenom",
+                      elt0: ControllerPageGestionAdherents.value8_0 ,
+                    ),
+                    Container(
+                      alignment: Alignment.topRight,
+                      width: double.maxFinite,
+                      child: TextButton(
+                        onPressed: (){
+                          List<List<dynamic>> result = [];
+                          for(int i = 0 ; i<widget.listeAdherents.length ; i++){
+                            result.add([]);
+                            (ControllerPageGestionAdherents.value1_0.content)?{result[result.length-1].add(widget.listeAdherents[i].civilite.toString())}:{};
+                            (ControllerPageGestionAdherents.value2_0.content)?{result[result.length-1].add(widget.listeAdherents[i].statut.toString())}:{};
+                            (ControllerPageGestionAdherents.value3_0.content)?{result[result.length-1].add(widget.listeAdherents[i].nomVille.toString())}:{};
+                            (ControllerPageGestionAdherents.value4_0.content)?{result[result.length-1].add(widget.listeAdherents[i].joursNaissance.toString()+'/'+widget.listeAdherents[i].moisNaissance.toString()+'/'+widget.listeAdherents[i].anneeNaissance.toString())}:{};
+                            (ControllerPageGestionAdherents.value5_0.content)?{result[result.length-1].add((widget.listeAdherents[i].anneePremiereAdhesion-GstHttpServer.getAnneeExerciceActuel()).toString())}:{};
+                            (ControllerPageGestionAdherents.value6_0.content)?{result[result.length-1].add(widget.listeAdherents[i].anneePremiereAdhesion.toString())}:{};
+                            (ControllerPageGestionAdherents.value7_0.content)?{result[result.length-1].add(widget.listeAdherents[i].nom.toString())}:{};
+                            (ControllerPageGestionAdherents.value8_0.content)?{result[result.length-1].add(widget.listeAdherents[i].prenom.toString())}:{};
+                          }
 
-                        GstDownloadFiles.downloadFile(fileName: "adherents.csv", fileContent: GstDownloadFiles.makeCSV(result));
-                      },
-                      child: Text(
-                        "Exporter",
-                        style: TextStyle(
-                          backgroundColor: Colors.red
-                        ),
-                      )),
+                          GstDownloadFiles.downloadFile(fileName: "adherents.csv", fileContent: GstDownloadFiles.makeCSV(result));
+                        },
+                        child: Text(
+                          "Exporter",
+                          style: TextStyle(
+                            backgroundColor: Colors.red
+                          ),
+                        )),
+                    ),
                 ]
               ),
             ),

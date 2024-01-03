@@ -1,3 +1,4 @@
+/*
 import 'package:les_randonneurs_draceniens_client_administratif/model/adherent.dart';
 
 class ControlerModel{
@@ -6,6 +7,7 @@ class ControlerModel{
     return Adherent(
       nom: "Theo", 
       prenom: "Borreani", 
-      civilite: "Homme");  
+      civilite: "Homme"); 
   }
 }
+*/

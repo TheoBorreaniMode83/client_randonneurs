@@ -21,9 +21,9 @@ class Adherent{
     double? montantCheque;
     double? montantLiquide;
     double? montantBoutiqueEtRevue;
-    int? joursPremiereAdhesion;
-    int? moisPremiereAdhesion;
-    int? anneePremiereAdhesion;
+    int joursPremiereAdhesion;
+    int moisPremiereAdhesion;
+    int anneePremiereAdhesion;
     String? numeroLicence;
     int? joursDernierCertificatMedical;
     int? moisDernierCertificatMedical;
@@ -56,9 +56,9 @@ class Adherent{
       this.montantCheque,
       this.montantLiquide,
       this.montantBoutiqueEtRevue,
-      this.joursPremiereAdhesion,
-      this.moisPremiereAdhesion,
-      this.anneePremiereAdhesion,
+      required this.joursPremiereAdhesion,
+      required this.moisPremiereAdhesion,
+      required this.anneePremiereAdhesion,
       this.numeroLicence,
       this.joursDernierCertificatMedical,
       this.moisDernierCertificatMedical,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:diacritic/diacritic.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/controller/controller_page_gestion_adherents.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/model/adherent.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/tailorMadeWidgets/englobe_widgets.dart';
@@ -26,9 +25,7 @@ import 'package:les_randonneurs_draceniens_client_administratif/model/date.dart'
 import 'package:les_randonneurs_draceniens_client_administratif/controller/customWidgetsControllers/custom_text_form_field_content.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/assets/text_content.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/controller/gstHttpServer/gst_http_server.dart';
-import 'package:les_randonneurs_draceniens_client_administratif/model/wrapper.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/controller/contollerMultiCiriteres/filtrage_adherent.dart';
-import 'package:les_randonneurs_draceniens_client_administratif/controller/controller_page_gestion_adherents.dart';
 
 class PageGestionsAdhesionsEnCours extends StatefulWidget {
 
@@ -419,6 +416,7 @@ class _PageGestionsAdhesionsEnCours extends State<PageGestionsAdhesionsEnCours> 
           ],
         ),
         ComposentSearch(
+          listeAdherents:adherents,
           function: (){setState(() {});}
           ),
         TextButton(
@@ -698,7 +696,7 @@ class _PageGestionsAdhesionsEnCours extends State<PageGestionsAdhesionsEnCours> 
                             setState((){});
                           }
                           else{ // si l'adherent est entrain d'etre crée
-                            GstHttpServer.addAdherent(Adherent(nom: textFormNameController.text, prenom: textFormFirstNameController.text, civilite: "x"));
+                            GstHttpServer.addAdherent(Adherent(nom: textFormNameController.text, prenom: textFormFirstNameController.text, civilite: "x", anneePremiereAdhesion: 2010,moisPremiereAdhesion: 10,joursPremiereAdhesion: 10));
                             setState(() {});
                           }
                           Navigator.of(context).pop();

@@ -10,23 +10,23 @@ class GstHttpServer{
   //-------------------------------------------------------------------------------------
 
   static List<Adherent> _dbAdherents = [
-    Adherent(id: 0,nom: "Martin", prenom: "Gabriel", civilite: "Monsieur",anneePremiereAdhesion: 2000, statut: "Adhésion", nomVille: "Draguignan",joursNaissance: 10,moisNaissance: 10,anneeNaissance: 2000, ),
-    Adherent(id: 1,nom: "Bernard", prenom: "Léo", civilite: "Monsieur",anneePremiereAdhesion: 2010, statut: "Adhésion", nomVille: "Montferat",joursNaissance: 10,moisNaissance: 10,anneeNaissance: 2000),
-    Adherent(id: 2,nom: "Thomas", prenom: "Raphael", civilite: "Monsieur",anneePremiereAdhesion: 1999, statut: "Réadhésion", nomVille: "Frejus",joursNaissance: 10,moisNaissance: 10,anneeNaissance: 2000),
-    Adherent(id: 3,nom: "Petit", prenom: "Louis", civilite: "Monsieur",anneePremiereAdhesion: 2000, statut: "R.Santé", nomVille: "Brignole",joursNaissance: 10,moisNaissance: 10,anneeNaissance: 2000),
-    Adherent(id: 4,nom: "Robert", prenom: "Mael", civilite: "Monsieur",anneePremiereAdhesion: 2000, statut: "Pass Dec", nomVille: "Congolin",joursNaissance: 10,moisNaissance: 10,anneeNaissance: 1990),
-    Adherent(id: 5,nom: "Richard", prenom: "Arthur", civilite: "Monsieur",anneePremiereAdhesion: 2000, statut: "Adhésion", nomVille: "Paris",joursNaissance: 10,moisNaissance: 10,anneeNaissance: 2000),
-    Adherent(id: 6,nom: "Durand", prenom: "Jules", civilite: "Monsieur",anneePremiereAdhesion: 2000, statut: "R.Santé", nomVille: "Draguignan",joursNaissance: 10,moisNaissance: 10,anneeNaissance: 2000),
-    Adherent(id: 7,nom: "Dubois", prenom: "Noah", civilite: "Monsieur",anneePremiereAdhesion: 2000, statut: "Adh.Non/Lic", nomVille: "Marseille",joursNaissance: 10,moisNaissance: 10,anneeNaissance: 2000),
-    Adherent(id: 8,nom: "Moreau", prenom: "Adam", civilite: "Monsieur",anneePremiereAdhesion: 2000, statut: "Adh.Non/Lic", nomVille: "Draguignan",joursNaissance: 10,moisNaissance: 10,anneeNaissance: 2000),
-    Adherent(id: 9,nom: "Laurent", prenom: "Lucas", civilite: "Monsieur",anneePremiereAdhesion: 2000, statut: "M.Nordique", nomVille: "Draguignan",joursNaissance: 10,moisNaissance: 10,anneeNaissance: 2000),
-    Adherent(id: 10,nom: "Roux", prenom: "Esther", civilite: "Madame",anneePremiereAdhesion: 2000, statut: "Adhésion", nomVille: "Draguignan",joursNaissance: 10,moisNaissance: 10,anneeNaissance: 2000),
-    Adherent(id: 11,nom: "Lambert", prenom: "Marguerite", civilite: "Madame",anneePremiereAdhesion: 2000, statut: "Adh.Aut.Ass", nomVille: "Draguignan",joursNaissance: 10,moisNaissance: 10,anneeNaissance: 2000),
-    Adherent(id: 12,nom: "Leroy", prenom: "Helen", civilite: "Madame",anneePremiereAdhesion: 2000, statut: "Réadhésion", nomVille: "Draguignan",joursNaissance: 10,moisNaissance: 10,anneeNaissance: 2000),
-    Adherent(id: 13,nom: "Lefebvre", prenom: "Hélène", civilite: "Madame",anneePremiereAdhesion: 2000, statut: "Adhésion", nomVille: "Congolin",joursNaissance: 10,moisNaissance: 10,anneeNaissance: 2000),
-    Adherent(id: 14,nom: "Bertrand", prenom: "Adrienne", civilite: "Madame",anneePremiereAdhesion: 2000, statut: "R.Santé", nomVille: "Frejus",joursNaissance: 10,moisNaissance: 10,anneeNaissance: 2000),
-    Adherent(id: 15,nom: "Girard", prenom: "Aline", civilite: "Madame",anneePremiereAdhesion: 2000, statut: "R.Santé", nomVille: "Frejus",joursNaissance: 10,moisNaissance: 10,anneeNaissance: 2000),
-    Adherent(id: 16,nom: "David", prenom: "Pascale", civilite: "Madame",anneePremiereAdhesion: 2000, statut: "R.Santé", nomVille: "Draguignan",joursNaissance: 10,moisNaissance: 10,anneeNaissance: 2000),
+    Adherent(id: 0,nom: "Martin", prenom: "Gabriel", civilite: "Monsieur",anneePremiereAdhesion: 2000, statut: "Adhésion", nomVille: "Draguignan",joursNaissance: 10,moisNaissance: 10,anneeNaissance: 2000,joursPremiereAdhesion: 10,moisPremiereAdhesion: 10 ),
+    Adherent(id: 1,nom: "Bernard", prenom: "Léo", civilite: "Monsieur",anneePremiereAdhesion: 2010, statut: "Adhésion", nomVille: "Montferat",joursNaissance: 10,moisNaissance: 10,anneeNaissance: 2000,joursPremiereAdhesion: 10,moisPremiereAdhesion: 10),
+    Adherent(id: 2,nom: "Thomas", prenom: "Raphael", civilite: "Monsieur",anneePremiereAdhesion: 1999, statut: "Réadhésion", nomVille: "Frejus",joursNaissance: 10,moisNaissance: 10,anneeNaissance: 2000,joursPremiereAdhesion: 10,moisPremiereAdhesion: 10),
+    Adherent(id: 3,nom: "Petit", prenom: "Louis", civilite: "Monsieur",anneePremiereAdhesion: 2000, statut: "R.Santé", nomVille: "Brignole",joursNaissance: 10,moisNaissance: 10,anneeNaissance: 2000,joursPremiereAdhesion: 10,moisPremiereAdhesion: 10),
+    Adherent(id: 4,nom: "Robert", prenom: "Mael", civilite: "Monsieur",anneePremiereAdhesion: 2000, statut: "Pass Dec", nomVille: "Congolin",joursNaissance: 10,moisNaissance: 10,anneeNaissance: 1990,joursPremiereAdhesion: 10,moisPremiereAdhesion: 10),
+    Adherent(id: 5,nom: "Richard", prenom: "Arthur", civilite: "Monsieur",anneePremiereAdhesion: 2000, statut: "Adhésion", nomVille: "Paris",joursNaissance: 10,moisNaissance: 10,anneeNaissance: 2000,joursPremiereAdhesion: 10,moisPremiereAdhesion: 10),
+    Adherent(id: 6,nom: "Durand", prenom: "Jules", civilite: "Monsieur",anneePremiereAdhesion: 2000, statut: "R.Santé", nomVille: "Draguignan",joursNaissance: 10,moisNaissance: 10,anneeNaissance: 2000,joursPremiereAdhesion: 10,moisPremiereAdhesion: 10),
+    Adherent(id: 7,nom: "Dubois", prenom: "Noah", civilite: "Monsieur",anneePremiereAdhesion: 2000, statut: "Adh.Non/Lic", nomVille: "Marseille",joursNaissance: 10,moisNaissance: 10,anneeNaissance: 2000,joursPremiereAdhesion: 10,moisPremiereAdhesion: 10),
+    Adherent(id: 8,nom: "Moreau", prenom: "Adam", civilite: "Monsieur",anneePremiereAdhesion: 2000, statut: "Adh.Non/Lic", nomVille: "Draguignan",joursNaissance: 10,moisNaissance: 10,anneeNaissance: 2000,joursPremiereAdhesion: 10,moisPremiereAdhesion: 10),
+    Adherent(id: 9,nom: "Laurent", prenom: "Lucas", civilite: "Monsieur",anneePremiereAdhesion: 2000, statut: "M.Nordique", nomVille: "Draguignan",joursNaissance: 10,moisNaissance: 10,anneeNaissance: 2000,joursPremiereAdhesion: 10,moisPremiereAdhesion: 10),
+    Adherent(id: 10,nom: "Roux", prenom: "Esther", civilite: "Madame",anneePremiereAdhesion: 2000, statut: "Adhésion", nomVille: "Draguignan",joursNaissance: 10,moisNaissance: 10,anneeNaissance: 2000,joursPremiereAdhesion: 10,moisPremiereAdhesion: 10),
+    Adherent(id: 11,nom: "Lambert", prenom: "Marguerite", civilite: "Madame",anneePremiereAdhesion: 2000, statut: "Adh.Aut.Ass", nomVille: "Draguignan",joursNaissance: 10,moisNaissance: 10,anneeNaissance: 2000,joursPremiereAdhesion: 10,moisPremiereAdhesion: 10),
+    Adherent(id: 12,nom: "Leroy", prenom: "Helen", civilite: "Madame",anneePremiereAdhesion: 2000, statut: "Réadhésion", nomVille: "Draguignan",joursNaissance: 10,moisNaissance: 10,anneeNaissance: 2000,joursPremiereAdhesion: 10,moisPremiereAdhesion: 10),
+    Adherent(id: 13,nom: "Lefebvre", prenom: "Hélène", civilite: "Madame",anneePremiereAdhesion: 2000, statut: "Adhésion", nomVille: "Congolin",joursNaissance: 10,moisNaissance: 10,anneeNaissance: 2000,joursPremiereAdhesion: 10,moisPremiereAdhesion: 10),
+    Adherent(id: 14,nom: "Bertrand", prenom: "Adrienne", civilite: "Madame",anneePremiereAdhesion: 2000, statut: "R.Santé", nomVille: "Frejus",joursNaissance: 10,moisNaissance: 10,anneeNaissance: 2000,joursPremiereAdhesion: 10,moisPremiereAdhesion: 10),
+    Adherent(id: 15,nom: "Girard", prenom: "Aline", civilite: "Madame",anneePremiereAdhesion: 2000, statut: "R.Santé", nomVille: "Frejus",joursNaissance: 10,moisNaissance: 10,anneeNaissance: 2000,joursPremiereAdhesion: 10,moisPremiereAdhesion: 10),
+    Adherent(id: 16,nom: "David", prenom: "Pascale", civilite: "Madame",anneePremiereAdhesion: 2000, statut: "R.Santé", nomVille: "Draguignan",joursNaissance: 10,moisNaissance: 10,anneeNaissance: 2000,joursPremiereAdhesion: 10,moisPremiereAdhesion: 10),
 
   ];
 
@@ -62,10 +62,9 @@ class GstHttpServer{
   ];
 
 
-  static List<String> _dbRubriquesFinancieres  = [
-  
-  ];
+  static List<String> _dbRubriquesFinancieres  = [];
 
+  static int _dbAnneeExerciceActuel =2024;
 
 
 
@@ -78,6 +77,7 @@ class GstHttpServer{
   static List<Ville> _villes = [];
   static List<Statut> _statuts = [];
   static List<Civilite> _civilite = [];
+  static int _anneeExerciceActuel = -1;
 
   //-------------------------------------------------------------------------------------
   // Fonction de recupération et mise a jours de la base de donnée
@@ -115,6 +115,9 @@ class GstHttpServer{
     _civilite = List<Civilite>.from(_dbCivilite);
   }
 
+    static void _loadAnneeExerciceActuel(){
+    _anneeExerciceActuel = _dbAnneeExerciceActuel;
+  }
 
   //-------------------------------------------------------------------------------------
   // A FINIR fonction de test qui affiche les adfhérents de la base de donnée
@@ -199,6 +202,10 @@ class GstHttpServer{
       result.add(GstHttpServer._civilite[i].nom);
     }
     return result;
+  }
+
+  static int getAnneeExerciceActuel(){
+    return _anneeExerciceActuel;
   }
 
 

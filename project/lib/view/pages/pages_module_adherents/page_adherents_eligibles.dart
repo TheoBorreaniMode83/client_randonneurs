@@ -1,3 +1,4 @@
+/*
 import 'package:flutter/material.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/containerWidgets/responsive_view.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/tailorMadeWidgets/englobe_widgets.dart';
@@ -105,3 +106,4 @@ class _PageAdherentsEligibles extends State<PageAdherentsEligibles> {
 
 
 }
+*/
