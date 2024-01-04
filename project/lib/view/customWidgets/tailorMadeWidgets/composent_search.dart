@@ -1,6 +1,9 @@
+import 'package:get/get.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/standardWidgets/custom_text_form_field.dart';
 
 import 'package:flutter/material.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/controller/gstHttpServer/gst_http_server.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/controller/gstDownloadFiles/gstDownloadFiles.dart';
 
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgetsStyles/styles/standardWidgetsStyles/custom_dropdown_button_style.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/controller/customWidgetsControllers/custom_dropdown_button_content.dart';
@@ -12,6 +15,7 @@ import 'package:les_randonneurs_draceniens_client_administratif/controller/custo
 import 'package:les_randonneurs_draceniens_client_administratif/controller/customWidgetsControllers/custom_text_form_field_content.dart';
 
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgetsStyles/styles_factory.dart';
+import 'package:les_randonneurs_draceniens_client_administratif/model/adherent.dart';
 
 import 'package:les_randonneurs_draceniens_client_administratif/model/wrapper.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/controller/controller_page_gestion_adherents.dart';
@@ -19,10 +23,11 @@ import 'package:les_randonneurs_draceniens_client_administratif/controller/contr
 class ComposentSearch extends StatefulWidget {
 
   Function function;
+  List<Adherent> listeAdherents;
 
   ComposentSearch ({
     required this.function,
-
+    required this.listeAdherents,
     Key? key
   });
 
@@ -45,13 +50,21 @@ class _ComposentSearchState extends State<ComposentSearch> {
   CustomTextFormFieldEvent customTextFormFieldEvent = CustomTextFormFieldEvent();
   CustomTextFormFieldContent customTextFormFieldContent = CustomTextFormFieldContent();
 
-
-
+  
+    
 
   bool switchVar = true;
 
   @override
   void initState() {
+
+      ControllerPageGestionAdherents.customTextFormFieldStyle1
+        .setLabelText("Nom de famille")
+        .setHintText('Entrez un nom de famille'); 
+      ControllerPageGestionAdherents.customTextFormFieldStyle2
+        .setLabelText("Prénom")
+        .setHintText('Entrez un prénom'); 
+
 
     a = customDropdownButtonContent;
 
@@ -70,13 +83,31 @@ class _ComposentSearchState extends State<ComposentSearch> {
     super.initState();
   }
 
-  Widget rowType1({required name,required List<String> tab1 ,required List<String> tab2, required Wrapper elt1, required Wrapper elt2}){
+  BoxDecoration myDeco=BoxDecoration(
+    color:const Color.fromARGB(255, 176, 176, 174),
+        border: Border.all(
+          color: Colors.black));
 
+  double myContainerHeight = 50;
+  double myContainerMargin = 5;
+  double myContainerPadding = 5;
 
+  Widget rowType1({required name,required List<String> tab1 ,required List<String> tab2, required Wrapper elt0,required Wrapper elt1, required Wrapper elt2}){
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 5),
+      decoration: myDeco,
+      margin: EdgeInsets.symmetric(vertical: myContainerMargin),
+      padding: EdgeInsets.all( myContainerPadding),
+      height:myContainerHeight,
+
       child: Row(
         children: [
+          Checkbox(
+            activeColor:Colors.black,
+            value: elt0.content,
+            onChanged: (bool? value){setState(() {
+              elt0.content = !elt0.content;
+            });},
+          ), 
           Expanded(
             flex:4,
             child: Text(name),),
@@ -105,8 +136,8 @@ class _ComposentSearchState extends State<ComposentSearch> {
                 icon: Container(
                   height: double.maxFinite,
                   width: 30,
-                  color:Colors.amber,
-                  child: const Icon(Icons.arrow_downward),
+                  color:Colors.black,
+                  child: const Icon(Icons.arrow_downward, color:Colors.white),
                 ),
                 elevation: 16,
                 style: const TextStyle(color: Color.fromARGB(255, 93, 0, 255)),
@@ -140,8 +171,8 @@ class _ComposentSearchState extends State<ComposentSearch> {
                 icon: Container(
                   height: double.maxFinite,
                   width: 30,
-                  color:Colors.amber,
-                  child: const Icon(Icons.arrow_downward),
+                  color:Colors.black,
+                  child: const Icon(Icons.arrow_downward,color:Colors.white),
                 ),
                 elevation: 16,
                 style: const TextStyle(color: Colors.deepPurple),
@@ -156,11 +187,22 @@ class _ComposentSearchState extends State<ComposentSearch> {
     );
   }
 
-  Widget rowType2({required name,required List<String> tab1, required Wrapper x, required TextEditingController controlleurX}){
+  Widget rowType2({required name,required List<String> tab1, required Wrapper x, required TextEditingController controlleurX,required Wrapper elt0}){
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 5),
+      decoration: myDeco,
+      margin: EdgeInsets.symmetric(vertical: myContainerMargin),
+      padding: EdgeInsets.all( myContainerPadding),
+      height:myContainerHeight,
       child: Row(
         children: [
+          Checkbox(
+            activeColor:Colors.black,
+            value: elt0.content,
+            onChanged: (bool? value){
+              setState(() {
+              elt0.content = !elt0.content;
+            });},
+          ),
           Expanded(
             flex:4,
             child: Text(name),),
@@ -189,8 +231,10 @@ class _ComposentSearchState extends State<ComposentSearch> {
                 icon: Container(
                   height: double.maxFinite,
                   width: 30,
-                  color:Colors.amber,
-                  child: const Icon(Icons.arrow_downward),
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                  ) ,
+                  child: const Icon(Icons.arrow_downward,color: Colors.white,),
                 ),
                 elevation: 16,
                 style: const TextStyle(color: Colors.deepPurple),
@@ -218,109 +262,61 @@ class _ComposentSearchState extends State<ComposentSearch> {
     );
   }
 
-  Widget rowType3({required name,required List<String> tab1, required List<String> tab2,required List<String> tab3}){
+  Widget rowType3({required name,required Wrapper elt0, required  controller }){
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 5),
+      decoration: myDeco,
+      margin: EdgeInsets.symmetric(vertical: myContainerMargin),
+      padding: EdgeInsets.all( myContainerPadding),
+      height:myContainerHeight,
       child: Row(
         children: [
+          Checkbox(
+            activeColor:Colors.black,
+            value: elt0.content,
+            onChanged: (bool? value){setState(() {
+              elt0.content=!elt0.content;
+            });},
+          ),
           Expanded(
             flex:4,
             child: Text(name),),
           Expanded(
-            flex: 2,
-            child: Container(
-              margin: const EdgeInsets.symmetric(horizontal: 5),
-              height: 50,
+            flex: 5,
+            child: Container( 
               color: Colors.white,
-              child: DropdownButton<String>(
-                isExpanded: true,
-                value: tab1[0],
-                onChanged:(value) {
-                  
-                },
-                alignment: Alignment.center,
-                items: tab1.map((value) => DropdownMenuItem(
-                  child:  Center( 
-                    child: Text(value), 
-                  ),
-                  value: value,
-                )).toList(),
-                icon: Container(
-                  height: double.maxFinite,
-                  width: 30,
-                  color:Colors.amber,
-                  child: const Icon(Icons.arrow_downward),
-                ),
-                elevation: 16,
-                style: const TextStyle(color: Colors.deepPurple),
-                underline: Container(
-                  height: 2,
-                  color: Colors.transparent,)
-              )
-            )
+              height: double.maxFinite,
+              width: double.maxFinite,
+              padding: const EdgeInsets.fromLTRB(0, 0, 2, 0),
+              child: TextField(
+                onChanged: (value){
+                  setState(() {});
+                  widget.function();
+                } ,
+                controller: controller,
+              )))
+        ]
+      )
+    );
+  }
+
+Widget rowType4({required name,required Wrapper elt0}){
+    return Container(
+      decoration: myDeco,
+      margin: EdgeInsets.symmetric(vertical: myContainerMargin),
+      padding: EdgeInsets.all( myContainerPadding),
+      height:myContainerHeight,
+      child: Row(
+        children: [
+          Checkbox(
+            activeColor:Colors.black,
+            value: elt0.content,
+            onChanged: (bool? value){setState(() {
+              elt0.content=!elt0.content;
+            });},
           ),
           Expanded(
-            flex: 2,
-            child: Container(
-              margin: const EdgeInsets.symmetric(horizontal: 5),
-              height: 50,
-              color: Colors.white,
-              child: DropdownButton<String>(
-                isExpanded: true,
-                value: tab2[0],
-                onChanged:(value) => {},
-                alignment: Alignment.center,
-                items: tab2.map((value) => DropdownMenuItem(
-                  child:  Center( 
-                    child: Text(value), 
-                  ),
-                  value: value,
-                )).toList(),
-                icon: Container(
-                  height: double.maxFinite,
-                  width: 30,
-                  color:Colors.amber,
-                  child: const Icon(Icons.arrow_downward),
-                ),
-                elevation: 16,
-                style: const TextStyle(color: Colors.deepPurple),
-                underline: Container(
-                  height: 2,
-                  color: Colors.transparent,)
-              )
-            )
-          ),
-          Expanded(
-            flex: 2,
-            child: Container(
-              margin: const EdgeInsets.symmetric(horizontal: 5),
-              height: 50,
-              color: Colors.white,
-              child: DropdownButton<String>(
-                isExpanded: true,
-                value: tab3[0],
-                onChanged:(value) => {},
-                alignment: Alignment.center,
-                items: tab3.map((value) => DropdownMenuItem(
-                  child:  Center( 
-                    child: Text(value), 
-                  ),
-                  value: value,
-                )).toList(),
-                icon: Container(
-                  height: double.maxFinite,
-                  width: 30,
-                  color:Colors.amber,
-                  child: const Icon(Icons.arrow_downward),
-                ),
-                elevation: 16,
-                style: const TextStyle(color: Colors.deepPurple),
-                underline: Container(
-                  height: 2,
-                  color: Colors.transparent,)
-              )
-            )
-          ),
+            flex:4,
+            child: Text(name),),
         ]
       )
     );
@@ -332,7 +328,7 @@ class _ComposentSearchState extends State<ComposentSearch> {
 
     return Container(
         margin: const EdgeInsets.symmetric(vertical: 10),
-        color: Colors.red,
+        color: const Color.fromARGB(255, 63, 62, 62),
         child: Column(
           children: [
             GestureDetector(
@@ -345,12 +341,20 @@ class _ComposentSearchState extends State<ComposentSearch> {
               width: double.maxFinite,
               child: Row(
                 children: [
-                  const Text("Requête multi critères"),
+                  const Text(
+                    "Requête multi critères",
+                    style: TextStyle(   
+                      color: Colors.white,
+                      )
+                    ),
                   Expanded(
                     flex: 1,
                     child: Container( 
                       alignment: Alignment.centerRight, 
-                      child: const Icon(Icons.south,),),),           
+                      child: const Icon(
+                        Icons.add,
+                        color: Colors.white ,
+                        ),),),           
                   ],
                 ),
               )
@@ -359,7 +363,7 @@ class _ComposentSearchState extends State<ComposentSearch> {
               Container(
                 padding: const EdgeInsets.all(20),
                 decoration:const BoxDecoration(
-                  color: Color.fromARGB(255, 255, 144, 144),
+                  color: Color.fromARGB(255, 222, 222, 222),
                   border: Border(
                     left: BorderSide( 
                       color: Colors.black,
@@ -375,9 +379,20 @@ class _ComposentSearchState extends State<ComposentSearch> {
                 ),
                 child: Column(
                   children: [
+                    rowType3(
+                      name: "Nom",
+                      elt0: ControllerPageGestionAdherents.value7_0 ,
+                      controller:  ControllerPageGestionAdherents.controller1
+                    ),
+                    rowType3(
+                      name: "Prénom",
+                      elt0: ControllerPageGestionAdherents.value8_0 ,
+                      controller:  ControllerPageGestionAdherents.controller2
+                    ),
                     rowType1(
                       name: "Civilité", tab1:['=','≠'] ,
                       tab2: ['vide']+GstHttpServer.getCivilite(),
+                      elt0: ControllerPageGestionAdherents.value1_0,
                       elt1: ControllerPageGestionAdherents.value1_1,
                       elt2: ControllerPageGestionAdherents.value1_2
                     ),
@@ -385,6 +400,7 @@ class _ComposentSearchState extends State<ComposentSearch> {
                       name: "Statut",
                       tab1: ['=','≠'] ,
                       tab2: ['vide']+GstHttpServer.getListStatuts(),
+                      elt0: ControllerPageGestionAdherents.value2_0,
                       elt1: ControllerPageGestionAdherents.value2_1,
                       elt2: ControllerPageGestionAdherents.value2_2
                     ),
@@ -392,27 +408,83 @@ class _ComposentSearchState extends State<ComposentSearch> {
                       name: "Ville",
                       tab1: ['=','≠'],
                       tab2: ['vide']+GstHttpServer.getVille(),
+                      elt0: ControllerPageGestionAdherents.value3_0 ,
                       elt1: ControllerPageGestionAdherents.value3_1,
                       elt2: ControllerPageGestionAdherents.value3_2
                     ),
                     rowType2(
                       name: "Date de naissance",
                       tab1:['=','≠','>','<'],
-                      x: ControllerPageGestionAdherents.value4,
+                      elt0: ControllerPageGestionAdherents.value4_0 ,
+                      x: ControllerPageGestionAdherents.value4_1,
                       controlleurX: ControllerPageGestionAdherents.controlleur1
                     ),
                     rowType2(
                       name: "Nombre d'années consécutifs",
                       tab1:['=','≠','>','<'],
-                      x: ControllerPageGestionAdherents.value5,
+                      x: ControllerPageGestionAdherents.value5_1,
+                      elt0: ControllerPageGestionAdherents.value5_0 ,
                       controlleurX: ControllerPageGestionAdherents.controlleur2
                     ),
                     rowType2(
                       name: "Année de première adhésion",
                       tab1: ['=','>','<','≠'] ,
-                      x: ControllerPageGestionAdherents.value6,
+                      x: ControllerPageGestionAdherents.value6_1,
+                      elt0: ControllerPageGestionAdherents.value6_0 ,
                       controlleurX: ControllerPageGestionAdherents.controlleur3
                     ),
+                    rowType4(
+                      name:  "Adresse electronique",
+                      elt0:  ControllerPageGestionAdherents.value9_0 
+                      ),
+                    Container(
+                      margin: EdgeInsets.fromLTRB(0,30,0,0),
+                      alignment: Alignment.topRight,
+                      width: double.maxFinite,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            topRight: Radius.circular(20),
+                            bottomLeft: Radius.circular(20),
+                            bottomRight: Radius.circular(20)
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.3),
+                              spreadRadius: 8,
+                              blurRadius: 8,
+                              offset: const Offset(0, 3), //position de l'ombre
+                            )
+                          ]
+                        ),
+                        child: TextButton(
+                          onPressed: (){
+                            List<List<dynamic>> result = [];
+                            for(int i = 0 ; i<widget.listeAdherents.length ; i++){
+                              result.add([]);
+                              (ControllerPageGestionAdherents.value1_0.content)?{result[result.length-1].add(widget.listeAdherents[i].civilite.toString())}:{};
+                              (ControllerPageGestionAdherents.value2_0.content)?{result[result.length-1].add(widget.listeAdherents[i].statut.toString())}:{};
+                              (ControllerPageGestionAdherents.value3_0.content)?{result[result.length-1].add(widget.listeAdherents[i].nomVille.toString())}:{};
+                              (ControllerPageGestionAdherents.value4_0.content)?{result[result.length-1].add(widget.listeAdherents[i].joursNaissance.toString()+'/'+widget.listeAdherents[i].moisNaissance.toString()+'/'+widget.listeAdherents[i].anneeNaissance.toString())}:{};
+                              (ControllerPageGestionAdherents.value5_0.content)?{result[result.length-1].add((widget.listeAdherents[i].anneePremiereAdhesion-GstHttpServer.getAnneeExerciceActuel()).toString())}:{};
+                              (ControllerPageGestionAdherents.value6_0.content)?{result[result.length-1].add(widget.listeAdherents[i].anneePremiereAdhesion.toString())}:{};
+                              (ControllerPageGestionAdherents.value7_0.content)?{result[result.length-1].add(widget.listeAdherents[i].nom.toString())}:{};
+                              (ControllerPageGestionAdherents.value8_0.content)?{result[result.length-1].add(widget.listeAdherents[i].prenom.toString())}:{};
+                              (ControllerPageGestionAdherents.value9_0.content)?{result[result.length-1].add(widget.listeAdherents[i].adresseMail.toString())}:{};
+                            }
+
+                            GstDownloadFiles.downloadFile(fileName: "adherents.csv", fileContent: GstDownloadFiles.makeCSV(result));
+                          },
+                          style: ButtonStyle(
+                            backgroundColor : MaterialStateProperty.all(Colors.black)),
+                          child: const Text(
+                            "Exporter",
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          )),
+                    ),)
                 ]
               ),
             ),

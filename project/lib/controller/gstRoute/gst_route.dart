@@ -24,7 +24,6 @@ class GstRoute{
     '/page_gestion_tarif': (context) => const PageGestionTarif(),
     '/page_gestions_adhesions_en_cours': (context) => const PageGestionsAdhesionsEnCours(),
     '/page_test': (context) => const PageTest(),
-    '/page_certificaux_medicaux': (context) => const PageCertificauxMedicaux(),
     '/page_archivage': (context) => const PageArchivage(),
   };
 
@@ -59,8 +58,6 @@ class GstRoute{
       'page_gestion_tarif'               : Triplet<Function,Widget,Function>( Navigator.of(context).pushReplacement , const PageGestionTarif()             , tabTransition['Transition2']! ),
       'page_gestions_adhesions_en_cours' : Triplet<Function,Widget,Function>( Navigator.of(context).pushReplacement , const PageGestionsAdhesionsEnCours() , tabTransition['Transition2']! ),
       'page_test'                        : Triplet<Function,Widget,Function>( Navigator.of(context).pushReplacement , const PageTest()                     , tabTransition['Transition2']! ),
-      'page_adherents_eligibles'         : Triplet<Function,Widget,Function>( Navigator.of(context).pushReplacement , const PageAdherentsEligibles()       , tabTransition['Transition2']! ),
-      'page_certificaux_medicaux'        : Triplet<Function,Widget,Function>( Navigator.of(context).pushReplacement , const PageCertificauxMedicaux()      , tabTransition['Transition2']! ),
       'page_archivage'                   : Triplet<Function,Widget,Function>( Navigator.of(context).pushReplacement , const PageArchivage()                , tabTransition['Transition2']! ),
       };
       if(routesFunctions[name]!=null){

@@ -41,31 +41,21 @@ class ResponsiveView extends StatelessWidget{
             width: double.maxFinite,
             color: Colors.white,
             child : Container(
-            margin: padding,
-            padding: const EdgeInsets.all(10),
             height: height,
             width: width,
-            decoration: const BoxDecoration(
-              color: Color.fromARGB(255, 255, 228, 145),
-              border: Border(
-                left: BorderSide(
-                  color: Color.fromARGB(255, 0, 0, 0)
-                  ),
-                right: BorderSide(
-                  color: Color.fromARGB(255, 0, 0, 0)
-                  ),
-              ),
-            ),
+          
             child: Scrollbar(
               thickness: 5, //largeur scroll barre
               controller: yourScrollController, 
               child:SingleChildScrollView(
                 controller: yourScrollController ,
-                child: Column(
+                child: Container(
+                  margin: EdgeInsets.all(200),
+                  child: Column(
                   //controller: yourScrollController, // AND Here
                   children: children
                 ),
-              ),
+              ),)
               )
             )
           );

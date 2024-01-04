@@ -4,6 +4,7 @@ class Statut{
 
  Statut({
   required this.nom,
+  
   this.id
  });
 }

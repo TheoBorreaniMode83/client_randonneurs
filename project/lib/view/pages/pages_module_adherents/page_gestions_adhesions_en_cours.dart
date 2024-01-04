@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:diacritic/diacritic.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/controller/controller_page_gestion_adherents.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/model/adherent.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/view/customWidgets/tailorMadeWidgets/englobe_widgets.dart';
@@ -26,9 +25,7 @@ import 'package:les_randonneurs_draceniens_client_administratif/model/date.dart'
 import 'package:les_randonneurs_draceniens_client_administratif/controller/customWidgetsControllers/custom_text_form_field_content.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/assets/text_content.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/controller/gstHttpServer/gst_http_server.dart';
-import 'package:les_randonneurs_draceniens_client_administratif/model/wrapper.dart';
 import 'package:les_randonneurs_draceniens_client_administratif/controller/contollerMultiCiriteres/filtrage_adherent.dart';
-import 'package:les_randonneurs_draceniens_client_administratif/controller/controller_page_gestion_adherents.dart';
 
 class PageGestionsAdhesionsEnCours extends StatefulWidget {
 
@@ -47,18 +44,6 @@ class _PageGestionsAdhesionsEnCours extends State<PageGestionsAdhesionsEnCours> 
 
   final CustomTextStyle title = StyleFactory.createCustomTextStyleTitle();
 
-  //Déclaration des arguments customTextFormField
-  final CustomTextFormFieldStyle customTextFormFieldStyle1 = StyleFactory.createCustomTextFormFieldStyleBasic();
-  final CustomTextFormFieldEvent customTextFormFieldEvent1 = CustomTextFormFieldEvent();
-  final CustomTextFormFieldValidator customTextFormFieldValidator1 = CustomTextFormFieldValidator();
-  final CustomTextFormFieldContent customTextFormFieldContent1 = CustomTextFormFieldContent();
-  final controller1 = TextEditingController();
-
-  final CustomTextFormFieldStyle customTextFormFieldStyle2 = StyleFactory.createCustomTextFormFieldStyleBasic();
-  final CustomTextFormFieldEvent customTextFormFieldEvent2 = CustomTextFormFieldEvent();
-  final CustomTextFormFieldValidator customTextFormFieldValidator2 = CustomTextFormFieldValidator();
-  final CustomTextFormFieldContent customTextFormFieldContent2 = CustomTextFormFieldContent();
-  final controller2 = TextEditingController();
 
   
   final _formKey = GlobalKey<FormState>();
@@ -241,16 +226,10 @@ class _PageGestionsAdhesionsEnCours extends State<PageGestionsAdhesionsEnCours> 
       title.setContent(
         TextContent.titleGestionsDesAdhesions);
 
-      customTextFormFieldStyle1
-        .setLabelText("Nom de famille")
-        .setHintText('Entrez un nom de famille'); 
-      customTextFormFieldStyle2
-        .setLabelText("Prénom")
-        .setHintText('Entrez un prénom'); 
 
-      customTextFormFieldEvent1
+      ControllerPageGestionAdherents.customTextFormFieldEvent1
         .setOnChanged(() {trie();setState(() {});});
-      customTextFormFieldEvent2
+      ControllerPageGestionAdherents.customTextFormFieldEvent2
         .setOnChanged(() {trie();setState(() {});});
 
 
@@ -369,8 +348,8 @@ class _PageGestionsAdhesionsEnCours extends State<PageGestionsAdhesionsEnCours> 
     adherents = List.from(FiltrageAdherents.runAdherents(
       adherents: GstHttpServer.getAdherent(),
       exerciceAnneeActuel: 2023, 
-      filtreNom: controller1.text,
-      filtrePrenom: controller2.text,
+      filtreNom: ControllerPageGestionAdherents.controller1.text,
+      filtrePrenom: ControllerPageGestionAdherents.controller2.text,
       filtreCivilite: ControllerPageGestionAdherents.value1_2.content, 
       filtreCivilite2: ControllerPageGestionAdherents.value1_1.content, 
       filtreStatut: ControllerPageGestionAdherents.value2_2.content, 
@@ -378,11 +357,11 @@ class _PageGestionsAdhesionsEnCours extends State<PageGestionsAdhesionsEnCours> 
       filtreVille:  ControllerPageGestionAdherents.value3_2.content, 
       filtreVille2: ControllerPageGestionAdherents.value3_1.content, 
       dateNaissance1: ControllerPageGestionAdherents.controlleur1.text, 
-      dateNaissance2: ControllerPageGestionAdherents.value4.content,
+      dateNaissance2: ControllerPageGestionAdherents.value4_1.content,
       filtreAnneePremiereAdhesion: ControllerPageGestionAdherents.controlleur2.text, 
-      filtreAnneePremiereAdhesion2: ControllerPageGestionAdherents.value5.content,
+      filtreAnneePremiereAdhesion2: ControllerPageGestionAdherents.value5_1.content,
       filtreAnneePremiereAdhesion3: ControllerPageGestionAdherents.controlleur3.text, 
-      filtreAnneePremiereAdhesion4: ControllerPageGestionAdherents.value6.content,
+      filtreAnneePremiereAdhesion4: ControllerPageGestionAdherents.value6_1.content,
       ));
 
   }
@@ -396,29 +375,9 @@ class _PageGestionsAdhesionsEnCours extends State<PageGestionsAdhesionsEnCours> 
       Column(children: [
         CustomText(customTextStyle: title),
         const Text("Outil de recherche"),
-        Row(
-          children: [
-            Flexible(
-              child: Container( 
-                padding: const EdgeInsets.fromLTRB(0, 0, 2, 0),
-                child: CustomTextFormField(
-                  customTextFormFieldStyle: customTextFormFieldStyle1,
-                  customTextFormFieldValidator: customTextFormFieldValidator1,
-                  customTextFormFieldEvent: customTextFormFieldEvent1,
-                  customTextFormFieldContent: customTextFormFieldContent1,
-                  controller: controller1),),),
-            Flexible(
-              child: Container(
-                padding: const EdgeInsets.fromLTRB(2, 0, 0, 0),
-                child: CustomTextFormField(
-                customTextFormFieldStyle: customTextFormFieldStyle2,
-                customTextFormFieldValidator: customTextFormFieldValidator2,
-                customTextFormFieldEvent: customTextFormFieldEvent2,
-                customTextFormFieldContent: customTextFormFieldContent2,
-                controller: controller2)),),      
-          ],
-        ),
+        
         ComposentSearch(
+          listeAdherents:adherents,
           function: (){setState(() {});}
           ),
         TextButton(
@@ -698,7 +657,7 @@ class _PageGestionsAdhesionsEnCours extends State<PageGestionsAdhesionsEnCours> 
                             setState((){});
                           }
                           else{ // si l'adherent est entrain d'etre crée
-                            GstHttpServer.addAdherent(Adherent(nom: textFormNameController.text, prenom: textFormFirstNameController.text, civilite: "x"));
+                            GstHttpServer.addAdherent(Adherent(nom: textFormNameController.text, prenom: textFormFirstNameController.text, civilite: "x", anneePremiereAdhesion: 2010,moisPremiereAdhesion: 10,joursPremiereAdhesion: 10));
                             setState(() {});
                           }
                           Navigator.of(context).pop();

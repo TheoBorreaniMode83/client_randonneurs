@@ -1,6 +1,6 @@
 class Wrapper{
-  late String content;
-  Wrapper({required String contentA}){
+  late dynamic content;
+  Wrapper({required dynamic contentA}){
     content = contentA;  
   }
 }
