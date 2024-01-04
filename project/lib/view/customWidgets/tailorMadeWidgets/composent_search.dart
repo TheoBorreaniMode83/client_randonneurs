@@ -299,7 +299,28 @@ class _ComposentSearchState extends State<ComposentSearch> {
     );
   }
 
-
+Widget rowType4({required name,required Wrapper elt0}){
+    return Container(
+      decoration: myDeco,
+      margin: EdgeInsets.symmetric(vertical: myContainerMargin),
+      padding: EdgeInsets.all( myContainerPadding),
+      height:myContainerHeight,
+      child: Row(
+        children: [
+          Checkbox(
+            activeColor:Colors.black,
+            value: elt0.content,
+            onChanged: (bool? value){setState(() {
+              elt0.content=!elt0.content;
+            });},
+          ),
+          Expanded(
+            flex:4,
+            child: Text(name),),
+        ]
+      )
+    );
+  }
 
   @override
   Widget build(BuildContext context)
@@ -412,6 +433,10 @@ class _ComposentSearchState extends State<ComposentSearch> {
                       elt0: ControllerPageGestionAdherents.value6_0 ,
                       controlleurX: ControllerPageGestionAdherents.controlleur3
                     ),
+                    rowType4(
+                      name:  "Adresse electronique",
+                      elt0:  ControllerPageGestionAdherents.value9_0 
+                      ),
                     Container(
                       margin: EdgeInsets.fromLTRB(0,30,0,0),
                       alignment: Alignment.topRight,
@@ -446,6 +471,7 @@ class _ComposentSearchState extends State<ComposentSearch> {
                               (ControllerPageGestionAdherents.value6_0.content)?{result[result.length-1].add(widget.listeAdherents[i].anneePremiereAdhesion.toString())}:{};
                               (ControllerPageGestionAdherents.value7_0.content)?{result[result.length-1].add(widget.listeAdherents[i].nom.toString())}:{};
                               (ControllerPageGestionAdherents.value8_0.content)?{result[result.length-1].add(widget.listeAdherents[i].prenom.toString())}:{};
+                              (ControllerPageGestionAdherents.value9_0.content)?{result[result.length-1].add(widget.listeAdherents[i].adresseMail.toString())}:{};
                             }
 
                             GstDownloadFiles.downloadFile(fileName: "adherents.csv", fileContent: GstDownloadFiles.makeCSV(result));
